@@ -1,6 +1,8 @@
 interface RouteDefinition {
+  id: string,
   path: string,
   getPath: (params: any) => string,
+  activeId?: string,
 };
 
 interface RoutesMap {

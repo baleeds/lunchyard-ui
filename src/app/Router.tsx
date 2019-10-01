@@ -1,6 +1,7 @@
 import React from 'react';
 import Lunches from '../lunches/Lunches';
 import Restaurants from '../restaurants/Restaurants';
+import routes from '../constants/routes';
 
 interface Props {
   routeState: RouteState | undefined,
@@ -9,13 +10,11 @@ interface Props {
 const Router: React.FC<Props> = ({ routeState }) => {
   const { id, params } = routeState || {};
 
-  console.log('new state in router', id, params);
-
   switch (id) {
-    case 'lunches':
-    case 'lunchDetails':
+    case routes.lunches.id:
+    case routes.lunchDetails.id:
       return <Lunches lunchId={params.lunchId} />
-    case 'restaurants':
+    case routes.restaurants.id:
       return <Restaurants />;
     default:
       return <div>Not found</div>;

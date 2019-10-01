@@ -4,10 +4,17 @@ const getRouteIdByPath = (
   { routes: routesMap }: EnsureRouterOptions,
   { route }: RouteInstruction
 ) => {
-  const matchedRouteKey = Object.keys(routesMap)
-    .find(routeKey => routesMap[routeKey].path === route);
+  const routeKeys = Object.keys(routesMap);
 
-  return matchedRouteKey || NOT_FOUND;
+  for (let i = 0, { length } = routeKeys; i < length; i += 1) {
+    const routeDefinition = routesMap[routeKeys[i]];
+
+    if (!routeDefinition) continue;
+
+    if (routeDefinition.path === route) return routeDefinition.id;
+  }
+
+  return NOT_FOUND;
 };
 
 export const getInitialRouteState = (
@@ -38,12 +45,13 @@ export const addRoutesToRouter = (
       navigoRoutes: NavigoRoutes,
       routeKey: string
     ) => {
-      const { path } = routes[routeKey];
+      const { path, id, activeId } = routes[routeKey];
 
       navigoRoutes[path] = function(params, query) {
         PubSub.publish(NEW_ROUTE, {
-          id: routeKey,
+          id,
           path,
+          activeId,
           params: params || {},
           query,
         });
