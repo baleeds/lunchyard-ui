@@ -7,11 +7,7 @@ import LunchDetails from './LunchesDetails';
 import { useNavigate } from '../router';
 import routes from '../constants/routes';
 
-interface Props {
-  lunchId?: string,
-}
-
-const Lunches: React.FC<Props> = ({ lunchId }) => {
+const Lunches: React.FC = () => {
   const navigate = useNavigate();
   
   const goToRestaurants = useCallback(() => navigate(routes.lunchDetails.getPath({ lunchId: 'hello' })), [navigate]);
@@ -29,7 +25,7 @@ const Lunches: React.FC<Props> = ({ lunchId }) => {
           }}
         />
       </div>
-      <LunchDetails lunchId={lunchId} />
+      <LunchDetails />
     </>
   );
 };

@@ -1,12 +1,10 @@
 import React from 'react';
+import { useRouter } from '../router';
 
-interface Props {
-  lunchId: string | undefined,
-};
+const LunchDetails: React.FC = () => {
+  const { params } = useRouter();
+  const { lunchId } = params;
 
-const LunchDetails: React.FC<Props> = ({
-  lunchId,
-}) => {
   if (!lunchId) return null;
   
   return (
