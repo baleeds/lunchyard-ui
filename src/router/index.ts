@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 interface RouteDefinition {
   path: string,
-  navigate: (params: any) => string,
+  getPath: (params: any) => string,
 };
 
 interface RoutesMap {
@@ -68,7 +68,7 @@ const addRoutesToRouter = (
   setRoute: React.Dispatch<React.SetStateAction<RouteState>>,
 ) => {
   const navigoRoutes = Object
-    .keys(routes.map)
+    .keys(routes)
     .reduce((navigoRoutes: NavigoRoutes, routeKey: string) => {
       const { path } = routes[routeKey];
 
