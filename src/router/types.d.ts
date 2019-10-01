@@ -25,3 +25,17 @@ interface EnsureRouterOptions {
 interface NavigoRoutes {
   [key: string]: (params: any, query: string) => void,
 }
+
+interface RouteInstruction {
+  route: string,
+  hooks: any,
+  handler: any,
+}
+
+interface ResolveOutput {
+  match: any,
+  params: { [key: string]: string } | null | undefined,
+  route: RouteInstruction,
+}
+
+type MaybeResolveOutput = boolean | ResolveOutput | undefined;
