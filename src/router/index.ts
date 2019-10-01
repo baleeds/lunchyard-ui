@@ -1,32 +1,6 @@
 import Navigo from 'navigo';
-import { useState } from 'react';
-
-interface RouteDefinition {
-  path: string,
-  getPath: (params: any) => string,
-};
-
-interface RoutesMap {
-  [key: string]: RouteDefinition,
-};
-
-interface RouteState {
-  id: string,
-  path: string,
-  params: any,
-  query: string,
-};
-
-interface EnsureRouterOptions {
-  routes: RoutesMap,
-  root: RouteState,
-  useHash?: boolean,
-  hash?: string,
-};
-
-interface NavigoRoutes {
-  [key: string]: (params: any, query: string) => void,
-}
+import { useState, useEffect } from 'react';
+import PubSub from 'pubsub-js';
 
 // const routes: RoutesMap = {
 //   home: {
@@ -49,9 +23,10 @@ interface NavigoRoutes {
 
 let router: Navigo;
 
+const NEW_ROUTE = 'NEW_ROUTE';
+
 const ensureRouter = (
   options: EnsureRouterOptions,
-  setRoute: React.Dispatch<React.SetStateAction<RouteState>>
 ) => {
   if (router) return;
 
@@ -59,13 +34,12 @@ const ensureRouter = (
 
   router = new Navigo(root.path, useHash, hash);
 
-  router = addRoutesToRouter(router, routes, setRoute);
+  addRoutesToRouter(router, routes);
 }
 
 const addRoutesToRouter = (
   router: Navigo,
   routes: RoutesMap,
-  setRoute: React.Dispatch<React.SetStateAction<RouteState>>,
 ) => {
   const navigoRoutes = Object
     .keys(routes)
@@ -73,7 +47,8 @@ const addRoutesToRouter = (
       const { path } = routes[routeKey];
 
       navigoRoutes[path] = function(params, query) {
-        setRoute({
+        console.log(params);
+        PubSub.publish(NEW_ROUTE, {
           id: routeKey,
           path,
           params,
@@ -84,21 +59,36 @@ const addRoutesToRouter = (
       return navigoRoutes;
     }, {});
 
-  router.on(navigoRoutes);
-  
-  return router;
+  router.on(navigoRoutes).resolve();
+  console.log(router);
 }
 
 export const useRouter = (options: EnsureRouterOptions) => {
   const { root } = options; 
   
+  ensureRouter(options);
+
   const [route, setRoute] = useState<RouteState>(root);
 
-  ensureRouter(options, setRoute);
+  useEffect(() => {
+    const sub = PubSub.subscribe(NEW_ROUTE, (payload: RouteState) => { console.log(payload); setRoute(payload); });
+    return () => PubSub.unsubscribe(sub);
+  });
 
   return route;
 };
 
 export const useNavigate = () => {
-  return router.navigate;
+  return router.navigate.bind(router);
 };
+
+export const mapRouteToState = (routes: RoutesMap, id: string): RouteState => {
+  const route = routes[id];
+  
+  return {
+    id,
+    path: route.path,
+    params: {},
+    query: '',
+  };
+}

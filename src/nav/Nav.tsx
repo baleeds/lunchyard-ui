@@ -3,29 +3,30 @@ import NavLink from './NavLink';
 import styled from '@emotion/styled';
 import theme from '../constants/theme';
 import NavLogo from './NavLogo';
-import route from '../constants/route';
+import route from '../constants/routes';
 
 import { ReactComponent as LunchIcon } from '../shared/icons/plate.svg';
 import { ReactComponent as StoreIcon } from '../shared/icons/store.svg';
 import { ReactComponent as PeopleIcon } from '../shared/icons/people.svg';
+import Link from '../router/Link';
 
 const Nav: React.FC = () => {
   return (
     <NavContainer>
       <NavLogo />
       <NavLinksContainer>
-        <NavLink to={route.lunches.path}>
+        <Link route={route.lunches}>
           <>
             <LunchIcon />
             lunches
           </>
-        </NavLink>
-        <NavLink to={route.restaurants.path}>
+        </Link>
+        <Link route={route.restaurants}>
           <>
             <StoreIcon />
             restaurants
           </>
-        </NavLink>
+        </Link>
         <NavLink to={route.people.path}>
           <>
             <PeopleIcon />
