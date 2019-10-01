@@ -3,6 +3,7 @@ import NavLink from './NavLink';
 import styled from '@emotion/styled';
 import theme from '../constants/theme';
 import NavLogo from './NavLogo';
+import route from '../constants/route';
 
 import { ReactComponent as LunchIcon } from '../shared/icons/plate.svg';
 import { ReactComponent as StoreIcon } from '../shared/icons/store.svg';
@@ -13,19 +14,19 @@ const Nav: React.FC = () => {
     <NavContainer>
       <NavLogo />
       <NavLinksContainer>
-        <NavLink to="/lunches">
+        <NavLink to={route.lunches.path}>
           <>
             <LunchIcon />
             lunches
           </>
         </NavLink>
-        <NavLink to="/restaurants">
+        <NavLink to={route.restaurants.path}>
           <>
             <StoreIcon />
             restaurants
           </>
         </NavLink>
-        <NavLink to="/people">
+        <NavLink to={route.people.path}>
           <>
             <PeopleIcon />
             people

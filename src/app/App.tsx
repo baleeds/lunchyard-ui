@@ -5,15 +5,16 @@ import './App.css';
 import Lunches from '../lunches/Lunches';
 import Restaurants from '../restaurants/Restaurants';
 import Nav from '../nav/Nav';
+import route from '../constants/route';
 
 const App: React.FC = () => {
   return (
     <AppContainer>
       <Nav />
       <Router>
-        <Lunches path="/lunches" />
-        <Restaurants path="/restaurants" />
-        <Redirect from="/" to="/lunches" noThrow />
+        <Lunches path={route.lunches.path} />
+        <Restaurants path={route.restaurants.path} />
+        <Redirect from="/" to={route.lunches.path} noThrow />
       </Router>
     </AppContainer>
   );
