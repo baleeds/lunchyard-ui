@@ -83,9 +83,9 @@ export const addRoutesToRouter = (
       return navigoRoutes;
     }, {});
 
-  const resovled = router
+  const resolved = router
     .on(navigoRoutes)
     .resolve() as any as MaybeResolveOutput;
 
-  return resovled;    
+  return resolved;    
 }
