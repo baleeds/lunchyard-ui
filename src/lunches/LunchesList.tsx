@@ -2,13 +2,8 @@ import React from 'react';
 import { RouteComponentProps } from '@reach/router';
 import ModuleToolbar from '../shared/ModuleToolbar';
 import { ReactComponent as PlusIcon } from '../shared/icons/add.svg';
-import LunchDetails from './LunchesDetails';
-import styled from '@emotion/styled';
 
-interface Props extends RouteComponentProps<{ lunchId?: string }>{};
-
-
-const Lunches: React.FC<Props> = ({ children, lunchId }) => {
+const Lunches: React.FC<RouteComponentProps> = ({ children }) => {
   return (
     <>
       <div>
@@ -22,18 +17,9 @@ const Lunches: React.FC<Props> = ({ children, lunchId }) => {
           }}
         />
       </div>
-      <LunchDetails lunchId={lunchId} />
+      {children}
     </>
   );
 };
-
-const PageContainer = styled('div')`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  overflow: hidden;
-`;
 
 export default Lunches;
