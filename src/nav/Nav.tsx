@@ -16,19 +16,19 @@ const Nav: React.FC = () => {
         <NavLink to="/lunches">
           <>
             <LunchIcon />
-            Lunches
+            lunches
           </>
         </NavLink>
         <NavLink to="/restaurants">
           <>
             <StoreIcon />
-            Restaurants
+            restaurants
           </>
         </NavLink>
         <NavLink to="/people">
           <>
             <PeopleIcon />
-            People
+            people
           </>
         </NavLink>
       </NavLinksContainer>
