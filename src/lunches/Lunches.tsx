@@ -6,6 +6,7 @@ import { ReactComponent as PlusIcon } from '../shared/icons/add.svg';
 import LunchDetails from './LunchesDetails';
 import { useNavigate } from '../router';
 import routes from '../constants/routes';
+import LunchesList from './LunchesList';
 
 const Lunches: React.FC = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const Lunches: React.FC = () => {
             Icon: PlusIcon,
           }}
         />
+        <LunchesList />
       </div>
       <LunchDetails />
     </>
