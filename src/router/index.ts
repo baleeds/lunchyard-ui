@@ -5,6 +5,7 @@ import { NEW_ROUTE } from './constants';
 import { getInitialRouteState, addRoutesToRouter } from './helpers';
 
 let router: Navigo;
+let routeState: RouteState;
 
 const ensureRouter = (
   options: RouterOptions,
@@ -23,16 +24,25 @@ const ensureRouter = (
   return addRoutesToRouter(router, routes);
 }
 
-export const useRouter = (options: RouterOptions) => {
+export const startRouter = (options: RouterOptions) => {
   const resolveOutput = ensureRouter(options);
   const initialRouteState = getInitialRouteState(options, resolveOutput);
 
-  const [route, setRoute] = useState<RouteState>(initialRouteState);
+  routeState = initialRouteState;
+
+  return routeState;
+};
+
+export const useRouter = () => {
+  const [route, setRoute] = useState<RouteState>(routeState);
 
   useEffect(() => {
     const sub = PubSub.subscribe(
       NEW_ROUTE,
-      (_: any, payload: RouteState) => setRoute(payload)
+      (_: any, payload: RouteState) => {
+        setRoute(payload);
+        routeState = payload;
+      },
     );
 
     return () => PubSub.unsubscribe(sub);

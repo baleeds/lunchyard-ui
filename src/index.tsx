@@ -4,6 +4,10 @@ import './styles/index.css';
 import './styles/reset.css';
 import App from './app/App';
 import * as serviceWorker from './serviceWorker';
+import { startRouter } from './router';
+import routes from './constants/routes';
+
+startRouter({ routes });
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

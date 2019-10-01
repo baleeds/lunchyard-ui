@@ -7,8 +7,8 @@ export default Object.freeze({
   lunchDetails: {
     id: 'lunchDetails',
     path: '/lunches/:lunchId',
-    getPath: ({ lunchId }: { lunchId: string }) => `/lunches/${lunchId}`,
     activeId: 'lunches',
+    getPath: ({ lunchId }: { lunchId: string }) => `/lunches/${lunchId}`,
   },
   restaurants: {
     id: 'restaurants',

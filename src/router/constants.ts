@@ -6,4 +6,5 @@ export const NOT_FOUND_STATE = Object.freeze({
   path: '',
   params: {},
   query: '',
+  activeId: '',
 });

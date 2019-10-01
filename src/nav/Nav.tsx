@@ -1,38 +1,50 @@
 import React from 'react';
-import NavLink from './NavLink';
 import styled from '@emotion/styled';
 import theme from '../constants/theme';
 import NavLogo from './NavLogo';
 import route from '../constants/routes';
+import Link from '../router/Link';
+import { useRouter } from '../router';
 
 import { ReactComponent as LunchIcon } from '../shared/icons/plate.svg';
 import { ReactComponent as StoreIcon } from '../shared/icons/store.svg';
 import { ReactComponent as PeopleIcon } from '../shared/icons/people.svg';
-import Link from '../router/Link';
+
 
 const Nav: React.FC = () => {
+  const { activeId } = useRouter();
+
   return (
     <NavContainer>
       <NavLogo />
       <NavLinksContainer>
-        <Link route={route.lunches}>
+        <Link
+          route={route.lunches}
+          className={activeId === route.lunches.id ? 'active' : ''}
+        >
           <>
             <LunchIcon />
             lunches
           </>
         </Link>
-        <Link route={route.restaurants}>
+        <Link
+          route={route.restaurants}
+          className={activeId === route.restaurants.id ? 'active' : ''}
+        >
           <>
             <StoreIcon />
             restaurants
           </>
         </Link>
-        <NavLink to={route.people.path}>
+        <Link
+          route={route.people}
+          className={activeId === route.people.id ? 'active' : ''}
+        >
           <>
             <PeopleIcon />
             people
           </>
-        </NavLink>
+        </Link>
       </NavLinksContainer>
     </NavContainer>
   );
@@ -52,7 +64,7 @@ const NavLinksContainer = styled('div')`
     padding: 20px 30px;
     color: ${theme.textLight};
 
-    &[data-active=true] {
+    &.active {
       color: ${theme.secondary};
     }
 

@@ -3,16 +3,12 @@ import styled from '@emotion/styled';
 import './App.css';
 import Nav from '../nav/Nav';
 import Router from './Router';
-import { useRouter } from '../router';
-import routes from '../constants/routes';
 
 const App: React.FC = () => {
-  const routeState = useRouter({ routes });
-  
   return (
     <AppContainer>
       <Nav />
-      <Router routeState={routeState} />
+      <Router />
     </AppContainer>
   );
 }

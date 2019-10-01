@@ -14,6 +14,7 @@ interface RouteState {
   path: string,
   params: any,
   query: string,
+  activeId: string,
 };
 
 interface RouterOptions {

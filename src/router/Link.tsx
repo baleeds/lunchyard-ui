@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from '.';
 
-interface Props {
+interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   route: RouteDefinition,
   params?: object | undefined | null,
 };

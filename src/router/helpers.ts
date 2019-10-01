@@ -1,9 +1,15 @@
-import { NOT_FOUND, NOT_FOUND_STATE, NEW_ROUTE } from "./constants";
+import { NOT_FOUND_STATE, NEW_ROUTE } from "./constants";
 
-const getRouteIdByPath = (
+const getCurrentRoute = (
   { routes: routesMap }: RouterOptions,
-  { route }: RouteInstruction
+  resolveOutput: MaybeResolveOutput,
 ) => {
+  if (!resolveOutput || typeof resolveOutput !== 'object') {
+    return null
+  }
+
+  const { route: { route } } = resolveOutput;
+
   const routeKeys = Object.keys(routesMap);
 
   for (let i = 0, { length } = routeKeys; i < length; i += 1) {
@@ -11,26 +17,37 @@ const getRouteIdByPath = (
 
     if (!routeDefinition) continue;
 
-    if (routeDefinition.path === route) return routeDefinition.id;
+    if (routeDefinition.path === route) return routeDefinition;
   }
 
-  return NOT_FOUND;
+  return null;
 };
+
+const getParamsFromResolve = (resolveOutput: MaybeResolveOutput) => {
+  if (typeof resolveOutput !== 'object') return {};
+
+  return resolveOutput.params || {};
+}
 
 export const getInitialRouteState = (
   options: RouterOptions,
   resolveOutput: MaybeResolveOutput,
 ) => {
-  if (!resolveOutput || typeof resolveOutput !== 'object') {
-    return NOT_FOUND_STATE;
-  }
+  const currentRoute = getCurrentRoute(options, resolveOutput);
 
-  const { route, params } = resolveOutput;
+  if (!currentRoute) return NOT_FOUND_STATE;
+
+  const {
+    id,
+    activeId = id,
+    path
+  } = currentRoute;
 
   return {
-    id: getRouteIdByPath(options, route),
-    path: route.route,
-    params: params || {},
+    id,
+    activeId, 
+    path,
+    params: getParamsFromResolve(resolveOutput),
     query: '',
   };
 };
@@ -45,7 +62,11 @@ export const addRoutesToRouter = (
       navigoRoutes: NavigoRoutes,
       routeKey: string
     ) => {
-      const { path, id, activeId } = routes[routeKey];
+      const {
+        path,
+        id,
+        activeId = id,
+      } = routes[routeKey];
 
       navigoRoutes[path] = function(params, query) {
         PubSub.publish(NEW_ROUTE, {
