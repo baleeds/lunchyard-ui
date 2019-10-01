@@ -18,7 +18,6 @@ const getActive = (props: LinkGetProps) => {
 const NavLink: React.FC<Props> = ({ to, children }) => {
   return (
     <Link to={to} getProps={getActive}>{children}</Link>
-
   );
 };
 

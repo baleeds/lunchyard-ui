@@ -4,13 +4,33 @@ import styled from '@emotion/styled';
 import theme from '../constants/theme';
 import NavLogo from './NavLogo';
 
+import { ReactComponent as LunchIcon } from '../shared/icons/plate.svg';
+import { ReactComponent as StoreIcon } from '../shared/icons/store.svg';
+import { ReactComponent as PeopleIcon } from '../shared/icons/people.svg';
+
 const Nav: React.FC = () => {
   return (
     <NavContainer>
       <NavLogo />
       <NavLinksContainer>
-        <NavLink to="/lunches">Lunches</NavLink>
-        <NavLink to="/restaurants">Restaurants</NavLink>
+        <NavLink to="/lunches">
+          <>
+            <LunchIcon />
+            Lunches
+          </>
+        </NavLink>
+        <NavLink to="/restaurants">
+          <>
+            <StoreIcon />
+            Restaurants
+          </>
+        </NavLink>
+        <NavLink to="/people">
+          <>
+            <PeopleIcon />
+            People
+          </>
+        </NavLink>
       </NavLinksContainer>
     </NavContainer>
   );
@@ -25,8 +45,21 @@ const NavLinksContainer = styled('div')`
   margin-top: 30px;
 
   a {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 20px 30px;
+    color: ${theme.textLight};
+
+    &[data-active=true] {
+      color: ${theme.secondary};
+    }
+
+    svg {
+      margin-right: 20px;
+      fill: currentColor;
+      height: 40px;
+      width: auto;
+    }
   }
 `;
 
