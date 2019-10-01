@@ -3,13 +3,13 @@ import Lunches from '../lunches/Lunches';
 import Restaurants from '../restaurants/Restaurants';
 
 interface Props {
-  routeState: RouteState,
+  routeState: RouteState | undefined,
 }
 
 const Router: React.FC<Props> = ({ routeState }) => {
-  const { id, params } = routeState;
+  const { id, params } = routeState || {};
 
-  console.log('new state', id, params);
+  console.log('new state in router', id, params);
 
   switch (id) {
     case 'lunches':

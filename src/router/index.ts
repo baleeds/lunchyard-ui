@@ -2,28 +2,24 @@ import Navigo from 'navigo';
 import { useState, useEffect } from 'react';
 import PubSub from 'pubsub-js';
 
-// const routes: RoutesMap = {
-//   home: {
-//     path: '/',
-//     navigate: () => '/',
-//   },
-//   login: {
-//     path: '/login',
-//     navigate: () => '/login',
-//   },
-//   read: {
-//     path: '/read',
-//     navigate: () => '/read',
-//   },
-//   readBook: {
-//     path: '/read/:bookName',
-//     navigate: ({ bookName }: { bookName: string }) => `/read/${bookName}`,
-//   },
-// };
-
 let router: Navigo;
 
+interface RouteInstruction {
+  route: string,
+  hooks: any,
+  handler: any,
+}
+
+interface ResolveOutput {
+  match: any,
+  params: { [key: string]: string } | null | undefined,
+  route: RouteInstruction,
+}
+
+type MaybeResolveOutput = boolean | ResolveOutput;
+
 const NEW_ROUTE = 'NEW_ROUTE';
+const NOT_FOUND = 'NOT_FOUND';
 
 const ensureRouter = (
   options: EnsureRouterOptions,
@@ -39,7 +35,7 @@ const ensureRouter = (
 
   router = new Navigo(root, useHash, hash);
 
-  addRoutesToRouter(router, routes);
+  return addRoutesToRouter(router, routes);
 }
 
 const addRoutesToRouter = (
@@ -64,16 +60,29 @@ const addRoutesToRouter = (
       return navigoRoutes;
     }, {});
 
-  router.on(navigoRoutes).resolve();
-  console.log(router);
+  const resolvedPath = router.on(navigoRoutes).resolve() as any as MaybeResolveOutput;
+
+  return resolvedPath;
 }
 
 export const useRouter = (options: EnsureRouterOptions) => {
-  const { initialState } = options; 
-  
-  ensureRouter(options);
+  const resolvedPath = ensureRouter(options);
+  console.log(resolvedPath);
 
-  const [route, setRoute] = useState<RouteState>(initialState);
+  let initialRouteState: RouteState = { id: '__not-found', path: '', params: {}, query: '' };
+  
+  if (typeof resolvedPath === 'object') {
+    const { route, params } = resolvedPath;
+    
+    initialRouteState = {
+      id: getRouteIdByPath(options, route),
+      path: route.route,
+      params: params || {},
+      query:'',
+    }
+  }
+
+  const [route, setRoute] = useState<RouteState>(initialRouteState);
 
   useEffect(() => {
     const sub = PubSub.subscribe(NEW_ROUTE, (_msg: string, payload: RouteState) => { console.log('new route', payload); setRoute(payload); });
@@ -96,4 +105,8 @@ export const mapRouteToState = (routes: RoutesMap, id: string): RouteState => {
     params: {},
     query: '',
   };
+}
+
+const getRouteIdByPath = ({ routes: routesMap }: EnsureRouterOptions, { route }: RouteInstruction) => {
+  return Object.keys(routesMap).find(routeKey => routesMap[routeKey].path === route) || NOT_FOUND;
 }

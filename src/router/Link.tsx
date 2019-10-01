@@ -16,7 +16,7 @@ const Link: React.FC<Props> = ({ route, params, children, ...rest }) => {
   const handleClick = useCallback((e) => {
     e.preventDefault();
     navigate(href);
-  }, [href]);
+  }, [href, navigate]);
   
   return (
     <a

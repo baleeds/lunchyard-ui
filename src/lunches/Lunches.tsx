@@ -1,19 +1,20 @@
 import React, { useCallback } from 'react';
-import { RouteComponentProps } from '@reach/router';
+// import { RouteComponentProps } from '@reach/router';
+// import styled from '@emotion/styled';
 import ModuleToolbar from '../shared/ModuleToolbar';
 import { ReactComponent as PlusIcon } from '../shared/icons/add.svg';
 import LunchDetails from './LunchesDetails';
-import styled from '@emotion/styled';
 import { useNavigate } from '../router';
 import routes from '../constants/routes';
 
-interface Props extends RouteComponentProps<{ lunchId?: string }>{};
+interface Props {
+  lunchId?: string,
+}
 
-
-const Lunches: React.FC<Props> = ({ children, lunchId }) => {
+const Lunches: React.FC<Props> = ({ lunchId }) => {
   const navigate = useNavigate();
   
-  const goToRestaurants = useCallback(() => navigate(routes.restaurants.getPath()), []);
+  const goToRestaurants = useCallback(() => navigate(routes.lunchDetails.getPath({ lunchId: 'hello' })), [navigate]);
 
   return (
     <>
@@ -33,13 +34,13 @@ const Lunches: React.FC<Props> = ({ children, lunchId }) => {
   );
 };
 
-const PageContainer = styled('div')`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  overflow: hidden;
-`;
+// const PageContainer = styled('div')`
+//   display: flex;
+//   flex-direction: row;
+//   width: 100%;
+//   height: 100%;
+//   min-height: 0;
+//   overflow: hidden;
+// `;
 
 export default Lunches;

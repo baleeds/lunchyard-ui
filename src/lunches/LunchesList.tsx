@@ -2,8 +2,13 @@ import React from 'react';
 import { RouteComponentProps } from '@reach/router';
 import ModuleToolbar from '../shared/ModuleToolbar';
 import { ReactComponent as PlusIcon } from '../shared/icons/add.svg';
+import LunchDetails from './LunchesDetails';
 
-const Lunches: React.FC<RouteComponentProps> = ({ children }) => {
+interface Props extends RouteComponentProps {
+  lunchId?: string
+};
+
+const Lunches: React.FC<Props> = ({ lunchId }) => {
   return (
     <>
       <div>
@@ -17,7 +22,7 @@ const Lunches: React.FC<RouteComponentProps> = ({ children }) => {
           }}
         />
       </div>
-      {children}
+      {lunchId && <LunchDetails lunchId={lunchId} />}
     </>
   );
 };

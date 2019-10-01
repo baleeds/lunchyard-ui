@@ -1,19 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import './App.css';
-import Restaurants from '../restaurants/Restaurants';
 import Nav from '../nav/Nav';
-import route from '../constants/routes';
-import LunchDetails from '../lunches/LunchesDetails';
-import Lunches from '../lunches/Lunches';
 import Router from './Router';
-import { useRouter, mapRouteToState } from '../router';
+import { useRouter } from '../router';
 import routes from '../constants/routes';
 
 const App: React.FC = () => {
   const routeState = useRouter({
     root: window.location.origin,
-    initialState: mapRouteToState(routes, 'lunches'),
     routes,
   });
   
