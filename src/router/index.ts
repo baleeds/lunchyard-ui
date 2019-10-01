@@ -32,7 +32,7 @@ const ensureRouter = (
 
   const { root, useHash, hash, routes } = options;
 
-  router = new Navigo(root.path, useHash, hash);
+  router = new Navigo(root, useHash, hash);
 
   addRoutesToRouter(router, routes);
 }
@@ -47,11 +47,11 @@ const addRoutesToRouter = (
       const { path } = routes[routeKey];
 
       navigoRoutes[path] = function(params, query) {
-        console.log(params);
+        console.log('params', params);
         PubSub.publish(NEW_ROUTE, {
           id: routeKey,
           path,
-          params,
+          params: params || {},
           query,
         });
       };
@@ -64,14 +64,14 @@ const addRoutesToRouter = (
 }
 
 export const useRouter = (options: EnsureRouterOptions) => {
-  const { root } = options; 
+  const { initialState } = options; 
   
   ensureRouter(options);
 
-  const [route, setRoute] = useState<RouteState>(root);
+  const [route, setRoute] = useState<RouteState>(initialState);
 
   useEffect(() => {
-    const sub = PubSub.subscribe(NEW_ROUTE, (payload: RouteState) => { console.log(payload); setRoute(payload); });
+    const sub = PubSub.subscribe(NEW_ROUTE, (_msg: string, payload: RouteState) => { console.log('new route', payload); setRoute(payload); });
     return () => PubSub.unsubscribe(sub);
   });
 

@@ -12,7 +12,8 @@ import routes from '../constants/routes';
 
 const App: React.FC = () => {
   const routeState = useRouter({
-    root: mapRouteToState(routes, 'lunches'),
+    root: window.location.origin,
+    initialState: mapRouteToState(routes, 'lunches'),
     routes,
   });
   

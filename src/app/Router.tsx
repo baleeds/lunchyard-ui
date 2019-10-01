@@ -9,7 +9,7 @@ interface Props {
 const Router: React.FC<Props> = ({ routeState }) => {
   const { id, params } = routeState;
 
-  console.log(id, params);
+  console.log('new state', id, params);
 
   switch (id) {
     case 'lunches':
