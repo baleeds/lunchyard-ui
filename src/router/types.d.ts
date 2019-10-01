@@ -16,8 +16,8 @@ interface RouteState {
 
 interface EnsureRouterOptions {
   routes: RoutesMap,
-  root: string,
   initialState: RouteState,
+  root?: string,
   useHash?: boolean,
   hash?: string,
 };

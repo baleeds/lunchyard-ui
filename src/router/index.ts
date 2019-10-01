@@ -30,7 +30,12 @@ const ensureRouter = (
 ) => {
   if (router) return;
 
-  const { root, useHash, hash, routes } = options;
+  const {
+    root = window.location.origin,
+    useHash,
+    hash,
+    routes,
+  } = options;
 
   router = new Navigo(root, useHash, hash);
 
