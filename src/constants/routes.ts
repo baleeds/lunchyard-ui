@@ -1,4 +1,9 @@
 export default Object.freeze({
+  root: {
+    id: 'root',
+    path: '',
+    activeId: 'lunches',
+  },
   lunches: {
     id: 'lunches',
     path: '/lunches',

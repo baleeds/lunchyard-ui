@@ -11,6 +11,8 @@ const Link: React.FC<Props> = ({ route, params, children, ...rest }) => {
 
   const { getPath } = route;
 
+  if (!getPath) throw new Error('Get path is not provided for this route');
+  
   const href = getPath(params);
 
   const handleClick = useCallback((e) => {
