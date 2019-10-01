@@ -7,10 +7,7 @@ import { useRouter } from '../router';
 import routes from '../constants/routes';
 
 const App: React.FC = () => {
-  const routeState = useRouter({
-    root: window.location.origin,
-    routes,
-  });
+  const routeState = useRouter({ routes });
   
   return (
     <AppContainer>

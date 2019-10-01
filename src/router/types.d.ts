@@ -16,9 +16,8 @@ interface RouteState {
   query: string,
 };
 
-interface EnsureRouterOptions {
+interface RouterOptions {
   routes: RoutesMap,
-  // initialState: RouteState,
   root?: string,
   useHash?: boolean,
   hash?: string,

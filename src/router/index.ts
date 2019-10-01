@@ -7,7 +7,7 @@ import { getInitialRouteState, addRoutesToRouter } from './helpers';
 let router: Navigo;
 
 const ensureRouter = (
-  options: EnsureRouterOptions,
+  options: RouterOptions,
 ) => {
   if (router) return;
 
@@ -23,7 +23,7 @@ const ensureRouter = (
   return addRoutesToRouter(router, routes);
 }
 
-export const useRouter = (options: EnsureRouterOptions) => {
+export const useRouter = (options: RouterOptions) => {
   const resolveOutput = ensureRouter(options);
   const initialRouteState = getInitialRouteState(options, resolveOutput);
 
@@ -42,5 +42,7 @@ export const useRouter = (options: EnsureRouterOptions) => {
 };
 
 export const useNavigate = () => {
+  if (!router) throw new Error("useRouter must be called before attempts to useNavigate");
+
   return router.navigate.bind(router);
 };

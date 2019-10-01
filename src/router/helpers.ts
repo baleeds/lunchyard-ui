@@ -1,7 +1,7 @@
 import { NOT_FOUND, NOT_FOUND_STATE, NEW_ROUTE } from "./constants";
 
 const getRouteIdByPath = (
-  { routes: routesMap }: EnsureRouterOptions,
+  { routes: routesMap }: RouterOptions,
   { route }: RouteInstruction
 ) => {
   const routeKeys = Object.keys(routesMap);
@@ -18,7 +18,7 @@ const getRouteIdByPath = (
 };
 
 export const getInitialRouteState = (
-  options: EnsureRouterOptions,
+  options: RouterOptions,
   resolveOutput: MaybeResolveOutput,
 ) => {
   if (!resolveOutput || typeof resolveOutput !== 'object') {
