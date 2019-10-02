@@ -48,6 +48,8 @@ const Button = styled.button`
   color: white;
   display: flex;
   align-items: center;
+  font-style: italic;
+  font-size: 20px;
 
   svg {
     fill: currentColor;

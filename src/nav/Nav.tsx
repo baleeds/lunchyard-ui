@@ -64,6 +64,7 @@ const NavLinksContainer = styled.div`
     align-items: center;
     padding: 20px 30px;
     color: ${theme.textLight};
+    font-size: 20px;
 
     &.active {
       color: ${theme.secondary};
@@ -72,7 +73,7 @@ const NavLinksContainer = styled.div`
     svg {
       margin-right: 20px;
       fill: currentColor;
-      height: 40px;
+      height: 50px;
       width: auto;
     }
   }
