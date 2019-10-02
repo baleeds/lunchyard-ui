@@ -1,28 +1,39 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from '.';
 
+// QUESTION: Is there a better way to model this?  Basically I need either route and or params OR path.
 interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  route: RouteDefinition,
+  route?: RouteDefinition,
   params?: object | undefined | null,
+  path?: string,
 };
 
-const Link: React.FC<Props> = ({ route, params, children, ...rest }) => {
-  const navigate = useNavigate();
+const derivePathFromProps = ({ route, params, path}: Props) => {
+  if (path) return path;
 
+  if (!route) return null;
+  
   const { getPath } = route;
 
-  if (!getPath) throw new Error('Get path is not provided for this route');
-  
-  const href = getPath(params);
+  if (!getPath) return null;
+  return getPath(params); 
+};
 
+const Link: React.FC<Props> = ({ route, params, path, children, ...rest }) => {
+  const navigate = useNavigate();
+
+  const derivedPath = derivePathFromProps({ route, params, path })
+
+  if (!derivedPath) throw new Error('Could not derive path.  Check passed routes, params, and path.');
+  
   const handleClick = useCallback((e) => {
     e.preventDefault();
-    navigate(href);
-  }, [href, navigate]);
+    navigate(derivedPath);
+  }, [derivedPath, navigate]);
   
   return (
     <a
-      href={href}
+      href={derivedPath}
       onClick={handleClick}
       {...rest}
     >
