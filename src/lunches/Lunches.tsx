@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
-// import { RouteComponentProps } from '@reach/router';
-// import styled from '@emotion/styled';
+import styled from '@emotion/styled';
 import ModuleToolbar from '../shared/ModuleToolbar';
 import { ReactComponent as PlusIcon } from '../shared/icons/add.svg';
 import LunchDetails from './LunchesDetails';
 import { useNavigate } from '../router';
 import routes from '../constants/routes';
 import LunchesList from './LunchesList';
+import theme from '../constants/theme';
 
 const Lunches: React.FC = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Lunches: React.FC = () => {
 
   return (
     <>
-      <div>
+      <LunchesListContainer>
         <ModuleToolbar
           title="lunches"
           subTitle="3 upcoming"
@@ -26,19 +26,18 @@ const Lunches: React.FC = () => {
           }}
         />
         <LunchesList />
-      </div>
+      </LunchesListContainer>
       <LunchDetails />
     </>
   );
 };
 
-// const PageContainer = styled('div')`
-//   display: flex;
-//   flex-direction: row;
-//   width: 100%;
-//   height: 100%;
-//   min-height: 0;
-//   overflow: hidden;
-// `;
+const LunchesListContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  border-right: 1px solid ${theme.border};
+`;
 
 export default Lunches;

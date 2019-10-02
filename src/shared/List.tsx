@@ -42,6 +42,8 @@ function List<ItemType extends ListItem>({
 const ListUl = styled('ul')`
   width: 100%;
   list-style: none;
+  overflow-y: auto;
+  flex: 1;
 
   a {
     color: inherit;
