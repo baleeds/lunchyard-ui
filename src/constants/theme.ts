@@ -3,6 +3,7 @@ const theme = Object.freeze({
   secondary: '#745BEC',
   blank: '#FFFFFF',
   border: '#EAEAEA',
+  hover: '#F8F8F8',
   text: '#686868',
   textLight: '#B4B4B4',
 });

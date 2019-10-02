@@ -1,27 +1,40 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Link from '../router/Link';
+import theme from '../constants/theme';
 
-interface Props<T> {
-  items: T[],
-  ListItem: React.FC<{ item: T }>,
-  getPath: (item: T) => string,
+interface ListItem {
+  id: string,
 };
 
-function List<T>({
+interface Props<ItemType> {
+  items: ItemType[],
+  ListItem: React.FC<{ item: ItemType }>,
+  getPath: (item: ItemType) => string,
+  listKey?: string,
+};
+
+// QUESITION: 
+function List<ItemType extends ListItem>({
   items,
   ListItem,
   getPath,
-}: Props<T>) {  
+  listKey = 'list',
+}: Props<ItemType>) {  
   return (
     <ListUl>
-      {items.map(item => (
-        <li>
-          <Link path={getPath(item)}>
-            <ListItem item={item} />
-          </Link>
-        </li>
-      ))}
+      {items.map((item) => {
+        const itemKey = `${listKey}-${item.id}`;
+        const path = getPath(item);
+
+        return (
+          <li key={itemKey}>
+            <Link path={path}>
+              <ListItem item={item} />
+            </Link>
+          </li>
+        )
+      })}
     </ListUl>
   );
 };
@@ -31,7 +44,14 @@ const ListUl = styled('ul')`
   list-style: none;
 
   a {
-    padding: 20px;
+    color: inherit;
+    display: block;
+    padding: 10px 20px;
+    border-bottom: 1px solid ${theme.border};
+
+    &:hover {
+      background-color: ${theme.hover};
+    }
   }
 `;
 

@@ -1,8 +1,7 @@
 import React from 'react';
-import lunchesQuery from './queries/lunchesQuery';
-import { useQuery } from '@apollo/react-hooks';
-import prune from '../apollo/prune';
-import styled from '@emotion/styled';
+// import lunchesQuery from './queries/lunchesQuery';
+// import { useQuery } from '@apollo/react-hooks';
+// import prune from '../apollo/prune';
 import routes from '../constants/routes';
 import List from '../shared/List';
 import LunchesListItem from './LunchesListItem';
