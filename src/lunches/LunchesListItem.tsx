@@ -8,10 +8,13 @@ interface Props {
 
 // QUESTION: why can't this return a string?
 const LunchesListItem: React.FC<Props> = ({ item }) => {
+  const { date } = item;
+  const dateDisplay = date ? toSimpleDate(date) : 'Not scheduled';
+  
   return (
     <>
       <h4>
-        {toSimpleDate(item.date)}
+        {dateDisplay}
       </h4>
       <h3>
         {getLunchTitle(item)}

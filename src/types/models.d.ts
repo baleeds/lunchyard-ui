@@ -6,8 +6,8 @@ interface Vendor {
 
 interface Lunch {
   id: string,
-  date: string,
   vendor: Vendor,
+  date?: string,
   occasion?: string,
   lunchDishes?: LunchDish[],
 };

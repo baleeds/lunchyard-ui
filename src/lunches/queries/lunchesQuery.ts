@@ -6,6 +6,23 @@ const lunchesQuery = gql`
       edges {
         node {
           id
+          date
+          vendor {
+            name
+          }
+          occasion
+          lunchDishes(first: 100) {
+            edges {
+              node {
+                id
+                quantity
+                dish {
+                  id
+                  name
+                }
+              }
+            }
+          }
         }
       }
     }
