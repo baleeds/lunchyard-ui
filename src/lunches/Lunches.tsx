@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import styled from '@emotion/styled';
 import ModuleToolbar from '../shared/ModuleToolbar';
 import { ReactComponent as PlusIcon } from '../shared/icons/add.svg';
@@ -7,6 +7,8 @@ import { useNavigate } from '../router';
 import routes from '../constants/routes';
 import LunchesList from './LunchesList';
 import theme from '../constants/theme';
+import { ModalContext } from '../shared/ModalController';
+import useModal from '../shared/hooks/useModal';
 
 export const lunches:Lunch[] = [{
   id: '1',
@@ -49,10 +51,12 @@ export const lunches:Lunch[] = [{
   occasion: 'John\'s Cert',
 }];
 
+const CreateLunchModal: React.FC<{ hello: string }> = ({ hello }) => {
+  return <span>{hello}</span>
+};
+
 const Lunches: React.FC = () => {
-  const navigate = useNavigate();
-  
-  const goToRestaurants = useCallback(() => navigate(routes.lunchDetails.getPath({ lunchId: 'hello' })), [navigate]);
+  const { showModal } = useModal('createLunchModal', <CreateLunchModal key="createLunchModal" hello='hello' />);
 
   return (
     <>
@@ -62,7 +66,7 @@ const Lunches: React.FC = () => {
           subTitle="3 upcoming"
           button={{
             title: 'create lunch',
-            onClick: goToRestaurants,
+            onClick: showModal,
             Icon: PlusIcon,
           }}
         />

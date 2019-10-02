@@ -8,12 +8,15 @@ import * as serviceWorker from './serviceWorker';
 import { startRouter } from './router';
 import routes from './constants/routes';
 import client from './apollo/client';
+import ModalController from './shared/ModalController';
 
 startRouter({ routes });
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <ModalController>
+      <App />
+    </ModalController>
   </ApolloProvider>
 , document.getElementById('root'));
 
