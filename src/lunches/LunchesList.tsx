@@ -6,32 +6,7 @@ import routes from '../constants/routes';
 import List from '../shared/List';
 import LunchesListItem from './LunchesListItem';
 import { useRouter } from '../router';
-
-const lunches:Lunch[] = [{
-  id: '1',
-  date: `${new Date()}`,
-  vendor: {
-    id: '10',
-    name: 'Rocky\'s Hot Chicken Shack',
-  },
-  occasion: 'Chase\'s Birthday',
-}, {
-  id: '2',
-  date: `${new Date()}`,
-  vendor: {
-    id: '11',
-    name: 'Taco Billy',
-  },
-  occasion: 'Ben\'s Birthday',
-}, {
-  id: '3',
-  date: `${new Date()}`,
-  vendor: {
-    id: '12',
-    name: 'Cracker Barrel',
-  },
-  occasion: 'John\'s Cert',
-}]
+import { lunches } from './Lunches';
 
 const getPathFromLunchItem = (item: Lunch) => routes.lunchDetails.getPath({ lunchId: item.id });
 

@@ -2,11 +2,52 @@ import React, { useCallback } from 'react';
 import styled from '@emotion/styled';
 import ModuleToolbar from '../shared/ModuleToolbar';
 import { ReactComponent as PlusIcon } from '../shared/icons/add.svg';
-import LunchDetails from './LunchesDetails';
+import LunchDetails from './details/LunchesDetails';
 import { useNavigate } from '../router';
 import routes from '../constants/routes';
 import LunchesList from './LunchesList';
 import theme from '../constants/theme';
+
+export const lunches:Lunch[] = [{
+  id: '1',
+  date: `${new Date()}`,
+  vendor: {
+    id: '10',
+    name: 'Rocky\'s Hot Chicken Shack',
+  },
+  occasion: 'Chase\'s Birthday',
+  lunchDishes: [{
+    id: '20',
+    quantity: 3,
+    dish: {
+      id: '30',
+      name: 'Spicy chicken',
+    }
+  }, {
+    id: '21',
+    quantity: 2,
+    dish: {
+      id: '30',
+      name: 'Mac n\' cheese',
+    },
+  }],
+}, {
+  id: '2',
+  date: `${new Date()}`,
+  vendor: {
+    id: '11',
+    name: 'Taco Billy',
+  },
+  occasion: 'Ben\'s Birthday',
+}, {
+  id: '3',
+  date: `${new Date()}`,
+  vendor: {
+    id: '12',
+    name: 'Cracker Barrel',
+  },
+  occasion: 'John\'s Cert',
+}];
 
 const Lunches: React.FC = () => {
   const navigate = useNavigate();

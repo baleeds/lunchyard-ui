@@ -9,4 +9,18 @@ interface Lunch {
   date: string,
   vendor: Vendor,
   occasion?: string,
+  lunchDishes?: LunchDish[],
+};
+
+interface LunchDish {
+  id: string,
+  quantity: number,
+  lunch?: Lunch,
+  dish?: Dish,
+};
+
+interface Dish {
+  id: string,
+  name: string,
+  vendor?: Vendor,
 };
