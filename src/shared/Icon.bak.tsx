@@ -49,7 +49,7 @@ const Icon: React.FC<Props> = (props) => {
   );
 };
 
-const IconSvg = styled('svg')<SvgProps>`
+const IconSvg = styled.svg<SvgProps>`
   ${props => props.loading && 'animation: spin 800ms linear infinite;'}
 `;
 

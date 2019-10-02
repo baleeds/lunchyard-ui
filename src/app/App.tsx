@@ -13,7 +13,7 @@ const App: React.FC = () => {
   );
 }
 
-const AppContainer = styled('div')`
+const AppContainer = styled.div`
   display: flex;
   flex-direction: row;
   height: 100%;

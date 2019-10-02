@@ -46,7 +46,7 @@ const ModuleToolbar: React.FC<Props> = ({
   );
 };
 
-const TaskbarContainer = styled('div')`
+const TaskbarContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -66,7 +66,7 @@ const TaskbarContainer = styled('div')`
   }
 `;
 
-const ButtonPrimary = styled('button')`
+const ButtonPrimary = styled.button`
   border-radius: 40px;
   min-width: 80px;
   color: ${theme.blank};

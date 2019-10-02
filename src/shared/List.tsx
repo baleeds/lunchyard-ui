@@ -42,7 +42,7 @@ function List<ItemType extends ListItem>({
   );
 };
 
-const ListUl = styled('ul')`
+const ListUl = styled.ul`
   width: 100%;
   list-style: none;
   overflow-y: auto;

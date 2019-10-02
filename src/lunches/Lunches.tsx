@@ -75,7 +75,7 @@ const Lunches: React.FC = () => {
   );
 };
 
-const LunchesListContainer = styled('div')`
+const LunchesListContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -85,7 +85,7 @@ const LunchesListContainer = styled('div')`
 `;
 
 
-const LunchDetailsContainer = styled('div')`
+const LunchDetailsContainer = styled.div`
   flex: 1;
 `;
 

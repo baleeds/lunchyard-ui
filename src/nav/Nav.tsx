@@ -50,13 +50,13 @@ const Nav: React.FC = () => {
   );
 };
 
-const NavContainer = styled('div')`
+const NavContainer = styled.div`
   border-right: 1px solid ${theme.border};
   width: 260px;
   flex-shrink: 0;
 `;
 
-const NavLinksContainer = styled('div')`
+const NavLinksContainer = styled.div`
   margin-top: 30px;
 
   a {
