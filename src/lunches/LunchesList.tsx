@@ -8,9 +8,9 @@ import LunchesListItem from './LunchesListItem';
 import { useRouter } from '../router';
 import { lunches } from './Lunches';
 
-interface Data<ItemName, ItemType> {
-  [ItemName: string]: ItemType[],
-};
+// interface Data<ItemName, ItemType> {
+//   [ItemName: string]: ItemType[],
+// };
 
 const getPathFromLunchItem = (item: Lunch) => routes.lunchDetails.getPath({ lunchId: item.id });
 
