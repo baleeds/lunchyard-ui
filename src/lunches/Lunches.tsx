@@ -84,7 +84,6 @@ const LunchesListContainer = styled.div`
   border-right: 1px solid ${theme.border};
 `;
 
-
 const LunchDetailsContainer = styled.div`
   flex: 1;
 `;
