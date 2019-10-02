@@ -82,10 +82,12 @@ const LunchesListContainer = styled.div`
   min-height: 0;
   overflow: hidden;
   border-right: 1px solid ${theme.border};
+  max-width: 500px;
 `;
 
 const LunchDetailsContainer = styled.div`
   flex: 1;
+  background-color: ${theme.subtle};
 `;
 
 export default Lunches;
