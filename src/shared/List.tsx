@@ -11,6 +11,7 @@ interface Props<ItemType> {
   items: ItemType[],
   ListItem: React.FC<{ item: ItemType }>,
   getPath: (item: ItemType) => string,
+  getIsActive: (item: ItemType) => boolean,
   listKey?: string,
 };
 
@@ -19,6 +20,7 @@ function List<ItemType extends ListItem>({
   items,
   ListItem,
   getPath,
+  getIsActive,
   listKey = 'list',
 }: Props<ItemType>) {  
   return (
@@ -26,10 +28,11 @@ function List<ItemType extends ListItem>({
       {items.map((item) => {
         const itemKey = `${listKey}-${item.id}`;
         const path = getPath(item);
+        const isActive = getIsActive(item);
 
         return (
           <li key={itemKey}>
-            <Link path={path}>
+            <Link path={path} className={isActive ? 'active' : ''}>
               <ListItem item={item} />
             </Link>
           </li>
@@ -48,11 +51,24 @@ const ListUl = styled('ul')`
   a {
     color: inherit;
     display: block;
-    padding: 10px 20px;
+    padding: 15px 30px;
     border-bottom: 1px solid ${theme.border};
 
-    &:hover {
+    &:hover, &.active {
       background-color: ${theme.hover};
+    }
+
+    h3 {
+      font-size: 20px;
+      color: ${theme.primary};
+      font-weight: bold;
+    }
+
+    h4 {
+      font-size: 16px;
+      color: ${theme.textLight};
+      font-weight: normal;
+      margin-bottom: 7px;
     }
   }
 `;

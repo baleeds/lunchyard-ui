@@ -27,17 +27,25 @@ const Lunches: React.FC = () => {
         />
         <LunchesList />
       </LunchesListContainer>
-      <LunchDetails />
+      <LunchDetailsContainer>
+        <LunchDetails />
+      </LunchDetailsContainer>
     </>
   );
 };
 
 const LunchesListContainer = styled('div')`
+  flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
   border-right: 1px solid ${theme.border};
+`;
+
+
+const LunchDetailsContainer = styled('div')`
+  flex: 1;
 `;
 
 export default Lunches;
