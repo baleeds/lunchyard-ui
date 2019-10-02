@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import theme from '../constants/theme';
+import { ButtonPrimary } from './html/Buttons';
 
 interface Props {
   title: string,
@@ -63,19 +64,6 @@ const TaskbarContainer = styled.div`
       color: ${theme.textLight};
       margin: 0 20px;
     }
-  }
-`;
-
-const ButtonPrimary = styled.button`
-  border-radius: 40px;
-  min-width: 80px;
-  color: ${theme.blank};
-  background-color: ${theme.secondary};
-  padding: 6px 15px;
-
-  svg {
-    fill: currentColor;
-    margin-right: 10px;
   }
 `;
 

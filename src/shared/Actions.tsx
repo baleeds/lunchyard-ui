@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { ButtonGhost } from './html/Buttons';
 
 interface Action {
   name: string,
@@ -42,9 +43,7 @@ const ActionContainer = styled.div`
   }
 `;
 
-const Button = styled.button`
-  background-color: transparent;
-  border: none;
+const Button = styled(ButtonGhost)`
   color: white;
   display: flex;
   align-items: center;
@@ -55,7 +54,6 @@ const Button = styled.button`
     fill: currentColor;
     width: 20px;
     height: auto;
-    margin-right: 10px;
   }
 `;
 
