@@ -9,6 +9,8 @@ export const BasicButton = styled(Button)`
   padding: 6px 15px;
   border-radius: 100px;
   min-width: 80px;
+  display: flex;
+  align-items: center;
 
   svg {
     fill: currentColor;

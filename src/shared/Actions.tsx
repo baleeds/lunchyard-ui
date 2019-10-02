@@ -10,18 +10,21 @@ interface Action {
 
 interface Props {
   style?: React.CSSProperties,
+  keyPrefix?: string,
   actions: Action[],
 };
 
 const Actions: React.FC<Props> = ({
   actions,
   style,
+  keyPrefix = 'actions',
 }) => {
   return (
     <ActionContainer style={style}>
       {actions.map(({ name, Icon }) => {        
         return (
           <Button
+            key={`${keyPrefix}-${name}`}
             type="button"
             onClick={console.log}
           >
@@ -45,8 +48,6 @@ const ActionContainer = styled.div`
 
 const Button = styled(ButtonGhost)`
   color: white;
-  display: flex;
-  align-items: center;
   font-style: italic;
   font-size: 20px;
 
