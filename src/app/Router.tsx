@@ -6,7 +6,6 @@ import { useRouter } from '../router';
 
 const Router: React.FC = () => {
   const { id } = useRouter();
-  console.log(id);
 
   switch (id) {
     case routes.root.id:

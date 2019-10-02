@@ -10,7 +10,7 @@ import theme from '../constants/theme';
 
 export const lunches:Lunch[] = [{
   id: '1',
-  date: `${new Date()}`,
+  date: '2019-10-23',
   vendor: {
     id: '10',
     name: 'Rocky\'s Hot Chicken Shack',
@@ -33,7 +33,7 @@ export const lunches:Lunch[] = [{
   }],
 }, {
   id: '2',
-  date: `${new Date()}`,
+  date: '2019-10-4',
   vendor: {
     id: '11',
     name: 'Taco Billy',
@@ -41,7 +41,7 @@ export const lunches:Lunch[] = [{
   occasion: 'Ben\'s Birthday',
 }, {
   id: '3',
-  date: `${new Date()}`,
+  date: `2019-8-22`,
   vendor: {
     id: '12',
     name: 'Cracker Barrel',
