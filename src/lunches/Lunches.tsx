@@ -5,7 +5,6 @@ import { ReactComponent as PlusIcon } from '../shared/icons/add.svg';
 import LunchDetails from './details/LunchesDetails';
 import LunchesList from './LunchesList';
 import theme from '../constants/theme';
-import useModal from '../shared/hooks/useModal';
 import { useNavigate } from '../router';
 import routes from '../constants/routes';
 
@@ -49,10 +48,6 @@ export const lunches:Lunch[] = [{
   },
   occasion: 'John\'s Cert',
 }];
-
-const CreateLunchModal: React.FC<{ hello: string }> = ({ hello }) => {
-  return <span>{hello}</span>
-};
 
 const Lunches: React.FC = () => {
   const navigate = useNavigate();
