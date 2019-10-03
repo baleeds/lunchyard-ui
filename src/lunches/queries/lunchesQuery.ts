@@ -1,32 +1,17 @@
 import gql from 'graphql-tag';
+import lunchDetailsFragment from '../fragments/lunchDetailsFragment';
 
 const lunchesQuery = gql`
   query LunchesQuery($first: Int!) {
     lunches(first: $first) {
       edges {
         node {
-          id
-          date
-          vendor {
-            name
-          }
-          occasion
-          lunchDishes(first: 100) {
-            edges {
-              node {
-                id
-                quantity
-                dish {
-                  id
-                  name
-                }
-              }
-            }
-          }
+          ...LunchDetailsFragment
         }
       }
     }
   }
+  ${lunchDetailsFragment}
 `;
 
 export default lunchesQuery;

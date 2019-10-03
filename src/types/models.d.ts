@@ -1,9 +1,6 @@
 interface Edge<T> {
   node: T,
-};
-
-interface Node<T> {
-  node: T,
+  __typename: string,
 };
 
 interface Connection<T> {

@@ -11,14 +11,6 @@ import { useMutation } from '@apollo/react-hooks';
 import createLunchMutation from './mutations/createLunchMutation';
 import lunchesQuery from './queries/lunchesQuery';
 
-interface LunchesQueryResult {
-  lunches: Edge<Node<Lunch>>[]
-}
-
-interface Data<ItemName, ItemType> {
-  [ItemName: string]: Edge<ItemType>[],
-};
-
 const NewLunchForm: React.FC = () => {
   const navigate = useNavigate();
   
@@ -37,7 +29,7 @@ const NewLunchForm: React.FC = () => {
       const newData = produce(oldData, (draftData) => {
         if (!draftData) return oldData;
 
-        draftData.lunches.edges.push({ node: createLunch });
+        draftData.lunches.edges.unshift({ node: createLunch, __typename: 'LunchEdge' });
       });
 
       cache.writeQuery({
