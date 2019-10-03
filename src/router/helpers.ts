@@ -10,8 +10,6 @@ const getCurrentRoute = (
 
   const { route: { route } } = resolveOutput;
 
-  console.log('route', route);
-
   const routeKeys = Object.keys(routesMap);
 
   for (let i = 0, { length } = routeKeys; i < length; i += 1) {

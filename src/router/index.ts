@@ -4,8 +4,8 @@ import PubSub from 'pubsub-js';
 import { NEW_ROUTE } from './constants';
 import { getInitialRouteState, addRoutesToRouter } from './helpers';
 
-let router: Navigo;
-let routeState: RouteState;
+export let router: Navigo;
+export let routeState: RouteState;
 
 const ensureRouter = (
   options: RouterOptions,
@@ -40,6 +40,7 @@ export const useRouter = () => {
     const sub = PubSub.subscribe(
       NEW_ROUTE,
       (_: any, payload: RouteState) => {
+        console.log('published', payload);
         setRoute(payload);
         routeState = payload;
       },
