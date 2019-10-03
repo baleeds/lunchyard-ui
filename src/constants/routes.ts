@@ -9,6 +9,11 @@ export default Object.freeze({
     path: '/lunches',
     getPath: () => '/lunches',
   },
+  lunchCreate: {
+    id: 'lunchCreate',
+    path: '/lunches/create',
+    getPath: () => '/lunches/create',
+  },
   lunchDetails: {
     id: 'lunchDetails',
     path: '/lunches/:lunchId',

@@ -12,6 +12,7 @@ const RoutePage = ({ id }: { id: string }) => {
   switch (id) {
     case routes.root.id:
     case routes.lunches.id:
+    case routes.lunchCreate.id:
     case routes.lunchDetails.id:
         console.log('mounting lunches');
         return <Lunches />

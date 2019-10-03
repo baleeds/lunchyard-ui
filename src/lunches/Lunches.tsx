@@ -6,6 +6,8 @@ import LunchDetails from './details/LunchesDetails';
 import LunchesList from './LunchesList';
 import theme from '../constants/theme';
 import useModal from '../shared/hooks/useModal';
+import { useNavigate } from '../router';
+import routes from '../constants/routes';
 
 export const lunches:Lunch[] = [{
   id: '1',
@@ -53,7 +55,7 @@ const CreateLunchModal: React.FC<{ hello: string }> = ({ hello }) => {
 };
 
 const Lunches: React.FC = () => {
-  const { showModal } = useModal('createLunchModal', <CreateLunchModal key="createLunchModal" hello='hello' />);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -63,7 +65,7 @@ const Lunches: React.FC = () => {
           subTitle="3 upcoming"
           button={{
             title: 'create lunch',
-            onClick: showModal,
+            onClick: () => navigate(routes.lunchCreate.getPath()),
             Icon: PlusIcon,
           }}
         />
