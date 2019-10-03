@@ -6,7 +6,7 @@ const useModal = (modalKey: string, Component: JSX.Element) => {
   
   const showModal = useCallback(() => {
     addModalToStack({ modalKey, Component });
-  }, [addModalToStack]);
+  }, [addModalToStack, modalKey, Component]);
 
   return { showModal };
 };

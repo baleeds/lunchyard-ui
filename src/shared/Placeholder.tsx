@@ -4,7 +4,7 @@ import theme from '../constants/theme';
 
 interface Props {
   Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
-  message: string,
+  message?: string,
 };
 
 const Placeholder: React.FC<Props> = ({
@@ -15,7 +15,7 @@ const Placeholder: React.FC<Props> = ({
     <OuterContainer>
       <InnerContainer>
         <Icon />
-        <span>{message}</span>
+        {message && <span>{message}</span>}
       </InnerContainer>
     </OuterContainer>
   );
