@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import routes from '../constants/routes';
 import { useRouter } from '../router';
 import ErrorBoundary from '../shared/ErrorBoundary';
+import { useLocation } from 'react-router';
 
 const Lunches = React.lazy(() => import('../lunches/Lunches'));
 const Restaurants = React.lazy(() => import('../restaurants/Restaurants'));
@@ -26,12 +27,12 @@ const RoutePage = ({ id }: { id: string }) => {
 }
 
 const Router: React.FC = () => {
-  const { id } = useRouter();
+  const { pathname } = useLocation();
 
   return (
     <ErrorBoundary hasError={false}>
       <Suspense fallback={null}>
-        <RoutePage id={id} />
+        <RoutePage id={pathname} />
       </Suspense>
     </ErrorBoundary>
   )

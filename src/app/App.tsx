@@ -2,13 +2,16 @@ import React from 'react';
 import styled from '@emotion/styled';
 import './App.css';
 import Nav from '../nav/Nav';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Router from './Router';
 
 const App: React.FC = () => {
   return (
     <AppContainer>
-      <Nav />
-      <Router />
+      <BrowserRouter>
+        <Nav />
+        <Router />
+      </BrowserRouter>
     </AppContainer>
   );
 }
