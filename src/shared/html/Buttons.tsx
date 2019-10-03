@@ -15,6 +15,7 @@ export const BasicButton = styled(Button)`
   svg {
     fill: currentColor;
     margin-right: 10px;
+    width: 15px;
   }
 `;
 
