@@ -6,10 +6,12 @@ export default withFormik<Props, Values>({
   mapPropsToValues: ({ lunch }) => {
     const {
       occasion,
+      date,
     } = lunch || {};
 
     return {
       occasion: occasion || '',
+      date: date || new Date().toDateString(),
     };
   },
   handleSubmit: (values) => {

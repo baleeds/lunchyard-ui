@@ -4,4 +4,5 @@ export interface Props {
 
 export interface Values {
   occasion: string,
+  date: string,
 };

@@ -12,6 +12,7 @@ export default Object.freeze({
   lunchCreate: {
     id: 'lunchCreate',
     path: '/lunches/create',
+    activeId: 'lunches',
     getPath: () => '/lunches/create',
   },
   lunchDetails: {
