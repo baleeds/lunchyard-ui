@@ -1,17 +1,22 @@
+import React, { useContext } from 'react';
 import Navigo from 'navigo';
 import { useState, useEffect } from 'react';
 import PubSub from 'pubsub-js';
-import { NEW_ROUTE } from './constants';
+import { NEW_ROUTE, NOT_FOUND_STATE } from './constants';
 import { getInitialRouteState, addRoutesToRouter } from './helpers';
 
-export let router: Navigo;
-export let routeState: RouteState;
+// export let router: Navigo;
+// export let routeState: RouteState;
 
-const ensureRouter = (
+export const RouteContext = React.createContext<RouteContext>({
+  router: undefined,
+  routeState: NOT_FOUND_STATE,
+  setRouteState: () => {},
+});
+
+const createRouter = (
   options: RouterOptions,
 ) => {
-  if (router) return;
-
   const {
     root = window.location.origin,
     useHash,
@@ -19,41 +24,37 @@ const ensureRouter = (
     routes,
   } = options;
 
-  router = new Navigo(root, useHash, hash);
+  const router = new Navigo(root, useHash, hash);
 
-  return addRoutesToRouter(router, routes);
+  const resolveOutput: MaybeResolveOutput = addRoutesToRouter(router, routes);
+
+  return {
+    router,
+    resolveOutput,
+  };
 }
 
-export const startRouter = (options: RouterOptions) => {
-  const resolveOutput = ensureRouter(options);
-  const initialRouteState = getInitialRouteState(options, resolveOutput);
+export const startRouter = (options: RouterOptions): RouterPayload => {
+  const { router, resolveOutput } = createRouter(options);
 
-  routeState = initialRouteState;
+  const routeState = getInitialRouteState(options, resolveOutput);
+
+  return {
+    router,
+    routeState,
+  };
+};
+
+export const useRouter = () => {
+  const { routeState } = useContext(RouteContext);
 
   return routeState;
 };
 
-export const useRouter = () => {
-  const [route, setRoute] = useState<RouteState>(routeState);
-
-  useEffect(() => {
-    const sub = PubSub.subscribe(
-      NEW_ROUTE,
-      (_: any, payload: RouteState) => {
-        console.log('published', payload);
-        setRoute(payload);
-        routeState = payload;
-      },
-    );
-
-    return () => PubSub.unsubscribe(sub);
-  });
-
-  return route;
-};
-
 export const useNavigate = () => {
-  if (!router) throw new Error("useRouter must be called before attempts to useNavigate");
+  const { router } = useContext(RouteContext);
+
+  if (!router) return () => {};
 
   return router.navigate.bind(router);
 };

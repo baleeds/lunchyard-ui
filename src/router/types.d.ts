@@ -1,3 +1,8 @@
+interface RouterPayload {
+  router: Navigo,
+  routeState: RouteState,
+};
+
 interface RouteDefinition {
   id: string,
   path: string,
@@ -15,6 +20,12 @@ interface RouteState {
   params: any,
   query: string,
   activeId: string,
+};
+
+interface RouteContext {
+  router: Navigo | undefined,
+  routeState: RouteState,
+  setRouteState: (routeState: RouteState) => void,
 };
 
 interface RouterOptions {

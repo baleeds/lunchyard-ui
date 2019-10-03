@@ -9,15 +9,18 @@ import { startRouter } from './router';
 import routes from './constants/routes';
 import client from './apollo/client';
 import ModalController from './shared/ModalController';
+import { RouterProvider } from './router/RouterProvider';
 
-startRouter({ routes });
+const router = startRouter({ routes });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <ModalController>
-      <App />
-    </ModalController>
-  </ApolloProvider>
+  <RouterProvider router={router}>
+    <ApolloProvider client={client}>
+      <ModalController>
+        <App />
+      </ModalController>
+    </ApolloProvider>
+  </RouterProvider>
 , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
