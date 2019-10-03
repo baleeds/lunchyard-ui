@@ -24,8 +24,6 @@ const ModalController: React.FC = ({ children }) => {
   const popModalStack = useCallback(() => {
     setModalStack(modalStack.slice(0, modalStack.length - 2));
   }, [modalStack, setModalStack]);
-
-  console.log('modalStack', modalStack);
   
   return (
     <>
