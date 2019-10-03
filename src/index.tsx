@@ -9,7 +9,7 @@ import { startRouter } from './router';
 import routes from './constants/routes';
 import client from './apollo/client';
 import ModalController from './shared/ModalController';
-import { RouterProvider } from './router/RouterProvider';
+import { RouterProvider } from './router';
 
 const router = startRouter({ routes });
 

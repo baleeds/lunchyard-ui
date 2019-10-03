@@ -4,17 +4,14 @@ const getCurrentRoute = (
   { routes: routesMap }: RouterOptions,
   resolveOutput: MaybeResolveOutput,
 ) => {
+  // Navigo doesn't always resolve a path.  Sometimes it returns a boolean.
   if (!resolveOutput || typeof resolveOutput !== 'object') {
     return null
   }
 
   const { route: { route } } = resolveOutput;
 
-  const routeKeys = Object.keys(routesMap);
-
-  for (let i = 0, { length } = routeKeys; i < length; i += 1) {
-    const routeDefinition = routesMap[routeKeys[i]];
-
+  for (const [, routeDefinition] of Object.entries(routesMap)) {
     if (!routeDefinition) continue;
 
     if (routeDefinition.path === route) return routeDefinition;

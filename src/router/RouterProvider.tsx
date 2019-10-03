@@ -7,19 +7,16 @@ interface Props {
   router: RouterPayload,
 }
 
-export const RouterProvider: React.FC<Props> = ({ router: routerPayload, children }) => {
+const RouterProvider: React.FC<Props> = ({ router: routerPayload, children }) => {
   const { router, routeState: initialRouteState } = routerPayload;
 
   const [routeState, setRouteState] = useState<RouteState>(initialRouteState);
 
   useEffect(() => {
-    const sub = PubSub.subscribe(
-      NEW_ROUTE,
-      (_: any, payload: RouteState) => {
-        console.log('published', payload);
-        setRouteState(payload);
-      },
-    );
+    // Use PubSub as an easy way to utilize Navigo callbacks without a tight coupling
+    const sub = PubSub.subscribe( NEW_ROUTE, (_: any, payload: RouteState) => {
+      setRouteState(payload);
+    });
 
     return () => PubSub.unsubscribe(sub);
   });
@@ -30,3 +27,5 @@ export const RouterProvider: React.FC<Props> = ({ router: routerPayload, childre
     </RouteContext.Provider>
   )
 }
+
+export default RouterProvider;
