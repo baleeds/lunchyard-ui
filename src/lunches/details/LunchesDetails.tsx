@@ -5,10 +5,15 @@ import { ReactComponent as TableIcon } from '../../shared/icons/table.svg';
 import { lunches } from '../Lunches';
 import LunchDetailsHeader from './LunchDetailsHeader';
 import LunchOrder from './LunchOrder';
+import routes from '../../constants/routes';
+import LunchForm from '../lunchForm';
+
 
 const LunchDetails: React.FC = () => {
-  const { params } = useRouter();
+  const { params, id } = useRouter();
   const { lunchId } = params;
+
+  if (id === routes.lunchCreate.id) return <LunchForm />;
 
   if (!lunchId) return <Placeholder Icon={TableIcon} message="select a lunch" />;
 

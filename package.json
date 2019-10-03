@@ -16,6 +16,7 @@
     "@types/react-dom": "16.9.1",
     "apollo-boost": "^0.4.4",
     "dayjs": "^1.8.16",
+    "formik": "^1.5.8",
     "graphql": "^14.5.8",
     "navigo": "^7.1.2",
     "pubsub-js": "^1.7.0",
