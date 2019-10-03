@@ -5,16 +5,14 @@ import prune from '../apollo/prune';
 import routes from '../constants/routes';
 import List from '../shared/List';
 import LunchesListItem from './LunchesListItem';
-import { useRouter, useNavigate } from '../router';
-import { lunches } from './Lunches';
+import { useRouter } from '../router';
 import NewLunchForm from './NewLunchForm';
 
 const getPathFromLunchItem = (item: Lunch) => routes.lunchDetails.getPath({ lunchId: item.id });
 
 const LunchesList: React.FC = () => {
-  const { id, params } = useRouter();
+  const { id, params: { lunchId } } = useRouter();
 
-  const { lunchId } = params;
   const getIsActive = useCallback((item: Lunch) => item.id === lunchId, [lunchId]);
 
   const showCreate = id === routes.lunchCreate.id;

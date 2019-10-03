@@ -55,10 +55,7 @@ export const addRoutesToRouter = (
 ) => {
   const navigoRoutes = Object
     .keys(routes)
-    .reduce((
-      navigoRoutes: NavigoRoutes,
-      routeKey: string
-    ) => {
+    .reduce(( navigoRoutes: NavigoRoutes, routeKey: string) => {
       const {
         path,
         id,

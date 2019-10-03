@@ -20,7 +20,7 @@ const NewLunchForm: React.FC = () => {
 
   const [createLunch, { loading }] = useMutation(createLunchMutation, {
     onCompleted: ({ createLunch }) => { navigate(createLunch.id); },
-    update: (cache, { data: { createLunch } }) => {
+    update: (cache, { data: { createLunch } }) => { 
       const oldData = cache.readQuery<{ lunches: Connection<Lunch> }>({
         query: lunchesQuery,
         variables: { first: 100 },
@@ -45,7 +45,7 @@ const NewLunchForm: React.FC = () => {
 
     createLunch({ variables: { occasion: name }});
     console.log(name);
-  }, [name]);
+  }, [name, createLunch]);
   
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const { target: { value } } = e;
@@ -54,7 +54,7 @@ const NewLunchForm: React.FC = () => {
   }, [setName]);
   
   return (
-    <ListItemForm onSubmit={handleSubmit} style={{ padding: '20px 30px', }}>
+    <ListItemForm onSubmit={handleSubmit}>
       <FormGroup>
         <input
           type="text"

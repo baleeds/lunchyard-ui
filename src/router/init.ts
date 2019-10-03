@@ -13,18 +13,18 @@ const createRouter = (
 
   const router = new Navigo(root, useHash, hash);
 
-  const resolveOutput: MaybeResolveOutput = addRoutesToRouter(router, routes);
+  const initialRoute: MaybeResolveOutput = addRoutesToRouter(router, routes);
 
   return {
     router,
-    resolveOutput,
+    initialRoute,
   };
 }
 
 export const startRouter = (options: RouterOptions): RouterPayload => {
-  const { router, resolveOutput } = createRouter(options);
+  const { router, initialRoute } = createRouter(options);
 
-  const routeState = getInitialRouteState(options, resolveOutput);
+  const routeState = getInitialRouteState(options, initialRoute);
 
   return {
     router,

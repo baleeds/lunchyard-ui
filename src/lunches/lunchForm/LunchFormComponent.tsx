@@ -23,9 +23,7 @@ const LunchFormComponent: React.FC<Props & FormikProps<Values>> = (props) => {
           <DayPicker
             format="YYYY-M-D"
             onDayChange={newDate => setFieldValue('date', newDate)}
-            dayPickerProps={{
-              selectedDays: new Date(values.date),
-            }}
+            dayPickerProps={{selectedDays: new Date(values.date)}}
           />
         </FormGroup>
 
