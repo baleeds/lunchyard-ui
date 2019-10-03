@@ -1,35 +1,34 @@
 import React, { useCallback } from 'react';
-// import lunchesQuery from './queries/lunchesQuery';
-// import { useQuery } from '@apollo/react-hooks';
-// import prune from '../apollo/prune';
+import lunchesQuery from './queries/lunchesQuery';
+import { useQuery } from '@apollo/react-hooks';
+import prune from '../apollo/prune';
 import routes from '../constants/routes';
 import List from '../shared/List';
 import LunchesListItem from './LunchesListItem';
-import { useRouter } from '../router';
+import { useRouter, useNavigate } from '../router';
 import { lunches } from './Lunches';
-
-// interface Data<ItemName, ItemType> {
-//   [ItemName: string]: ItemType[],
-// };
+import NewLunchForm from './NewLunchForm';
 
 const getPathFromLunchItem = (item: Lunch) => routes.lunchDetails.getPath({ lunchId: item.id });
 
 const LunchesList: React.FC = () => {
-  const { params } = useRouter();
+  const { id, params } = useRouter();
 
   const { lunchId } = params;
   const getIsActive = useCallback((item: Lunch) => item.id === lunchId, [lunchId]);
+
+  const showCreate = id === routes.lunchCreate.id;
   
-  // const { data, loading, error } = useQuery<Data<'lunches', Lunch>>(lunchesQuery, {
-  //   variables: {
-  //     first: 100,
-  //   },
-  // });
+  const { data, loading, error } = useQuery<{lunches: Connection<Lunch>}>(lunchesQuery, {
+    variables: {
+      first: 100,
+    },
+  });
 
-  // if (loading) return <span>loading</span>;
-  // if (error || !data) return <span>error</span>;
+  if (loading) return <span>loading</span>;
+  if (error || !data) return <span>error</span>;
 
-  // const lunches = prune(data.lunches);
+  const lunches = prune(data.lunches);
 
   return (
     <List<Lunch>
@@ -37,6 +36,8 @@ const LunchesList: React.FC = () => {
       ListItem={LunchesListItem}
       getPath={getPathFromLunchItem}
       getIsActive={getIsActive}
+      showCreate={showCreate}
+      CreatableForm={<NewLunchForm />}
     />
   )
 };

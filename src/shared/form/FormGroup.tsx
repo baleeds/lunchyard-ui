@@ -40,6 +40,7 @@ const FormGroupContainer = styled.div`
     color: ${theme.text};
     display: block;
     width: 100%;
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
 
     &:focus {
       outline: none;

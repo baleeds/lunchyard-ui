@@ -13,6 +13,8 @@ interface Props<ItemType> {
   getPath: (item: ItemType) => string,
   getIsActive: (item: ItemType) => boolean,
   listKey?: string,
+  showCreate?: boolean,
+  CreatableForm?: JSX.Element,
 };
 
 // QUESITION: 
@@ -22,9 +24,12 @@ function List<ItemType extends ListItem>({
   getPath,
   getIsActive,
   listKey = 'list',
+  showCreate = false,
+  CreatableForm,
 }: Props<ItemType>) {  
   return (
     <ListUl>
+      {showCreate && CreatableForm}
       {items.map((item) => {
         const itemKey = `${listKey}-${item.id}`;
         const path = getPath(item);
@@ -60,8 +65,13 @@ const ListUl = styled.ul`
 
     h3 {
       font-size: 20px;
-      color: ${theme.primary};
-      font-weight: bold;
+      color: ${theme.text};
+      font-weight: normal;
+      line-height: 1.3em;
+
+      strong {
+        color: ${theme.primary};
+      }
     }
 
     h4 {

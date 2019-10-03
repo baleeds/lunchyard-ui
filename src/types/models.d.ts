@@ -1,3 +1,15 @@
+interface Edge<T> {
+  node: T,
+};
+
+interface Node<T> {
+  node: T,
+};
+
+interface Connection<T> {
+  edges: Edge<Node<T>>[],
+}
+
 interface Vendor {
   id: string,
   name: string,
