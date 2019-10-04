@@ -15,7 +15,9 @@ const NewLunchForm: React.FC = () => {
 
   const closeForm = useCallback(() => navigate(routes.lunches.getPath()), [navigate]);
 
-  const [handleCreateLunch, { loading }] = useCreateLunchMutation();
+  const goToLunch = useCallback(({ createLunch }) => { navigate(routes.lunchDetails.getPath({ lunchId: createLunch.id })); }, [navigate]);
+  
+  const [handleCreateLunch, { loading }] = useCreateLunchMutation(goToLunch);
 
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -25,11 +25,9 @@ const createLunchMutation = gql`
 
 // QUESTION: The types for the update function are inferred from the useMutation types.
 // If I extract that function I lose the inference?
-const useCreateLunchMutation = () => {
-  const navigate = useNavigate();
-  
+const useCreateLunchMutation = (onCompleted?: (data: CreateLunchMutationData) => void) => {
   return useMutation<CreateLunchMutationData, CreateLunchMutationVariables>(createLunchMutation, {
-    onCompleted: ({ createLunch }) => { navigate(routes.lunchDetails.getPath({ lunchId: createLunch.id })); },
+    onCompleted,
     update: (cache, { data }) => {
       if (!data || !data.createLunch) return;
 
