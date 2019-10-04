@@ -1,5 +1,4 @@
 import React from 'react';
-import { lunches } from '../Lunches';
 import LunchDetailsHeader from './LunchDetailsHeader';
 import LunchOrder from './LunchOrder';
 import lunchQuery, { LunchQueryData, LunchQueryVariables } from '../../api/lunches/lunchQuery';
@@ -10,8 +9,7 @@ interface Props {
 };
 
 const LunchDetails: React.FC<Props> = ({ lunchId }) => {
-  // const lunch = lunches.find(({ id }) => id === lunchId);
-  const {data, loading, error} = useQuery<LunchQueryData, LunchQueryVariables>(lunchQuery, {
+  const { data } = useQuery<LunchQueryData, LunchQueryVariables>(lunchQuery, {
     variables: {
       id: lunchId,
     },
