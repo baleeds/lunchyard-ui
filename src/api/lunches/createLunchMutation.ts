@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
-import lunchDetailsFragment from "../fragments/lunchDetailsFragment";
+import lunchDetailsFragment from "./lunchDetailsFragment";
 import { useMutation } from "@apollo/react-hooks";
-import CacheQuery from "../../apollo/CacheQuery";
-import lunchesQuery, { LunchesQueryData, LunchesQueryVariables } from "../queries/lunchesQuery";
+import lunchesQuery, { LunchesQueryData, LunchesQueryVariables } from "./lunchesQuery";
+import CacheConnection from "../../shared/helpers/apollo/CacheQuery";
 
 export interface CreateLunchMutationVariables {
   occasion: string,
@@ -29,7 +29,7 @@ const useCreateLunchMutation = (onCompleted?: (data: CreateLunchMutationData) =>
     update: (cache, { data }) => {
       if (!data || !data.createLunch) return;
 
-      const lunchesCacheQuery = new CacheQuery<LunchesQueryData, LunchesQueryVariables>(cache, {
+      const lunchesCacheQuery = new CacheConnection<LunchesQueryData, LunchesQueryVariables>(cache, {
         query: lunchesQuery,
         variables: { first: 100 },
       });

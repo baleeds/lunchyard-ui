@@ -6,7 +6,7 @@ import FormGroup from '../shared/form/FormGroup';
 import { ButtonPrimary, ButtonGhost } from '../shared/html/Buttons';
 import theme from '../constants/theme';
 import { ReactComponent as CheckIcon } from '../shared/icons/check.svg';
-import useCreateLunchMutation from './mutations/createLunchMutation';
+import useCreateLunchMutation from '../api/lunches/createLunchMutation';
 
 const NewLunchForm: React.FC = () => {
   const navigate = useNavigate();

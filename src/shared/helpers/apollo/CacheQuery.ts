@@ -2,10 +2,10 @@ import produce from "immer";
 import { DataProxy } from "apollo-cache";
 
 /**
- * CacheQuery helps facilitate modifying the cache, for instance when updating.
+ * CacheConnection helps facilitate modifying the cache, for instance when updating.
  * It is constructed with the query options from readQuery.
  */
-class CacheQuery<QueryData extends HasConnection, QueryVariables>{
+class CacheConnection<QueryData extends HasConnection, QueryVariables>{
   cache: DataProxy
   queryOptions: DataProxy.Query<QueryVariables>
   
@@ -53,4 +53,4 @@ class CacheQuery<QueryData extends HasConnection, QueryVariables>{
   }
 }
 
-export default CacheQuery;
+export default CacheConnection;

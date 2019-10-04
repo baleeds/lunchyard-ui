@@ -7,7 +7,7 @@ import App from './app/App';
 import * as serviceWorker from './serviceWorker';
 import { startRouter } from './router';
 import routes from './constants/routes';
-import client from './apollo/client';
+import client from './api/client';
 import ModalController from './shared/ModalController';
 import { RouterProvider } from './router';
 

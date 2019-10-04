@@ -5,8 +5,10 @@ import { ReactComponent as PlusIcon } from '../shared/icons/add.svg';
 import LunchDetails from './details/LunchesDetails';
 import LunchesList from './LunchesList';
 import theme from '../constants/theme';
-import { useNavigate } from '../router';
+import { useNavigate, useRouter } from '../router';
 import routes from '../constants/routes';
+import Placeholder from '../shared/Placeholder';
+import { ReactComponent as TableIcon } from '../shared/icons/table.svg';
 
 export const lunches:Lunch[] = [{
   id: '1',
@@ -51,6 +53,7 @@ export const lunches:Lunch[] = [{
 
 const Lunches: React.FC = () => {
   const navigate = useNavigate();
+  const { params: { lunchId } } = useRouter();
 
   return (
     <>
@@ -67,7 +70,10 @@ const Lunches: React.FC = () => {
         <LunchesList />
       </LunchesListContainer>
       <LunchDetailsContainer>
-        <LunchDetails />
+        {lunchId
+          ? <LunchDetails lunchId={lunchId} /> 
+          : <Placeholder Icon={TableIcon} message="select a lunch" />
+        }
       </LunchDetailsContainer>
     </>
   );
