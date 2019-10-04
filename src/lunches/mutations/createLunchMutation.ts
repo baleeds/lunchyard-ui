@@ -1,8 +1,6 @@
 import gql from "graphql-tag";
 import lunchDetailsFragment from "../fragments/lunchDetailsFragment";
 import { useMutation } from "@apollo/react-hooks";
-import { useNavigate } from "../../router";
-import routes from "../../constants/routes";
 import CacheQuery from "../../apollo/CacheQuery";
 import lunchesQuery, { LunchesQueryData, LunchesQueryVariables } from "../queries/lunchesQuery";
 
