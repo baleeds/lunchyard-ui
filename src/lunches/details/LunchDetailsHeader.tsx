@@ -1,11 +1,11 @@
 import React from 'react';
-import { getLunchTitle } from '../helpers';
 import styled from '@emotion/styled';
 import theme from '../../constants/theme';
 import { toSimpleDate } from '../../shared/helpers/date';
 import { ReactComponent as EditIcon } from '../../shared/icons/edit.svg';
 import { ReactComponent as TrashIcon } from '../../shared/icons/trash.svg';
 import Actions from '../../shared/Actions';
+import LunchTitle from '../LunchTitle';
 
 interface Props {
   lunch: Lunch,
@@ -17,11 +17,9 @@ const LunchDetailsHeader: React.FC<Props> = ({
   const { date } = lunch;  
   const displayDate = date ? toSimpleDate(date) : 'Not scheduled';
 
-  const title = getLunchTitle(lunch)
-  
   return (
     <HeaderContainer>
-      <h1>{title}</h1>
+      <h1><LunchTitle lunch={lunch} /></h1>
       <h2>{displayDate}</h2>
       <Actions
         style={{ marginTop: 20 }}

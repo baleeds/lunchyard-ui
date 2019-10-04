@@ -1,6 +1,6 @@
 import React from 'react';
 import { toSimpleDate } from '../shared/helpers/date';
-import { getLunchTitle } from './helpers';
+import LunchTitle from './LunchTitle';
 
 interface Props {
   item: Lunch,
@@ -17,7 +17,7 @@ const LunchesListItem: React.FC<Props> = ({ item }) => {
         {dateDisplay}
       </h4>
       <h3>
-        {getLunchTitle(item)}
+        <LunchTitle lunch={item} />
       </h3>
     </>
   );
