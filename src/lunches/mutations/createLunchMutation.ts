@@ -1,7 +1,15 @@
 import gql from "graphql-tag";
 import lunchDetailsFragment from "../fragments/lunchDetailsFragment";
 
-const createLunch = gql`
+export interface CreateLunchMutationVariables {
+  occasion: string,
+};
+
+export interface CreateLunchMutationData {
+  createLunch: Lunch,
+};
+
+const createLunchMutation = gql`
   mutation CreateLunch($occasion: String!) {
     createLunch(occasion: $occasion, vendorId: 1, userId: 1) {
       ...LunchDetailsFragment
@@ -10,4 +18,4 @@ const createLunch = gql`
   ${lunchDetailsFragment}
 `;
 
-export default createLunch;
+export default createLunchMutation;

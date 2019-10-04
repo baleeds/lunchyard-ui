@@ -49,6 +49,7 @@ export const getInitialRouteState = (
   };
 };
 
+// TODO: refactor the reduce to use entries and make the function standalone
 export const addRoutesToRouter = (
   router: Navigo,
   routes: RoutesMap,

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import lunchesQuery from './queries/lunchesQuery';
+import lunchesQuery, { LunchesQueryVariables } from './queries/lunchesQuery';
 import { useQuery } from '@apollo/react-hooks';
 import prune from '../apollo/prune';
 import routes from '../constants/routes';
@@ -7,6 +7,7 @@ import List from '../shared/List';
 import LunchesListItem from './LunchesListItem';
 import { useRouter } from '../router';
 import NewLunchForm from './NewLunchForm';
+import { LunchesQueryData } from './queries/lunchesQuery';
 
 const getPathFromLunchItem = (item: Lunch) => routes.lunchDetails.getPath({ lunchId: item.id });
 
@@ -17,7 +18,7 @@ const LunchesList: React.FC = () => {
 
   const showCreate = id === routes.lunchCreate.id;
   
-  const { data, loading, error } = useQuery<{lunches: Connection<Lunch>}>(lunchesQuery, {
+  const { data, loading, error } = useQuery<LunchesQueryData, LunchesQueryVariables>(lunchesQuery, {
     variables: {
       first: 100,
     },

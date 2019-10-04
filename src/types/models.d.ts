@@ -1,12 +1,3 @@
-interface Edge<T> {
-  node: T,
-  __typename: string,
-};
-
-interface Connection<T> {
-  edges: Edge<Node<T>>[],
-}
-
 interface Vendor {
   id: string,
   name: string,
