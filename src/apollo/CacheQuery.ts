@@ -1,29 +1,36 @@
 import produce from "immer";
 import { DataProxy } from "apollo-cache";
 
+/**
+ * CacheQuery helps facilitate modifying the cache, for instance when updating.
+ * It is constructed with the query options from readQuery.
+ */
 class CacheQuery<QueryData extends HasConnection, QueryVariables>{
   cache: DataProxy
-  queryProps: DataProxy.Query<QueryVariables>
+  queryOptions: DataProxy.Query<QueryVariables>
   
   constructor(
     cache: DataProxy,
-    queryProps: DataProxy.Query<QueryVariables>
+    queryOptions: DataProxy.Query<QueryVariables>
   ) {
     this.cache = cache;
-    this.queryProps = queryProps;
+    this.queryOptions = queryOptions;
   }
 
   read() {
-    return this.cache.readQuery<QueryData, QueryVariables>(this.queryProps);
+    return this.cache.readQuery<QueryData, QueryVariables>(this.queryOptions);
   }
 
   write(data: any) {
     this.cache.writeQuery({
-      ...this.queryProps,
+      ...this.queryOptions,
       data,
     });
   }
 
+  /**
+   * Inserts an edge into an existing connection, based on the provided query.
+   */
   addEdge(connectionName: (keyof QueryData), edge: any) {
     const oldQueryData = this.read();
 
