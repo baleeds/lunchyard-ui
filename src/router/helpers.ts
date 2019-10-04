@@ -49,11 +49,12 @@ export const getInitialRouteState = (
   };
 };
 
-// TODO: refactor the reduce to use entries and make the function standalone
 export const addRoutesToRouter = (
   router: Navigo,
   routes: RoutesMap,
 ) => {
+  // The router takes an object of routes in the .on() function.
+  // See https://github.com/krasimir/navigo#adding-multiple-routes
   const navigoRoutes = Object.entries(routes).reduce(addRouteToNavigoRoutes, {});
 
   const resolved = router
@@ -64,6 +65,8 @@ export const addRoutesToRouter = (
 }
 
 const addRouteToNavigoRoutes = ( navigoRoutes: NavigoRoutes, [, routeDefinition]: [string, RouteDefinition]) => {
+  // We destructure this to ensure we don't pull the definition, since the user could
+  // define the routes however they like.
   const {
     path,
     id,
