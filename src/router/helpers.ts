@@ -54,27 +54,7 @@ export const addRoutesToRouter = (
   router: Navigo,
   routes: RoutesMap,
 ) => {
-  const navigoRoutes = Object
-    .keys(routes)
-    .reduce(( navigoRoutes: NavigoRoutes, routeKey: string) => {
-      const {
-        path,
-        id,
-        activeId = id,
-      } = routes[routeKey];
-
-      navigoRoutes[path] = function(params, query) {
-        PubSub.publish(NEW_ROUTE, {
-          id,
-          path,
-          activeId,
-          params: params || {},
-          query,
-        });
-      };
-
-      return navigoRoutes;
-    }, {});
+  const navigoRoutes = Object.entries(routes).reduce(addRouteToNavigoRoutes, {});
 
   const resolved = router
     .on(navigoRoutes)
@@ -82,3 +62,23 @@ export const addRoutesToRouter = (
 
   return resolved;    
 }
+
+const addRouteToNavigoRoutes = ( navigoRoutes: NavigoRoutes, [, routeDefinition]: [string, RouteDefinition]) => {
+  const {
+    path,
+    id,
+    activeId = id,
+  } = routeDefinition;
+
+  navigoRoutes[path] = function(params, query) {
+    PubSub.publish(NEW_ROUTE, {
+      id,
+      path,
+      activeId,
+      params: params || {},
+      query,
+    });
+  };
+
+  return navigoRoutes;
+};
