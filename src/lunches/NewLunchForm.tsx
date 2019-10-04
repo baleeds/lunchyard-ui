@@ -6,10 +6,7 @@ import FormGroup from '../shared/form/FormGroup';
 import { ButtonPrimary, ButtonGhost } from '../shared/html/Buttons';
 import theme from '../constants/theme';
 import { ReactComponent as CheckIcon } from '../shared/icons/check.svg';
-import { useMutation } from '@apollo/react-hooks';
-import createLunchMutation, { CreateLunchMutationVariables, CreateLunchMutationData } from './mutations/createLunchMutation';
-import lunchesQuery, { LunchesQueryData, LunchesQueryVariables } from './queries/lunchesQuery';
-import CacheQuery from '../apollo/CacheQuery';
+import useCreateLunchMutation from './mutations/createLunchMutation';
 
 const NewLunchForm: React.FC = () => {
   const navigate = useNavigate();
@@ -18,21 +15,7 @@ const NewLunchForm: React.FC = () => {
 
   const closeForm = useCallback(() => navigate(routes.lunches.getPath()), [navigate]);
 
-  // QUESTION: The types for the update function are inferred from the useMutation types.
-  // If I extract that function I lose the inference?
-  const [handleCreateLunch, { loading }] = useMutation<CreateLunchMutationData, CreateLunchMutationVariables>(createLunchMutation, {
-    onCompleted: ({ createLunch }) => { navigate(routes.lunchDetails.getPath({ lunchId: createLunch.id })); },
-    update: (cache, { data }) => {
-      if (!data || !data.createLunch) return;
-
-      const lunchesCacheQuery = new CacheQuery<LunchesQueryData, LunchesQueryVariables>(cache, {
-        query: lunchesQuery,
-        variables: { first: 100 },
-      });
-
-      lunchesCacheQuery.addEdge('lunches', {node: data.createLunch, __typename: 'LunchEdge '});
-    },
-  });
+  const [handleCreateLunch, { loading }] = useCreateLunchMutation();
 
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
