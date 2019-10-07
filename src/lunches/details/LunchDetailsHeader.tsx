@@ -5,6 +5,7 @@ import DayPicker from '../../shared/form/DayPicker';
 import { toSimpleDate } from '../../shared/helpers/date';
 import { Lunch, useUpdateLunchMutation, VendorsQuery, VendorsQueryVariables, useVendorsQuery, Vendor } from '../../api/types';
 import DataSelect from '../../shared/form/DataSelect';
+import { nodeToOption } from '../../shared/helpers/mappers';
 
 const titleStyles: React.CSSProperties = {
   color: theme.blank,
@@ -23,11 +24,12 @@ const LunchDetailsHeader: React.FC<Props> = ({
 
   const [occasion, setOccasion] = useState(lunch.occasion);
   const [date, setDate] = useState(lunch.date ? new Date(lunch.date) : undefined);
+  const [vendorOption, setVendorOption] = useState(nodeToOption<Vendor>(lunch.vendor));
   
   const [updateLunch, { loading }] = useUpdateLunchMutation();
   
   const handleOccasionBlur = useCallback(() => {
-    if (loading) return;
+    if (occasion === '') return;
     
     updateLunch({
       variables: {
@@ -37,14 +39,12 @@ const LunchDetailsHeader: React.FC<Props> = ({
         },
       },
     });
-  }, [id, occasion, updateLunch, loading]);
+  }, [id, occasion, updateLunch]);
 
   const handleCalendarSelect = useCallback((newDate) => {
     if (!newDate) return;
-    
-    setDate(newDate);
 
-    if (loading) return;
+    setDate(newDate);
 
     updateLunch({
       variables: {
@@ -54,7 +54,22 @@ const LunchDetailsHeader: React.FC<Props> = ({
         },
       },
     });
-  }, [id, updateLunch, loading])
+  }, [id, updateLunch]);
+
+  const handleVendorChange = useCallback((newVendorOption) => {
+    if (!newVendorOption) return;
+    
+    setVendorOption(newVendorOption);
+
+    updateLunch({
+      variables: {
+        input: {
+          id,
+          vendorId: newVendorOption ? newVendorOption.value.id : null,
+        }
+      }
+    })
+  }, [id, updateLunch]);
 
   return (
     <HeaderContainer>
@@ -80,8 +95,14 @@ const LunchDetailsHeader: React.FC<Props> = ({
           readOnly: loading,
         }}
       />
-      <DataSelect<Option<string>, VendorsQuery, VendorsQueryVariables>
-        selectProps={{ contrast: true, undercover: true }}
+      <DataSelect<Option<Vendor>, VendorsQuery, VendorsQueryVariables>
+        selectProps={{
+          value: vendorOption,
+          contrast: true,
+          undercover: true,
+          onChange: handleVendorChange,
+          isDisabled: loading,
+        }}
         queryVariables={{ first: 100 }}
         queryHook={useVendorsQuery}
         dataToOptions={(data) => {
@@ -96,7 +117,7 @@ const LunchDetailsHeader: React.FC<Props> = ({
               const { node } = edge;
               return {
                 label: node.name,
-                value: node.id,
+                value: node,
               };
             });
         }}

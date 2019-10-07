@@ -1,5 +1,19 @@
 import { Vendor, VendorsQuery } from '../../api/types';
 
+interface GenericNode {
+  id: string,
+  name: string,
+}
+
+export function nodeToOption<T extends GenericNode>(node: T | null | undefined): Option<T> | null {
+  if (!node) return null;
+
+  return {
+    label: node.name,
+    value: node,
+  };
+};
+
 export const vendorQueryToOptions = (data: VendorsQuery): Array<Option<string>> => {
   if (!data || !data.vendors || !data.vendors.edges) {
     return [];
@@ -16,4 +30,4 @@ export const vendorQueryToOptions = (data: VendorsQuery): Array<Option<string>> 
         value: node.id,
       };
     });
-}
+};
