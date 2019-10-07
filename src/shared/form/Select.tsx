@@ -34,10 +34,11 @@ const getStyles = (
     ...styles,
     minWidth: '200px',
     color: theme.text,
+    marginTop: 0,
   }),
   valueContainer: (styles: any) => ({
     ...styles,
-    padding: '5px 15px',
+    padding: '5px 13px',
   }),
   singleValue: (styles: any) => ({
     ...styles,
@@ -50,6 +51,16 @@ const getStyles = (
   placeholder: (styles: any) => ({
     ...styles,
     color: contrast ? 'rgba(255,255,255,.7)' : 'rgba(0,0,0,.5',
+  }),
+  option: (styles: any, { isSelected, isFocused }: any) => ({
+    ...styles,
+    backgroundColor: isSelected ? theme.secondary : (isFocused ? theme.border : 'transparent') ,
+  }),
+  input: (styles: any) => ({
+    ...styles,
+    paddingTop: 0,
+    paddingBottom: 0,
+    color: contrast ? theme.blank : theme.text,
   }),
 });
 

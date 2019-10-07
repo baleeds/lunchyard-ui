@@ -81,7 +81,6 @@ const LunchDetailsHeader: React.FC<Props> = ({
       />
       <Select<Option<string>>
         options={[{label: 'a1412214', value: 'a'}, {label: 'b', value: 'b'}]}
-        // width={300}
         contrast
         undercover
       />
@@ -100,7 +99,7 @@ const HeaderContainer = styled.div`
 
   input {
     width: 100%;
-    padding: 5px 15px;
+    padding: 9px 15px;
     background-color: transparent;
     border-radius: 10px;
     outline: none;
