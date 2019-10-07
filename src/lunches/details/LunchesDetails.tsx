@@ -19,10 +19,18 @@ const LunchDetails: React.FC<Props> = ({ lunchId }) => {
 
   if (!lunch) return null;
 
+  const { id } = lunch;
+
   return (
     <div>
-      <LunchDetailsHeader lunch={lunch} />
-      <LunchOrder lunch={lunch} />
+      <LunchDetailsHeader
+        key={`${id}-LunchDetailsHeader`}
+        lunch={lunch}
+      />
+      <LunchOrder
+        key={`${id}-LunchOrder`}
+        lunch={lunch}
+      />
     </div>
   );
 };

@@ -19,13 +19,12 @@ const LunchDetailsHeader: React.FC<Props> = ({
   lunch,
 }) => {
   const { id } = lunch;
-  
+
   const [occasion, setOccasion] = useState(lunch.occasion);
   const [date, setDate] = useState(lunch.date ? new Date(lunch.date) : undefined);
   
   const [updateLunch, { loading }] = useUpdateLunchMutation();
   
-  // const displayDate = date ? toSimpleDate(date) : 'Not scheduled';
   const handleOccasionBlur = useCallback(() => {
     if (loading) return;
     
@@ -89,6 +88,7 @@ const HeaderContainer = styled.div`
   }
 
   input {
+    width: 100%;
     padding: 5px 15px;
     background-color: transparent;
     border-radius: 10px;
