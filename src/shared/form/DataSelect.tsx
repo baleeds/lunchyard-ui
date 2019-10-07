@@ -17,7 +17,9 @@ function DataSelect<OptionType, QueryType, QueryVariablesType>({
   dataToOptions,
   selectProps,
 }: Props<OptionType, QueryType, QueryVariablesType>) {
-  const { data, loading } = queryHook(queryVariables);
+  const { data, loading } = queryHook({
+    variables: queryVariables,
+  });
 
   let options: OptionType[] = [];
   if (data) {

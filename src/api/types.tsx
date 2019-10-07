@@ -10,6 +10,7 @@ export type Scalars = {
   Boolean: boolean,
   Int: number,
   Float: number,
+  Date: any,
 };
 
 export type AddDishToLunchInput = {
@@ -28,7 +29,7 @@ export type CreateLunchInput = {
   occasion: Scalars['String'],
   vendorId: Scalars['ID'],
   userId: Scalars['ID'],
-  date?: Maybe<Scalars['String']>,
+  date?: Maybe<Scalars['Date']>,
   description?: Maybe<Scalars['String']>,
 };
 
@@ -38,12 +39,31 @@ export type CreateVendorInput = {
   address: Scalars['String'],
 };
 
+
 export type Dish = Node & {
   __typename?: 'Dish',
   id: Scalars['ID'],
   name: Scalars['String'],
   price?: Maybe<Scalars['String']>,
   vendor_id?: Maybe<Scalars['ID']>,
+};
+
+/** The connection type for Dish. */
+export type DishConnection = {
+  __typename?: 'DishConnection',
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<DishEdge>>>,
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo,
+};
+
+/** An edge in a connection. */
+export type DishEdge = {
+  __typename?: 'DishEdge',
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'],
+  /** The item at the end of the edge. */
+  node?: Maybe<Dish>,
 };
 
 export type Lunch = Node & {
@@ -178,13 +198,13 @@ export type PageInfo = {
 export type Query = {
   __typename?: 'Query',
   dish?: Maybe<Dish>,
-  dishes?: Maybe<LunchConnection>,
+  dishes?: Maybe<DishConnection>,
   lunch?: Maybe<Lunch>,
   lunchDish?: Maybe<LunchDish>,
   lunches?: Maybe<LunchConnection>,
   user?: Maybe<User>,
   vendor?: Maybe<Vendor>,
-  vendors?: Maybe<LunchConnection>,
+  vendors?: Maybe<VendorConnection>,
 };
 
 
@@ -261,6 +281,24 @@ export type Vendor = Node & {
   description: Scalars['String'],
   id: Scalars['ID'],
   name: Scalars['String'],
+};
+
+/** The connection type for Vendor. */
+export type VendorConnection = {
+  __typename?: 'VendorConnection',
+  /** A list of edges. */
+  edges?: Maybe<Array<Maybe<VendorEdge>>>,
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo,
+};
+
+/** An edge in a connection. */
+export type VendorEdge = {
+  __typename?: 'VendorEdge',
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'],
+  /** The item at the end of the edge. */
+  node?: Maybe<Vendor>,
 };
 export type CreateLunchMutationVariables = {
   input: CreateLunchInput
@@ -351,10 +389,10 @@ export type VendorsQueryVariables = {
 export type VendorsQuery = (
   { __typename?: 'Query' }
   & { vendors: Maybe<(
-    { __typename?: 'LunchConnection' }
+    { __typename?: 'VendorConnection' }
     & { edges: Maybe<Array<Maybe<(
-      { __typename?: 'LunchEdge' }
-      & { node: Maybe<{ __typename?: 'Lunch' }
+      { __typename?: 'VendorEdge' }
+      & { node: Maybe<{ __typename?: 'Vendor' }
         & VendorDetailsFragment
       > }
     )>>> }
