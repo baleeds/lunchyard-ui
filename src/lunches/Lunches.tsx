@@ -10,47 +10,6 @@ import routes from '../constants/routes';
 import Placeholder from '../shared/Placeholder';
 import { ReactComponent as TableIcon } from '../shared/icons/table.svg';
 
-export const lunches:Lunch[] = [{
-  id: '1',
-  date: '2019-10-23',
-  vendor: {
-    id: '10',
-    name: 'Rocky\'s Hot Chicken Shack',
-  },
-  occasion: 'Chase\'s Birthday',
-  lunchDishes: [{
-    id: '20',
-    quantity: 3,
-    dish: {
-      id: '30',
-      name: 'Spicy chicken',
-    }
-  }, {
-    id: '21',
-    quantity: 2,
-    dish: {
-      id: '30',
-      name: 'Mac n\' cheese',
-    },
-  }],
-}, {
-  id: '2',
-  date: '2019-10-4',
-  vendor: {
-    id: '11',
-    name: 'Taco Billy',
-  },
-  occasion: 'Ben\'s Birthday',
-}, {
-  id: '3',
-  date: `2019-8-22`,
-  vendor: {
-    id: '12',
-    name: 'Cracker Barrel',
-  },
-  occasion: 'John\'s Cert',
-}];
-
 const Lunches: React.FC = () => {
   const navigate = useNavigate();
   const { params: { lunchId } } = useRouter();

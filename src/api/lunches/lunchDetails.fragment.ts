@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
-const lunchDetailsFragment = gql`
-  fragment LunchDetailsFragment on Lunch {
+export default gql`
+  fragment LunchDetails on Lunch {
     id
     date
     occasion
@@ -23,5 +23,3 @@ const lunchDetailsFragment = gql`
     }
   }
 `;
-
-export default lunchDetailsFragment;

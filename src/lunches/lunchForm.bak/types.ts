@@ -1,3 +1,5 @@
+import { Lunch } from "../../api/types";
+
 export interface Props {
   lunch?: Lunch,
 };

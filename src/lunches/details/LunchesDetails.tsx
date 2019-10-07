@@ -1,15 +1,14 @@
 import React from 'react';
 import LunchDetailsHeader from './LunchDetailsHeader';
 import LunchOrder from './LunchOrder';
-import lunchQuery, { LunchQueryData, LunchQueryVariables } from '../../api/lunches/lunchQuery';
-import { useQuery } from '@apollo/react-hooks';
+import { useLunchQuery } from '../../api/types';
 
 interface Props {
   lunchId: string,
 };
 
 const LunchDetails: React.FC<Props> = ({ lunchId }) => {
-  const { data } = useQuery<LunchQueryData, LunchQueryVariables>(lunchQuery, {
+  const { data } = useLunchQuery({
     variables: {
       id: lunchId,
     },

@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import theme from '../../constants/theme';
 import DayPicker from '../../shared/form/DayPicker';
 import { toSimpleDate } from '../../shared/helpers/date';
-import useUpdateLunchMutation from '../../api/lunches/updateLunchMutation';
 import Select from '../../shared/form/Select';
+import { Lunch, useUpdateLunchMutation } from '../../api/types';
 
 const titleStyles: React.CSSProperties = {
   color: theme.blank,
@@ -31,8 +31,10 @@ const LunchDetailsHeader: React.FC<Props> = ({
     
     updateLunch({
       variables: {
-        id,
-        occasion,
+        input: {
+          id,
+          occasion,
+        },
       },
     });
   }, [id, occasion, updateLunch, loading]);
@@ -44,8 +46,10 @@ const LunchDetailsHeader: React.FC<Props> = ({
 
     updateLunch({
       variables: {
-        id,
-        date: newDate,
+        input: {
+          id,
+          date: newDate,
+        },
       },
     });
   }, [id, updateLunch, loading])
@@ -58,7 +62,7 @@ const LunchDetailsHeader: React.FC<Props> = ({
         name="occasion"
         type="text"
         onChange={({ target: { value } }) => setOccasion(value) }
-        value={occasion}
+        value={occasion || ''}
         onBlur={handleOccasionBlur}
         disabled={loading}
       />

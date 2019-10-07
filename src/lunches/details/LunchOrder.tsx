@@ -1,5 +1,6 @@
 import React from 'react';
 import ModuleToolbar from '../../shared/ModuleToolbar';
+import { Lunch } from '../../api/types';
 
 interface Props {
   lunch: Lunch,
@@ -12,7 +13,7 @@ const LunchOrder: React.FC<Props> = ({ lunch }) => {
     <div>
       <ModuleToolbar
         title="order"
-        subTitle={`${lunch.lunchDishes.length} dishes`}
+        // subTitle={`${lunch.lunchDishes} dishes`}
       />
     </div>
   );

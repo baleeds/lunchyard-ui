@@ -1,6 +1,7 @@
 import React from 'react';
 import { toSimpleDate } from '../shared/helpers/date';
 import LunchTitle from './LunchTitle';
+import { Lunch } from '../api/types';
 
 interface Props {
   item: Lunch,

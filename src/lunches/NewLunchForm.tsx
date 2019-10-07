@@ -6,7 +6,7 @@ import FormGroup from '../shared/form/FormGroup';
 import { ButtonPrimary, ButtonGhost } from '../shared/html/Buttons';
 import theme from '../constants/theme';
 import { ReactComponent as CheckIcon } from '../shared/icons/check.svg';
-import useCreateLunchMutation from '../api/lunches/createLunchMutation';
+import { useCreateLunchMutation } from '../api/types';
 
 const NewLunchForm: React.FC = () => {
   const navigate = useNavigate();
@@ -17,12 +17,23 @@ const NewLunchForm: React.FC = () => {
 
   const goToLunch = useCallback(({ createLunch }) => { navigate(routes.lunchDetails.getPath({ lunchId: createLunch.id })); }, [navigate]);
   
-  const [handleCreateLunch, { loading }] = useCreateLunchMutation(goToLunch);
+  const [handleCreateLunch, { loading }] = useCreateLunchMutation({
+    onCompleted: goToLunch,
+  });
 
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    handleCreateLunch({ variables: { occasion: name }});
+    handleCreateLunch({
+      variables: {
+        input: {
+          userId: '1',
+          vendorId: '1',
+          occasion: name,
+        },
+      },
+    });
+    
     console.log(name);
   }, [name, handleCreateLunch]);
   
