@@ -9,6 +9,7 @@ interface Lunch {
   vendor: Vendor,
   date?: string,
   occasion?: string,
+  description?: string,
   lunchDishes?: LunchDish[],
 };
 

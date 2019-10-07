@@ -4,10 +4,11 @@ const lunchDetailsFragment = gql`
   fragment LunchDetailsFragment on Lunch {
     id
     date
+    occasion
+    description
     vendor {
       name
     }
-    occasion
     lunchDishes(first: 100) {
       edges {
         node {
