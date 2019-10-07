@@ -7,12 +7,6 @@ import { Lunch, useUpdateLunchMutation, VendorsQuery, VendorsQueryVariables, use
 import DataSelect from '../../shared/form/DataSelect';
 import { nodeToOption } from '../../shared/helpers/mappers';
 
-const titleStyles: React.CSSProperties = {
-  color: theme.blank,
-  fontSize: '32px',
-  fontWeight: 'bold',
-};
-
 interface Props {
   lunch: Lunch,
 };
@@ -124,6 +118,12 @@ const LunchDetailsHeader: React.FC<Props> = ({
       />
     </HeaderContainer>
   );
+};
+
+const titleStyles: React.CSSProperties = {
+  color: theme.blank,
+  fontSize: '32px',
+  fontWeight: 'bold',
 };
 
 const HeaderContainer = styled.div`
