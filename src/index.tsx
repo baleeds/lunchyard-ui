@@ -3,13 +3,13 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
 import './styles/reset.css';
-import App from './app/App';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
-import { startRouter } from './router';
+import { startRouter } from './lib/router';
 import routes from './constants/routes';
 import client from './api/client';
-import ModalController from './shared/ModalController';
-import { RouterProvider } from './router';
+import ModalController from './components/util/ModalController';
+import { RouterProvider } from './lib/router';
 
 const router = startRouter({ routes });
 
