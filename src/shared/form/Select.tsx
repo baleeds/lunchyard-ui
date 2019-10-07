@@ -3,16 +3,16 @@ import ReactSelect from 'react-select';
 import { Props as SelectProps } from 'react-select/src/Select';
 import theme from '../../constants/theme';
 
-interface Props {
+export interface LunchyardSelectProps {
   undercover?: boolean,
   contrast?: boolean,
   width?: number,
 };
 
 const getStyles = (
-  undercover: Props['undercover'],
-  width: Props['width'],
-  contrast: Props['contrast'],
+  undercover: LunchyardSelectProps['undercover'],
+  width: LunchyardSelectProps['width'],
+  contrast: LunchyardSelectProps['contrast'],
 ) => ({
   container: (styles: any) => ({
     ...styles,
@@ -64,7 +64,7 @@ const getStyles = (
   }),
 });
 
-function Select<OptionType>({ undercover, contrast, width, ...props }: Props & SelectProps<OptionType>) {
+function Select<OptionType>({ undercover, contrast, width, ...props }: LunchyardSelectProps & SelectProps<OptionType>) {
   return (
     <ReactSelect
       classNamePrefix='reactSelect'

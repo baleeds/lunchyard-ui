@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import theme from '../../constants/theme';
 import DayPicker from '../../shared/form/DayPicker';
 import { toSimpleDate } from '../../shared/helpers/date';
-import Select from '../../shared/form/Select';
-import { Lunch, useUpdateLunchMutation } from '../../api/types';
+import { Lunch, useUpdateLunchMutation, VendorsQuery, VendorsQueryVariables, useVendorsQuery, Vendor } from '../../api/types';
+import DataSelect from '../../shared/form/DataSelect';
 
 const titleStyles: React.CSSProperties = {
   color: theme.blank,
@@ -40,6 +40,8 @@ const LunchDetailsHeader: React.FC<Props> = ({
   }, [id, occasion, updateLunch, loading]);
 
   const handleCalendarSelect = useCallback((newDate) => {
+    if (!newDate) return;
+    
     setDate(newDate);
 
     if (loading) return;
@@ -53,7 +55,6 @@ const LunchDetailsHeader: React.FC<Props> = ({
       },
     });
   }, [id, updateLunch, loading])
-
 
   return (
     <HeaderContainer>
@@ -79,10 +80,26 @@ const LunchDetailsHeader: React.FC<Props> = ({
           readOnly: loading,
         }}
       />
-      <Select<Option<string>>
-        options={[{label: 'a1412214', value: 'a'}, {label: 'b', value: 'b'}]}
-        contrast
-        undercover
+      <DataSelect<Option<string>, VendorsQuery, VendorsQueryVariables>
+        selectProps={{ contrast: true, undercover: true }}
+        queryVariables={{ first: 100 }}
+        queryHook={useVendorsQuery}
+        dataToOptions={(data) => {
+          if (!data || !data.vendors || !data.vendors.edges) {
+            return [];
+          }
+
+          const filteredEdges: Array<{ node: Vendor }> = data.vendors.edges.filter(edge => edge && edge.node) as Array<{ node: Vendor }>;
+
+          return filteredEdges
+            .map((edge) => {
+              const { node } = edge;
+              return {
+                label: node.name,
+                value: node.id,
+              };
+            });
+        }}
       />
     </HeaderContainer>
   );

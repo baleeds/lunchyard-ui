@@ -337,6 +337,29 @@ export type UpdateLunchMutation = (
     & LunchDetailsFragment
    }
 );
+
+export type VendorDetailsFragment = (
+  { __typename?: 'Vendor' }
+  & Pick<Vendor, 'id' | 'address' | 'description' | 'name'>
+);
+
+export type VendorsQueryVariables = {
+  first: Scalars['Int']
+};
+
+
+export type VendorsQuery = (
+  { __typename?: 'Query' }
+  & { vendors: Maybe<(
+    { __typename?: 'LunchConnection' }
+    & { edges: Maybe<Array<Maybe<(
+      { __typename?: 'LunchEdge' }
+      & { node: Maybe<{ __typename?: 'Lunch' }
+        & VendorDetailsFragment
+      > }
+    )>>> }
+  )> }
+);
 export const LunchDetailsFragmentDoc = gql`
     fragment LunchDetails on Lunch {
   id
@@ -358,6 +381,14 @@ export const LunchDetailsFragmentDoc = gql`
       }
     }
   }
+}
+    `;
+export const VendorDetailsFragmentDoc = gql`
+    fragment VendorDetails on Vendor {
+  id
+  address
+  description
+  name
 }
     `;
 export const CreateLunchDocument = gql`
@@ -428,3 +459,24 @@ export type UpdateLunchMutationFn = ApolloReactCommon.MutationFunction<UpdateLun
 export type UpdateLunchMutationHookResult = ReturnType<typeof useUpdateLunchMutation>;
 export type UpdateLunchMutationResult = ApolloReactCommon.MutationResult<UpdateLunchMutation>;
 export type UpdateLunchMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateLunchMutation, UpdateLunchMutationVariables>;
+export const VendorsDocument = gql`
+    query Vendors($first: Int!) {
+  vendors(first: $first) {
+    edges {
+      node {
+        ...VendorDetails
+      }
+    }
+  }
+}
+    ${VendorDetailsFragmentDoc}`;
+
+    export function useVendorsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<VendorsQuery, VendorsQueryVariables>) {
+      return ApolloReactHooks.useQuery<VendorsQuery, VendorsQueryVariables>(VendorsDocument, baseOptions);
+    };
+      export function useVendorsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<VendorsQuery, VendorsQueryVariables>) {
+        return ApolloReactHooks.useLazyQuery<VendorsQuery, VendorsQueryVariables>(VendorsDocument, baseOptions);
+      };
+      
+export type VendorsQueryHookResult = ReturnType<typeof useVendorsQuery>;
+export type VendorsQueryResult = ApolloReactCommon.QueryResult<VendorsQuery, VendorsQueryVariables>;
