@@ -25,3 +25,8 @@ interface Dish {
   name: string,
   vendor?: Vendor,
 };
+
+interface Option<V> {
+  label: string,
+  value: V,
+}

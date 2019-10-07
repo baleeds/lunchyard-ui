@@ -4,6 +4,7 @@ import theme from '../../constants/theme';
 import DayPicker from '../../shared/form/DayPicker';
 import { toSimpleDate } from '../../shared/helpers/date';
 import useUpdateLunchMutation from '../../api/lunches/updateLunchMutation';
+import Select from '../../shared/form/Select';
 
 const titleStyles: React.CSSProperties = {
   color: theme.blank,
@@ -73,6 +74,11 @@ const LunchDetailsHeader: React.FC<Props> = ({
         inputProps={{
           readOnly: loading,
         }}
+      />
+      <Select<Option<string>>
+        options={[{label: 'a', value: 'a'}, {label: 'b', value: 'b'}]}
+        width={300}
+        undercover
       />
     </HeaderContainer>
   );
