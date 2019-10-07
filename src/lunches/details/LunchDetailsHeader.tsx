@@ -80,8 +80,9 @@ const LunchDetailsHeader: React.FC<Props> = ({
         }}
       />
       <Select<Option<string>>
-        options={[{label: 'a', value: 'a'}, {label: 'b', value: 'b'}]}
-        width={300}
+        options={[{label: 'a1412214', value: 'a'}, {label: 'b', value: 'b'}]}
+        // width={300}
+        contrast
         undercover
       />
     </HeaderContainer>
@@ -104,8 +105,8 @@ const HeaderContainer = styled.div`
     border-radius: 10px;
     outline: none;
     font-size: 20px;
-    border: 2px solid transparent;
     color: ${theme.blank};
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;    
 
     ::placeholder {
       color: rgba(255,255,255,.7);
@@ -113,7 +114,6 @@ const HeaderContainer = styled.div`
 
     &:focus {
       background-color: rgba(0,0,0,.2);
-      border-color: rgba(255,255,255,.7);
     }
   }
 

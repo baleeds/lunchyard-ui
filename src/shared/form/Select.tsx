@@ -20,10 +20,13 @@ const getStyles = (
   }),
   control: (styles: any, { isFocused }: any) => ({
     ...styles,
-    minWidth: '200px',
+    borderRadius: 10,
+    fontSize: 20,
+    color: contrast ? theme.blank : theme.text,
+    minWidth: 200,
     display: 'flex',
-    backgroundColor: undercover ? 'transparent' : theme.blank,
-    border: '2px solid transparent',
+    backgroundColor: undercover ? (isFocused ? 'rgba(0,0,0,.2)' : 'transparent') : theme.blank,
+    border: '2px solid transparent !important',
     borderColor: isFocused ? 'rgba(255,255,255,.7) !important' : 'transparent',
     boxShadow: undefined,
   }),
@@ -31,12 +34,29 @@ const getStyles = (
     ...styles,
     minWidth: '200px',
     color: theme.text,
-  })
+  }),
+  valueContainer: (styles: any) => ({
+    ...styles,
+    padding: '5px 15px',
+  }),
+  singleValue: (styles: any) => ({
+    ...styles,
+    color: contrast ? theme.blank : theme.text,
+  }),
+  indicatorsContainer: (styles: any) => ({
+    ...styles,
+    display: undercover ? 'none' : 'block',
+  }),
+  placeholder: (styles: any) => ({
+    ...styles,
+    color: contrast ? 'rgba(255,255,255,.7)' : 'rgba(0,0,0,.5',
+  }),
 });
 
 function Select<OptionType>({ undercover, contrast, width, ...props }: Props & SelectProps<OptionType>) {
   return (
     <ReactSelect
+      classNamePrefix='reactSelect'
       styles={getStyles(undercover, width, contrast)}
       {...props}
     />
