@@ -1,5 +1,7 @@
 schema: ./schema.json
-documents: './src/**/*.{tsx,ts}'
+documents:
+  - './src/**/*.{tsx,ts}'
+  - '!./src/api/types.tsx'
 overwrite: true
 generates:
   ./src/api/types.tsx:
