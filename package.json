@@ -6,6 +6,11 @@
     "@apollo/react-hooks": "^3.1.1",
     "@emotion/core": "^10.0.17",
     "@emotion/styled": "^10.0.17",
+    "@graphql-codegen/add": "1.6.1",
+    "@graphql-codegen/cli": "1.6.1",
+    "@graphql-codegen/typescript": "1.6.1",
+    "@graphql-codegen/typescript-operations": "1.6.1",
+    "@graphql-codegen/typescript-react-apollo": "1.6.1",
     "@reach/router": "^1.2.1",
     "@types/jest": "24.0.18",
     "@types/navigo": "^7.0.1",
@@ -14,6 +19,7 @@
     "@types/reach__router": "^1.2.5",
     "@types/react": "16.9.4",
     "@types/react-dom": "16.9.1",
+    "@types/react-select": "^3.0.5",
     "apollo-boost": "^0.4.4",
     "dayjs": "^1.8.16",
     "formik": "^1.5.8",
@@ -32,7 +38,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "codegen": "graphql-codegen",
+    "schema": "apollo schema:download --endpoint=http://localhost:4000/graphql schema.json"
   },
   "eslintConfig": {
     "extends": "react-app"
