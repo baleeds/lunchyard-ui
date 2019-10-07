@@ -104,9 +104,8 @@ const LunchDetailsHeader: React.FC<Props> = ({
             return [];
           }
 
-          const filteredEdges: Array<{ node: Vendor }> = data.vendors.edges.filter(edge => edge && edge.node) as Array<{ node: Vendor }>;
-
-          return filteredEdges
+          return data.vendors.edges
+            .filter((edge): edge is { node: Vendor } => !!edge && !!edge.node)
             .map((edge) => {
               const { node } = edge;
               return {
