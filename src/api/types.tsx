@@ -430,6 +430,29 @@ export type VendorDetailsFragment = (
   & Pick<Vendor, 'id' | 'address' | 'description' | 'name'>
 );
 
+export type VendorOptionFragment = (
+  { __typename?: 'Vendor' }
+  & Pick<Vendor, 'id' | 'name'>
+);
+
+export type VendorOptionsQueryVariables = {
+  first: Scalars['Int']
+};
+
+
+export type VendorOptionsQuery = (
+  { __typename?: 'Query' }
+  & { vendors: Maybe<(
+    { __typename?: 'VendorConnection' }
+    & { edges: Maybe<Array<Maybe<(
+      { __typename?: 'VendorEdge' }
+      & { node: Maybe<{ __typename?: 'Vendor' }
+        & VendorOptionFragment
+      > }
+    )>>> }
+  )> }
+);
+
 export type VendorsQueryVariables = {
   first: Scalars['Int']
 };
@@ -475,6 +498,12 @@ export const VendorDetailsFragmentDoc = gql`
   id
   address
   description
+  name
+}
+    `;
+export const VendorOptionFragmentDoc = gql`
+    fragment VendorOption on Vendor {
+  id
   name
 }
     `;
@@ -593,6 +622,27 @@ export const VendorDocument = gql`
       
 export type VendorQueryHookResult = ReturnType<typeof useVendorQuery>;
 export type VendorQueryResult = ApolloReactCommon.QueryResult<VendorQuery, VendorQueryVariables>;
+export const VendorOptionsDocument = gql`
+    query VendorOptions($first: Int!) {
+  vendors(first: $first) {
+    edges {
+      node {
+        ...VendorOption
+      }
+    }
+  }
+}
+    ${VendorOptionFragmentDoc}`;
+
+    export function useVendorOptionsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<VendorOptionsQuery, VendorOptionsQueryVariables>) {
+      return ApolloReactHooks.useQuery<VendorOptionsQuery, VendorOptionsQueryVariables>(VendorOptionsDocument, baseOptions);
+    };
+      export function useVendorOptionsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<VendorOptionsQuery, VendorOptionsQueryVariables>) {
+        return ApolloReactHooks.useLazyQuery<VendorOptionsQuery, VendorOptionsQueryVariables>(VendorOptionsDocument, baseOptions);
+      };
+      
+export type VendorOptionsQueryHookResult = ReturnType<typeof useVendorOptionsQuery>;
+export type VendorOptionsQueryResult = ApolloReactCommon.QueryResult<VendorOptionsQuery, VendorOptionsQueryVariables>;
 export const VendorsDocument = gql`
     query Vendors($first: Int!) {
   vendors(first: $first) {

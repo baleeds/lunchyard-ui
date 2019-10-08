@@ -1,9 +1,9 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import DayPicker from '../../common/form/DayPicker';
 import { toSimpleDate } from '../../../lib/date';
-import { Lunch, useUpdateLunchMutation, VendorsQuery, VendorsQueryVariables, useVendorsQuery, Vendor } from '../../../api/types';
+import { Lunch, useUpdateLunchMutation, Vendor, useVendorOptionsQuery, VendorOptionsQuery, VendorOptionsQueryVariables, VendorOptionFragment } from '../../../api/types';
 import DataSelect from '../../common/form/DataSelect';
-import { nodeToOption } from '../../../lib/mappers';
+import { nodeToOption, vendorOptionsQueryToOptions } from '../../../lib/mappers';
 import { Option } from '../../common/form/Select';
 import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
 
@@ -67,22 +67,6 @@ const LunchDetailsHeader: React.FC<Props> = React.memo(({
     })
   }, [id, updateLunch]);
 
-  const dataToOptions = useCallback<(data?: VendorsQuery) => Option<Vendor>[]>((data) => {
-    if (!data || !data.vendors || !data.vendors.edges) {
-      return [];
-    }
-
-    return data.vendors.edges
-      .filter((edge): edge is { node: Vendor } => !!edge && !!edge.node)
-      .map((edge) => {
-        const { node } = edge;
-        return {
-          label: node.name,
-          value: node,
-        };
-      });
-  }, []);
-
   const handleInputChange = useCallback(({ target: { value } }) => setOccasion(value), [setOccasion]);
 
   const dayPickerProps = useMemo(() => ({ selectedDays: date }), [date]);
@@ -116,11 +100,11 @@ const LunchDetailsHeader: React.FC<Props> = React.memo(({
         dayPickerProps={dayPickerProps}
         inputProps={dayPickerInputProps}
       />
-      <DataSelect<Option<Vendor>, VendorsQuery, VendorsQueryVariables>
+      <DataSelect<Option<VendorOptionFragment>, VendorOptionsQuery, VendorOptionsQueryVariables>
         selectProps={vendorSelectProps}
         queryVariables={queryVariables}
-        queryHook={useVendorsQuery}
-        dataToOptions={dataToOptions}
+        queryHook={useVendorOptionsQuery}
+        dataToOptions={vendorOptionsQueryToOptions}
       />
     </DetailsHeaderContainer>
   );

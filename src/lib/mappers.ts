@@ -1,4 +1,4 @@
-import { Vendor, VendorsQuery } from '../api/types';
+import { Vendor, VendorOptionsQuery, VendorOptionFragment } from '../api/types';
 import { Option } from '../components/common/form/Select';
 
 interface GenericNode {
@@ -15,20 +15,18 @@ export function nodeToOption<T extends GenericNode>(node: T | null | undefined):
   };
 };
 
-export const vendorQueryToOptions = (data: VendorsQuery): Array<Option<string>> => {
+export const vendorOptionsQueryToOptions = (data?: VendorOptionsQuery): Option<VendorOptionFragment>[] => {
   if (!data || !data.vendors || !data.vendors.edges) {
     return [];
   }
 
-  const filteredEdges: Array<{ node: Vendor }> =
-    data.vendors.edges.filter(edge => edge && edge.node) as Array<{ node: Vendor }>;
-
-  return filteredEdges
+  return data.vendors.edges
+    .filter((edge): edge is { node: Vendor } => !!edge && !!edge.node)
     .map((edge) => {
       const { node } = edge;
       return {
         label: node.name,
-        value: node.id,
+        value: node,
       };
     });
-};
+}
