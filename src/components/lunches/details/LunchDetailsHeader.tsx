@@ -1,12 +1,11 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import styled from '@emotion/styled';
-import theme from '../../../constants/theme';
 import DayPicker from '../../common/form/DayPicker';
 import { toSimpleDate } from '../../../lib/date';
 import { Lunch, useUpdateLunchMutation, VendorsQuery, VendorsQueryVariables, useVendorsQuery, Vendor } from '../../../api/types';
 import DataSelect from '../../common/form/DataSelect';
 import { nodeToOption } from '../../../lib/mappers';
 import { Option } from '../../common/form/Select';
+import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
 
 interface Props {
   lunch: Lunch,
@@ -98,11 +97,11 @@ const LunchDetailsHeader: React.FC<Props> = React.memo(({
   }), [vendorOption, handleVendorChange, loading]);
 
   return (
-    <HeaderContainer>
+    <DetailsHeaderContainer>
       <input
-        style={titleStyles}
         name="occasion"
         type="text"
+        className='title'
         onChange={handleInputChange}
         value={occasion || ''}
         onBlur={handleOccasionBlur}
@@ -123,47 +122,8 @@ const LunchDetailsHeader: React.FC<Props> = React.memo(({
         queryHook={useVendorsQuery}
         dataToOptions={dataToOptions}
       />
-    </HeaderContainer>
+    </DetailsHeaderContainer>
   );
 });
-
-const titleStyles: React.CSSProperties = {
-  color: theme.blank,
-  fontSize: '32px',
-  fontWeight: 'bold',
-};
-
-const HeaderContainer = styled.div`
-  background-color: ${theme.primary};
-  color: ${theme.blank};
-  padding: 30px;
-
-  h2 {
-    margin-top: 20px;
-  }
-
-  input {
-    width: 100%;
-    padding: 9px 15px;
-    background-color: transparent;
-    border-radius: 10px;
-    outline: none;
-    font-size: 20px;
-    color: ${theme.blank};
-    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;    
-
-    ::placeholder {
-      color: rgba(255,255,255,.7);
-    }
-
-    &:focus {
-      background-color: rgba(0,0,0,.2);
-    }
-  }
-
-  .DayPickerInput {
-    color: ${theme.text};
-  }
-`;
 
 export default LunchDetailsHeader;

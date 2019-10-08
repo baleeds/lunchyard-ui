@@ -9,6 +9,7 @@ import routes from '../../constants/routes';
 import Placeholder from '../common/Placeholder';
 import ListContainer from '../common/ListContainer';
 import DetailsContainer from '../common/DetailsContainer';
+import VendorDetails from './details/VendorDetails';
 
 const Vendors: React.FC = () => {
   const navigate = useNavigate();
@@ -31,11 +32,11 @@ const Vendors: React.FC = () => {
         <VendorsList />
       </ListContainer>
       <DetailsContainer>
-        {/* {vendorId
+        {vendorId
           ? <VendorDetails vendorId={vendorId} /> 
           : <Placeholder Icon={TableIcon} message="select a vendor" />
-        } */}
-        <Placeholder Icon={TableIcon} message="select a vendor" />
+        }
+        {/* <Placeholder Icon={TableIcon} message="select a vendor" /> */}
       </DetailsContainer>
     </>
   );

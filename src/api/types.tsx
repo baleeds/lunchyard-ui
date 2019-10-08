@@ -413,6 +413,18 @@ export type UpdateVendorMutation = (
    }
 );
 
+export type VendorQueryVariables = {
+  id: Scalars['ID']
+};
+
+
+export type VendorQuery = (
+  { __typename?: 'Query' }
+  & { vendor: Maybe<{ __typename?: 'Vendor' }
+    & VendorDetailsFragment
+  > }
+);
+
 export type VendorDetailsFragment = (
   { __typename?: 'Vendor' }
   & Pick<Vendor, 'id' | 'address' | 'description' | 'name'>
@@ -564,6 +576,23 @@ export type UpdateVendorMutationFn = ApolloReactCommon.MutationFunction<UpdateVe
 export type UpdateVendorMutationHookResult = ReturnType<typeof useUpdateVendorMutation>;
 export type UpdateVendorMutationResult = ApolloReactCommon.MutationResult<UpdateVendorMutation>;
 export type UpdateVendorMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateVendorMutation, UpdateVendorMutationVariables>;
+export const VendorDocument = gql`
+    query Vendor($id: ID!) {
+  vendor(id: $id) {
+    ...VendorDetails
+  }
+}
+    ${VendorDetailsFragmentDoc}`;
+
+    export function useVendorQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<VendorQuery, VendorQueryVariables>) {
+      return ApolloReactHooks.useQuery<VendorQuery, VendorQueryVariables>(VendorDocument, baseOptions);
+    };
+      export function useVendorLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<VendorQuery, VendorQueryVariables>) {
+        return ApolloReactHooks.useLazyQuery<VendorQuery, VendorQueryVariables>(VendorDocument, baseOptions);
+      };
+      
+export type VendorQueryHookResult = ReturnType<typeof useVendorQuery>;
+export type VendorQueryResult = ApolloReactCommon.QueryResult<VendorQuery, VendorQueryVariables>;
 export const VendorsDocument = gql`
     query Vendors($first: Int!) {
   vendors(first: $first) {
