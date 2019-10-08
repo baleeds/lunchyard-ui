@@ -3,6 +3,11 @@ import ReactSelect from 'react-select';
 import { Props as SelectProps } from 'react-select/src/Select';
 import theme from '../../../constants/theme';
 
+export interface Option<V> {
+  label: string,
+  value: V,
+}
+
 export interface LunchyardSelectProps {
   undercover?: boolean,
   contrast?: boolean,
