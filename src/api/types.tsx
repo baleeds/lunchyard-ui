@@ -139,6 +139,7 @@ export type Mutation = {
   deleteLunch: Lunch,
   removeDishFromLunch: LunchDish,
   updateLunch: Lunch,
+  updateVendor: Vendor,
 };
 
 
@@ -174,6 +175,11 @@ export type MutationRemoveDishFromLunchArgs = {
 
 export type MutationUpdateLunchArgs = {
   input: UpdateLunchInput
+};
+
+
+export type MutationUpdateVendorArgs = {
+  input: UpdateVendorInput
 };
 
 /** An object with an ID. */
@@ -264,6 +270,13 @@ export type UpdateLunchInput = {
   userId?: Maybe<Scalars['ID']>,
   date?: Maybe<Scalars['String']>,
   description?: Maybe<Scalars['String']>,
+};
+
+export type UpdateVendorInput = {
+  id: Scalars['ID'],
+  name: Scalars['String'],
+  description: Scalars['String'],
+  address: Scalars['String'],
 };
 
 export type User = {
@@ -373,6 +386,30 @@ export type UpdateLunchMutation = (
   { __typename?: 'Mutation' }
   & { updateLunch: { __typename?: 'Lunch' }
     & LunchDetailsFragment
+   }
+);
+
+export type CreateVendorMutationVariables = {
+  input: CreateVendorInput
+};
+
+
+export type CreateVendorMutation = (
+  { __typename?: 'Mutation' }
+  & { createVendor: { __typename?: 'Vendor' }
+    & VendorDetailsFragment
+   }
+);
+
+export type UpdateVendorMutationVariables = {
+  input: UpdateVendorInput
+};
+
+
+export type UpdateVendorMutation = (
+  { __typename?: 'Mutation' }
+  & { updateVendor: { __typename?: 'Vendor' }
+    & VendorDetailsFragment
    }
 );
 
@@ -497,6 +534,36 @@ export type UpdateLunchMutationFn = ApolloReactCommon.MutationFunction<UpdateLun
 export type UpdateLunchMutationHookResult = ReturnType<typeof useUpdateLunchMutation>;
 export type UpdateLunchMutationResult = ApolloReactCommon.MutationResult<UpdateLunchMutation>;
 export type UpdateLunchMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateLunchMutation, UpdateLunchMutationVariables>;
+export const CreateVendorDocument = gql`
+    mutation CreateVendor($input: CreateVendorInput!) {
+  createVendor(input: $input) {
+    ...VendorDetails
+  }
+}
+    ${VendorDetailsFragmentDoc}`;
+export type CreateVendorMutationFn = ApolloReactCommon.MutationFunction<CreateVendorMutation, CreateVendorMutationVariables>;
+
+    export function useCreateVendorMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateVendorMutation, CreateVendorMutationVariables>) {
+      return ApolloReactHooks.useMutation<CreateVendorMutation, CreateVendorMutationVariables>(CreateVendorDocument, baseOptions);
+    };
+export type CreateVendorMutationHookResult = ReturnType<typeof useCreateVendorMutation>;
+export type CreateVendorMutationResult = ApolloReactCommon.MutationResult<CreateVendorMutation>;
+export type CreateVendorMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateVendorMutation, CreateVendorMutationVariables>;
+export const UpdateVendorDocument = gql`
+    mutation UpdateVendor($input: UpdateVendorInput!) {
+  updateVendor(input: $input) {
+    ...VendorDetails
+  }
+}
+    ${VendorDetailsFragmentDoc}`;
+export type UpdateVendorMutationFn = ApolloReactCommon.MutationFunction<UpdateVendorMutation, UpdateVendorMutationVariables>;
+
+    export function useUpdateVendorMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateVendorMutation, UpdateVendorMutationVariables>) {
+      return ApolloReactHooks.useMutation<UpdateVendorMutation, UpdateVendorMutationVariables>(UpdateVendorDocument, baseOptions);
+    };
+export type UpdateVendorMutationHookResult = ReturnType<typeof useUpdateVendorMutation>;
+export type UpdateVendorMutationResult = ApolloReactCommon.MutationResult<UpdateVendorMutation>;
+export type UpdateVendorMutationOptions = ApolloReactCommon.BaseMutationOptions<UpdateVendorMutation, UpdateVendorMutationVariables>;
 export const VendorsDocument = gql`
     query Vendors($first: Int!) {
   vendors(first: $first) {

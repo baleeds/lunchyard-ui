@@ -29,7 +29,14 @@ export default Object.freeze({
   vendorCreate: {
     id: 'vendorCreate',
     path: '/restaurants/create',
-    getPath: () => '/restaurants',
+    activeId: 'vendors',
+    getPath: () => '/restaurants/create',
+  },
+  vendorDetails: {
+    id: 'vendorDetails',
+    path: '/restaurants/:vendorId',
+    activeId: 'vendors',
+    getPath: ({ vendorId }: { vendorId: string }) => `/restaurants/${vendorId}`,
   },
   people: {
     id: 'people',

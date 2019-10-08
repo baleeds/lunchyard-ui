@@ -15,6 +15,7 @@ const RoutePage = ({ id }: { id: string }) => {
         return <Lunches />
     case routes.vendors.id:
     case routes.vendorCreate.id:
+    case routes.vendorDetails.id:
         return <Vendors />;
     default:
         return <div>Not found</div>;
