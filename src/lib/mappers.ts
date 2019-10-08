@@ -1,5 +1,5 @@
 import { Vendor, VendorsQuery } from '../api/types';
-import { Option } from '../components/util/form/Select';
+import { Option } from '../components/common/form/Select';
 
 interface GenericNode {
   id: string,

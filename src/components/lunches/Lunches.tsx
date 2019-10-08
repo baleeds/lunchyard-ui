@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react';
-import ModuleToolbar from '../util/ModuleToolbar';
-import { ReactComponent as PlusIcon } from '../util/icons/add.svg';
-import { ReactComponent as TableIcon } from '../util/icons/table.svg';
+import ModuleToolbar from '../common/ModuleToolbar';
+import { ReactComponent as PlusIcon } from '../common/icons/add.svg';
+import { ReactComponent as TableIcon } from '../common/icons/table.svg';
 import LunchDetails from './details/LunchesDetails';
 import LunchesList from './LunchesList';
 import { useNavigate, useRouter } from '../../lib/router';
 import routes from '../../constants/routes';
-import Placeholder from '../util/Placeholder';
-import ListContainer from '../util/ListContainer';
-import DetailsContainer from '../util/DetailsContainer';
+import Placeholder from '../common/Placeholder';
+import ListContainer from '../common/ListContainer';
+import DetailsContainer from '../common/DetailsContainer';
 
 const Lunches: React.FC = () => {
   const navigate = useNavigate();

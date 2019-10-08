@@ -1,5 +1,5 @@
 import React from 'react';
-import ModuleToolbar from '../../util/ModuleToolbar';
+import ModuleToolbar from '../../common/ModuleToolbar';
 import { Lunch } from '../../../api/types';
 
 interface Props {

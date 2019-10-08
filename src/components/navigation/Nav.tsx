@@ -6,9 +6,9 @@ import route from '../../constants/routes';
 import Link from '../../lib/router/Link';
 import { useRouter } from '../../lib/router';
 
-import { ReactComponent as LunchIcon } from '../util/icons/plate.svg';
-import { ReactComponent as StoreIcon } from '../util/icons/store.svg';
-import { ReactComponent as PeopleIcon } from '../util/icons/people.svg';
+import { ReactComponent as LunchIcon } from '../common/icons/plate.svg';
+import { ReactComponent as StoreIcon } from '../common/icons/store.svg';
+import { ReactComponent as PeopleIcon } from '../common/icons/people.svg';
 
 
 const Nav: React.FC = () => {

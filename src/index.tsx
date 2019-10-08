@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import { startRouter } from './lib/router';
 import routes from './constants/routes';
 import client from './api/client';
-import ModalController from './components/util/ModalController';
+import ModalController from './components/common/ModalController';
 import { RouterProvider } from './lib/router';
 
 const router = startRouter({ routes });

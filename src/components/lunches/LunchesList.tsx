@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import prune from '../../lib/apollo/prune';
 import routes from '../../constants/routes';
-import List from '../util/List';
+import List from '../common/List';
 import LunchesListItem from './LunchesListItem';
 import { useRouter } from '../../lib/router';
 import NewLunchForm from './NewLunchForm';

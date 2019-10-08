@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import routes from '../../constants/routes';
 import { useNavigate } from '../../lib/router';
-import FormGroup from '../util/form/FormGroup';
-import { ButtonPrimary, ButtonGhost } from '../util/html/Buttons';
-import { ReactComponent as CheckIcon } from '../util/icons/check.svg';
+import FormGroup from '../common/form/FormGroup';
+import { ButtonPrimary, ButtonGhost } from '../common/html/Buttons';
+import { ReactComponent as CheckIcon } from '../common/icons/check.svg';
 import { useCreateLunchMutation, LunchesQuery, LunchesQueryVariables, CreateLunchMutation } from '../../api/types';
 import lunchesQuery from '../../api/lunches/lunches.query';
 import { getUpdaterToAddEdge } from '../../lib/apollo/updaters';
-import ButtonRow from '../util/form/ButtonRow';
-import ListItemForm from '../util/form/ListItemForm';
+import ButtonRow from '../common/form/ButtonRow';
+import ListItemForm from '../common/form/ListItemForm';
 
 const NewLunchForm: React.FC = React.memo(() => {
   const navigate = useNavigate();
