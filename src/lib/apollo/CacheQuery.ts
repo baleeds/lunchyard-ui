@@ -5,7 +5,7 @@ import { DataProxy } from "apollo-cache";
  * CacheConnection helps facilitate modifying the cache, for instance when updating.
  * It is constructed with the query options from readQuery.
  */
-class CacheConnection<QueryData extends HasConnection, QueryVariables>{
+class CacheConnection<QueryData, QueryVariables>{
   cache: DataProxy
   queryOptions: DataProxy.Query<QueryVariables>
   
@@ -31,23 +31,17 @@ class CacheConnection<QueryData extends HasConnection, QueryVariables>{
   /**
    * Inserts an edge into an existing connection, based on the provided query.
    */
-  addEdge(connectionName: (keyof QueryData), edge: any) {
+  addEdge(connectionName: string, edge: any) {
     const oldQueryData = this.read();
 
     if (!oldQueryData) return;
 
-    const oldConnection = oldQueryData[connectionName];
+    // TODO: make this typesafe?  The problem is ensuring that the QueryData is a connection
+    const newQueryData = produce(oldQueryData, (draftQueryData: any) => {
+      if (!draftQueryData || !draftQueryData[connectionName]) return oldQueryData;
 
-    const newConnection = produce(oldConnection, (draftConnection) => {
-      if (!draftConnection) return oldConnection;
-
-      draftConnection.edges.unshift(edge);
+      draftQueryData[connectionName].edges.unshift(edge);
     });
-
-    const newQueryData: QueryData = {
-      ...oldQueryData,
-      [connectionName]: newConnection,
-    };
 
     this.write(newQueryData);
   }

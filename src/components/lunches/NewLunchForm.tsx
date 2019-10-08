@@ -6,7 +6,9 @@ import FormGroup from '../util/form/FormGroup';
 import { ButtonPrimary, ButtonGhost } from '../util/html/Buttons';
 import theme from '../../constants/theme';
 import { ReactComponent as CheckIcon } from '../util/icons/check.svg';
-import { useCreateLunchMutation } from '../../api/types';
+import { useCreateLunchMutation, LunchesQuery, LunchesQueryVariables } from '../../api/types';
+import CacheConnection from '../../lib/apollo/CacheQuery';
+import lunchesQuery from '../../api/lunches/lunches.query';
 
 const NewLunchForm: React.FC = () => {
   const navigate = useNavigate();
@@ -19,6 +21,16 @@ const NewLunchForm: React.FC = () => {
   
   const [handleCreateLunch, { loading }] = useCreateLunchMutation({
     onCompleted: goToLunch,
+    update: (cache, { data }) => {
+      if (!data) return;
+      
+      const lunchQuery = new CacheConnection<LunchesQuery, LunchesQueryVariables>(cache, {
+        query: lunchesQuery,
+        variables: { first: 100 },
+      });
+
+      lunchQuery.addEdge('lunches', { node: data.createLunch, __typename: 'LunchEdge' });
+    },
   });
 
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -33,8 +45,6 @@ const NewLunchForm: React.FC = () => {
         },
       },
     });
-    
-    console.log(name);
   }, [name, handleCreateLunch]);
   
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
