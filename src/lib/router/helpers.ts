@@ -65,8 +65,6 @@ export const addRoutesToRouter = (
 }
 
 const addRouteToNavigoRoutes = ( navigoRoutes: NavigoRoutes, [, routeDefinition]: [string, RouteDefinition]) => {
-  // We destructure this to ensure we don't pull the definition, since the user could
-  // define the routes however they like.
   const {
     path,
     id,

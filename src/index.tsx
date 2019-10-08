@@ -11,6 +11,10 @@ import client from './api/client';
 import ModalController from './components/common/ModalController';
 import { RouterProvider } from './lib/router';
 
+// This router is homegrown as an expirement to solve three problems
+// 1) Easily accessing router state in components with a hook
+// 2) Not having the router polute the DOM tree with assumed divs
+// 3) Rely on a central configuration of routes
 const router = startRouter({ routes });
 
 ReactDOM.render(

@@ -22,19 +22,19 @@ export const toSimpleDate = (date: string | Date) => {
   return inputTime.format('MMM D, YYYY');
 };
 
-export const toDate = (date: string | Date) => {
-  if (!date) return null;
-  const inputTime = dayjs(date);
-  return inputTime.isValid() ? inputTime.format('MMM D, YYYY') : 'invalid date';
-};
+// export const toDate = (date: string | Date) => {
+//   if (!date) return null;
+//   const inputTime = dayjs(date);
+//   return inputTime.isValid() ? inputTime.format('MMM D, YYYY') : 'invalid date';
+// };
 
-export const toDateTime = (date: string | Date) => {
-  if (!date) return null;
-  const inputTime = dayjs(date);
-  return inputTime.format('M/D/YYYY - h:mm A');
-};
+// export const toDateTime = (date: string | Date) => {
+//   if (!date) return null;
+//   const inputTime = dayjs(date);
+//   return inputTime.format('M/D/YYYY - h:mm A');
+// };
 
-export const unixToDate = (date: number) => {
-  if (!date) return null;
-  return dayjs.unix(date).format('MMM D, YYYY');
-};
+// export const unixToDate = (date: number) => {
+//   if (!date) return null;
+//   return dayjs.unix(date).format('MMM D, YYYY');
+// };

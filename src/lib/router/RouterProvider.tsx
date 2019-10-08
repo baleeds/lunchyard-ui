@@ -14,7 +14,7 @@ const RouterProvider: React.FC<Props> = ({ router: routerPayload, children }) =>
 
   useEffect(() => {
     // Use PubSub as an easy way to utilize Navigo callbacks without a tight coupling
-    const sub = PubSub.subscribe( NEW_ROUTE, (_: any, payload: RouteState) => {
+    const sub = PubSub.subscribe(NEW_ROUTE, (_: any, payload: RouteState) => {
       setRouteState(payload);
     });
 

@@ -3,7 +3,7 @@ import { DataProxy } from "apollo-cache";
 import { FetchResult } from "apollo-link";
 import CacheConnection from "./CacheQuery";
 
-interface GetUpdaterProps<QueryVariables, Mutation> {
+interface Props<QueryVariables, Mutation> {
   query: DocumentNode,
   variables: QueryVariables,
   connectionName: string,
@@ -15,7 +15,7 @@ export function getUpdaterToAddEdge<Mutation, Query, QueryVariables>({
   variables,
   connectionName,
   dataToEdge,
-}: GetUpdaterProps<QueryVariables, Mutation>){
+}: Props<QueryVariables, Mutation>){
   return (cache: DataProxy, { data }: FetchResult<Mutation>) => {
     if (!data) return;
     

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useNavigate } from '.';
 
 // QUESTION: Is there a better way to model this?  Basically I need either route and or params OR path.
@@ -19,10 +19,16 @@ const derivePathFromProps = ({ route, params, path}: Props) => {
   return getPath(params); 
 };
 
-const Link: React.FC<Props> = ({ route, params, path, children, ...rest }) => {
+const Link: React.FC<Props> = React.memo(({
+  route,
+  params,
+  path,
+  children,
+  ...rest
+}) => {  
   const navigate = useNavigate();
 
-  const derivedPath = derivePathFromProps({ route, params, path })
+  const derivedPath = useMemo(() => derivePathFromProps({ route, params, path }), [route, params, path])
 
   if (!derivedPath) throw new Error('Could not derive path.  Check passed routes, params, and path.');
   
@@ -40,6 +46,6 @@ const Link: React.FC<Props> = ({ route, params, path, children, ...rest }) => {
       {children}
     </a>
   );
-};
+});
 
 export default Link;

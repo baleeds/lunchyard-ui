@@ -21,7 +21,7 @@ const createRouter = (
   };
 }
 
-export const startRouter = (options: RouterOptions): RouterPayload => {
+const startRouter = (options: RouterOptions): RouterPayload => {
   const { router, initialRoute } = createRouter(options);
 
   const routeState = getInitialRouteState(options, initialRoute);
@@ -31,3 +31,5 @@ export const startRouter = (options: RouterOptions): RouterPayload => {
     routeState,
   };
 };
+
+export default startRouter;

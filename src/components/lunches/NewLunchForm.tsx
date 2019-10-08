@@ -62,11 +62,20 @@ const NewLunchForm: React.FC = React.memo(() => {
         />
       </FormGroup>
       <ButtonRow>
-        <ButtonPrimary type="submit" disabled={loading}>
+        <ButtonPrimary
+          type="submit"
+          disabled={loading}
+        >
           <CheckIcon />
           create
         </ButtonPrimary>
-        <ButtonGhost type="button" onClick={closeForm} disabled={loading}>cancel</ButtonGhost>
+        <ButtonGhost
+          type="button"
+          onClick={closeForm}
+          disabled={loading}
+        >
+          cancel
+        </ButtonGhost>
       </ButtonRow>
     </ListItemForm>
   )
