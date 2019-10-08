@@ -1,16 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import routes from '../../constants/routes';
 import { useNavigate } from '../../lib/router';
-import styled from '@emotion/styled';
 import FormGroup from '../util/form/FormGroup';
 import { ButtonPrimary, ButtonGhost } from '../util/html/Buttons';
-import theme from '../../constants/theme';
 import { ReactComponent as CheckIcon } from '../util/icons/check.svg';
 import { useCreateLunchMutation, LunchesQuery, LunchesQueryVariables, CreateLunchMutation } from '../../api/types';
 import lunchesQuery from '../../api/lunches/lunches.query';
 import { getUpdaterToAddEdge } from '../../lib/apollo/updaters';
+import ButtonRow from '../util/form/ButtonRow';
+import ListItemForm from '../util/form/ListItemForm';
 
-const NewLunchForm: React.FC = () => {
+const NewLunchForm: React.FC = React.memo(() => {
   const navigate = useNavigate();
   
   const [name, setName] = useState('');
@@ -70,24 +70,6 @@ const NewLunchForm: React.FC = () => {
       </ButtonRow>
     </ListItemForm>
   )
-}; 
-
-const ListItemForm = styled.form`
-  width: 100%;
-  padding: 20px 30px;
-  border-bottom: 1px solid ${theme.border};
-`;
-
-const ButtonRow = styled.div`
-  display: flex;
-   
-  button {
-    margin-right: 10px;
-
-    &:last-child {
-      margin-right: 0px;
-    }
-  }
-`;
+});
 
 export default NewLunchForm;

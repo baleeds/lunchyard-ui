@@ -28,8 +28,8 @@ const Nav: React.FC = () => {
           </>
         </Link>
         <Link
-          route={route.restaurants}
-          className={activeId === route.restaurants.id ? 'active' : ''}
+          route={route.vendors}
+          className={activeId === route.vendors.id ? 'active' : ''}
         >
           <>
             <StoreIcon />

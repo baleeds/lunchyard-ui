@@ -21,9 +21,14 @@ export default Object.freeze({
     activeId: 'lunches',
     getPath: ({ lunchId }: { lunchId: string }) => `/lunches/${lunchId}`,
   },
-  restaurants: {
-    id: 'restaurants',
+  vendors: {
+    id: 'vendors',
     path: '/restaurants',
+    getPath: () => '/restaurants',
+  },
+  vendorCreate: {
+    id: 'vendorCreate',
+    path: '/restaurants/create',
     getPath: () => '/restaurants',
   },
   people: {

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import styled from '@emotion/styled';
 import theme from '../../../constants/theme';
 import DayPicker from '../../util/form/DayPicker';
@@ -12,7 +12,9 @@ interface Props {
   lunch: Lunch,
 };
 
-const LunchDetailsHeader: React.FC<Props> = ({
+const queryVariables = { first: 100 };
+
+const LunchDetailsHeader: React.FC<Props> = React.memo(({
   lunch,
 }) => {
   const { id } = lunch;
@@ -66,13 +68,42 @@ const LunchDetailsHeader: React.FC<Props> = ({
     })
   }, [id, updateLunch]);
 
+  const dataToOptions = useCallback<(data?: VendorsQuery) => Option<Vendor>[]>((data) => {
+    if (!data || !data.vendors || !data.vendors.edges) {
+      return [];
+    }
+
+    return data.vendors.edges
+      .filter((edge): edge is { node: Vendor } => !!edge && !!edge.node)
+      .map((edge) => {
+        const { node } = edge;
+        return {
+          label: node.name,
+          value: node,
+        };
+      });
+  }, []);
+
+  const handleInputChange = useCallback(({ target: { value } }) => setOccasion(value), [setOccasion]);
+
+  const dayPickerProps = useMemo(() => ({ selectedDays: date }), [date]);
+  const dayPickerInputProps = useMemo(() => ({ readOnly: loading }), [loading]);
+
+  const vendorSelectProps = useMemo(() => ({
+    value: vendorOption,
+    contrast: true,
+    undercover: true,
+    onChange: handleVendorChange,
+    isDisabled: loading,
+  }), [vendorOption, handleVendorChange, loading]);
+
   return (
     <HeaderContainer>
       <input
         style={titleStyles}
         name="occasion"
         type="text"
-        onChange={({ target: { value } }) => setOccasion(value) }
+        onChange={handleInputChange}
         value={occasion || ''}
         onBlur={handleOccasionBlur}
         disabled={loading}
@@ -83,42 +114,18 @@ const LunchDetailsHeader: React.FC<Props> = ({
         formatDate={toSimpleDate}
         onDayChange={handleCalendarSelect}
         placeholder="Not scheduled"
-        dayPickerProps={{
-          selectedDays: date,
-        }}
-        inputProps={{
-          readOnly: loading,
-        }}
+        dayPickerProps={dayPickerProps}
+        inputProps={dayPickerInputProps}
       />
       <DataSelect<Option<Vendor>, VendorsQuery, VendorsQueryVariables>
-        selectProps={{
-          value: vendorOption,
-          contrast: true,
-          undercover: true,
-          onChange: handleVendorChange,
-          isDisabled: loading,
-        }}
-        queryVariables={{ first: 100 }}
+        selectProps={vendorSelectProps}
+        queryVariables={queryVariables}
         queryHook={useVendorsQuery}
-        dataToOptions={(data) => {
-          if (!data || !data.vendors || !data.vendors.edges) {
-            return [];
-          }
-
-          return data.vendors.edges
-            .filter((edge): edge is { node: Vendor } => !!edge && !!edge.node)
-            .map((edge) => {
-              const { node } = edge;
-              return {
-                label: node.name,
-                value: node,
-              };
-            });
-        }}
+        dataToOptions={dataToOptions}
       />
     </HeaderContainer>
   );
-};
+});
 
 const titleStyles: React.CSSProperties = {
   color: theme.blank,

@@ -4,7 +4,7 @@ import { useRouter } from '../lib/router';
 import ErrorBoundary from './util/ErrorBoundary';
 
 const Lunches = React.lazy(() => import('./lunches/Lunches'));
-const Restaurants = React.lazy(() => import('./vendors/Restaurants'));
+const Vendors = React.lazy(() => import('./vendors/Vendors'));
 
 const RoutePage = ({ id }: { id: string }) => {
   switch (id) {
@@ -13,8 +13,9 @@ const RoutePage = ({ id }: { id: string }) => {
     case routes.lunchCreate.id:
     case routes.lunchDetails.id:
         return <Lunches />
-    case routes.restaurants.id:
-        return <Restaurants />;
+    case routes.vendors.id:
+    case routes.vendorCreate.id:
+        return <Vendors />;
     default:
         return <div>Not found</div>;
   }
