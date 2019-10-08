@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import ModuleToolbar from '../common/ModuleToolbar';
 import { ReactComponent as PlusIcon } from '../common/icons/add.svg';
 import { ReactComponent as TableIcon } from '../common/icons/table.svg';
-// import VendorDetails from './details/VendorsDetails';
 import VendorsList from './VendorsList';
 import { useNavigate, useRouter } from '../../lib/router';
 import routes from '../../constants/routes';
@@ -16,7 +15,7 @@ const Vendors: React.FC = () => {
   const { params: { vendorId } } = useRouter();
 
   const moduleToolbarButton = useMemo(() => ({
-    title: 'create vendor',
+    title: 'create restaurant',
     onClick: () => navigate(routes.vendorCreate.getPath()),
     Icon: PlusIcon,
   }), [navigate]);
@@ -25,8 +24,7 @@ const Vendors: React.FC = () => {
     <>
       <ListContainer>
         <ModuleToolbar
-          title="vendors"
-          subTitle="3 upcoming"
+          title="Restaurants"
           button={moduleToolbarButton}
         />
         <VendorsList />
@@ -34,9 +32,8 @@ const Vendors: React.FC = () => {
       <DetailsContainer>
         {vendorId
           ? <VendorDetails vendorId={vendorId} /> 
-          : <Placeholder Icon={TableIcon} message="select a vendor" />
+          : <Placeholder Icon={TableIcon} message="select a restaurant" />
         }
-        {/* <Placeholder Icon={TableIcon} message="select a vendor" /> */}
       </DetailsContainer>
     </>
   );
