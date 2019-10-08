@@ -39,8 +39,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "codegen": "yarn schema && graphql-codegen",
-    "schema": "apollo schema:download --endpoint=http://localhost:4000/graphql schema.json"
+    "schema": "apollo schema:download --endpoint=http://localhost:4000/graphql schema.json",
+    "codegen": "yarn schema && graphql-codegen"
   },
   "eslintConfig": {
     "extends": "react-app"
