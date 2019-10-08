@@ -6,6 +6,7 @@ import { toSimpleDate } from '../../../lib/date';
 import { Lunch, useUpdateLunchMutation, VendorsQuery, VendorsQueryVariables, useVendorsQuery, Vendor } from '../../../api/types';
 import DataSelect from '../../util/form/DataSelect';
 import { nodeToOption } from '../../../lib/mappers';
+import { Option } from '../../util/form/Select';
 
 interface Props {
   lunch: Lunch,
