@@ -7,19 +7,20 @@ export default gql`
     occasion
     description
     vendor {
+      id
       name
     }
-    lunchDishes(first: 100) {
-      edges {
-        node {
-          id
-          quantity
-          dish {
-            id
-            name
-          }
-        }
-      }
-    }
+    # lunchDishes(first: 100) {
+    #   edges {
+    #     node {
+    #       id
+    #       quantity
+    #       dish {
+    #         id
+    #         name
+    #       }
+    #     }
+    #   }
+    # }
   }
 `;

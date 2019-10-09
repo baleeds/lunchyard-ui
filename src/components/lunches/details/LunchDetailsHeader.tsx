@@ -1,14 +1,14 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import DayPicker from '../../common/form/DayPicker';
 import { toSimpleDate } from '../../../lib/date';
-import { Lunch, useUpdateLunchMutation, Vendor, useVendorOptionsQuery, VendorOptionsQuery, VendorOptionsQueryVariables, VendorOptionFragment } from '../../../api/types';
+import { useUpdateLunchMutation, useVendorOptionsQuery, VendorOptionsQuery, VendorOptionsQueryVariables, VendorOptionFragment, LunchDetailsFragment } from '../../../api/types';
 import DataSelect from '../../common/form/DataSelect';
 import { nodeToOption, vendorOptionsQueryToOptions } from '../../../lib/mappers';
 import { Option } from '../../common/form/Select';
 import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
 
 interface Props {
-  lunch: Lunch;
+  lunch: LunchDetailsFragment;
 };
 
 const queryVariables = { first: 100 };
@@ -20,7 +20,7 @@ const LunchDetailsHeader: React.FC<Props> = React.memo(({
 
   const [occasion, setOccasion] = useState(lunch.occasion);
   const [date, setDate] = useState(lunch.date ? new Date(lunch.date) : undefined);
-  const [vendorOption, setVendorOption] = useState(nodeToOption<Vendor>(lunch.vendor));
+  const [vendorOption, setVendorOption] = useState(nodeToOption<VendorOptionFragment>(lunch.vendor));
   
   const [updateLunch, { loading }] = useUpdateLunchMutation();
   

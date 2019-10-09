@@ -21,10 +21,6 @@ export function nodeToOption<T extends GenericNode>(node: T | null | undefined):
   };
 };
 
-export function connectionToNodes(connection) {
-
-}
-
 export const vendorOptionsQueryToOptions = (data?: VendorOptionsQuery): Option<VendorOptionFragment>[] => {
   if (!data || !data.vendors || !data.vendors.edges) {
     return [];

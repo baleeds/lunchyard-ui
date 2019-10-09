@@ -1,9 +1,9 @@
 import React, { useCallback, useReducer } from 'react';
-import { Vendor, useUpdateVendorMutation } from '../../../api/types';
+import { useUpdateVendorMutation, VendorDetailsFragment } from '../../../api/types';
 import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
 
 interface Props {
-  vendor: Vendor;
+  vendor: VendorDetailsFragment;
 };
 
 // QUESTION: should I really index like this?  Seems not safe.
@@ -39,8 +39,8 @@ const VendorDetailsHeader: React.FC<Props> = React.memo(({
 
   const [fields, updateField] = useReducer(reducer, {
     name: vendor.name,
-    description: vendor.description,
-    address: vendor.address,
+    description: vendor.description || '',
+    address: vendor.address || '',
   });
   const { name, description, address } = fields;
 
@@ -51,9 +51,9 @@ const VendorDetailsHeader: React.FC<Props> = React.memo(({
       variables: {
         input: {
           id,
-          name: vendor.name,
-          description: vendor.description,
-          address: vendor.address,
+          name: vendor.name || '',
+          description: vendor.description || '',
+          address: vendor.address || '',
           [name]: fields[name],
         },
       },

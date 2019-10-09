@@ -1,13 +1,13 @@
 import React from 'react';
 import ModuleToolbar from '../../common/ModuleToolbar';
-import { Lunch } from '../../../api/types';
+import { LunchDetailsFragment } from '../../../api/types';
 
 interface Props {
-  lunch: Lunch | null | undefined;
+  lunch: LunchDetailsFragment;
 };
 
 const LunchOrder: React.FC<Props> = ({ lunch }) => {    
-  if (!lunch || !lunch.lunchDishes) return null;
+  if (!lunch) return null;
   
   return (
     <div>

@@ -16,14 +16,14 @@ const LunchesList: React.FC = () => {
 
   const showCreate = id === routes.lunchCreate.id;
   
-  const { data, loading, error } = useLunchesQuery({
+  const { data, loading } = useLunchesQuery({
     variables: {
       first: 100,
     },
   });
 
   if (loading) return <span>loading</span>;
-  if (error || !data) return <span>error</span>;
+  if (!data) return <span>error</span>;
 
   const lunches = prune(data.lunches);
 
