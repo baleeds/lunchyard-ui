@@ -7,7 +7,7 @@ import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
 import Placeholder from '../../common/Placeholder';
 
 interface Props {
-  lunchId: string,
+  lunchId: string;
 };
 
 const placeholderStyle = { height: 198 };

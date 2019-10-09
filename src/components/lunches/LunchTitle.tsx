@@ -2,7 +2,7 @@ import React from 'react';
 import { Lunch } from '../../api/types';
 
 interface Props {
-  lunch: Lunch,
+  lunch: Lunch;
 };
 
 const LunchTitle: React.FC<Props> = ({ lunch }) => {

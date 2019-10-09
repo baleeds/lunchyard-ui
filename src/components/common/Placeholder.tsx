@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import theme from '../../constants/theme';
 
 interface Props {
-  Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
-  message?: string,
+  Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  message?: string;
 };
 
 const Placeholder: React.FC<Props> = ({

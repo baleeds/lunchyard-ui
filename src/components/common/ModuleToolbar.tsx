@@ -4,13 +4,13 @@ import theme from '../../constants/theme';
 import { ButtonPrimary } from './html/Buttons';
 
 interface Props {
-  title: string,
-  subTitle?: string,
+  title: string;
+  subTitle?: string;
   button?: {
-    title: string,
-    onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
-    Icon?: any,
-  },
+    title: string;
+    onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    Icon?: any;
+  };
 };
 
 const ModuleToolbar: React.FC<Props> = ({

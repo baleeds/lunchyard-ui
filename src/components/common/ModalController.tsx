@@ -2,13 +2,13 @@ import React, { useState, useCallback } from 'react';
 import styled from '@emotion/styled';
 
 interface Modal {
-  modalKey: string,
-  Component: JSX.Element,
+  modalKey: string;
+  Component: JSX.Element;
 };
 
 interface ModalContextType {
-  modalStack: Modal[],
-  addModalToStack: (modal: Modal) => void,
+  modalStack: Modal[];
+  addModalToStack: (modal: Modal) => void;
 };
 
 // QUESTION: Sending a noop through?  How could I do that better?

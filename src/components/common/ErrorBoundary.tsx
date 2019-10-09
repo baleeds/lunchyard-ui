@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import withRouter from '../../lib/router/withRouter';
 
 interface ComponentProps {
-  message?: string,
-  hasError?: boolean,
-}
+  message?: string;
+  hasError?: boolean;
+};
 
 interface Props {
-  routeState: RouteState,
+  routeState: RouteState;
 };
 
 interface State {
-  hasError: boolean,
-}
+  hasError: boolean;
+};
 
 class ErrorBoundary extends Component<Props & ComponentProps, State> {
   constructor(props: Props) {

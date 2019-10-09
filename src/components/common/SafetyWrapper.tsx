@@ -5,8 +5,8 @@ import { ReactComponent as Plate } from './icons/plate.svg';
 import { QueryResult } from '@apollo/react-common';
 
 interface Props<T> {
-  ensure?: string[],
-  children: (data: T) => JSX.Element,
+  ensure?: string[];
+  children: (data: T) => JSX.Element;
 }
 
 function ensuredPropertiesExist<T>(data: T, ensure: Props<T>['ensure']) {

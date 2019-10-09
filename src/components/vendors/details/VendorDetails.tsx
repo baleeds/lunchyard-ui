@@ -4,7 +4,7 @@ import { useVendorQuery } from '../../../api/types';
 import Dishes from '../dishes/Dishes';
 
 interface Props {
-  vendorId: string,
+  vendorId: string;
 };
 
 const VendorDetails: React.FC<Props> = ({ vendorId }) => {

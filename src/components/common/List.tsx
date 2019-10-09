@@ -4,17 +4,17 @@ import Link from '../../lib/router/Link';
 import theme from '../../constants/theme';
 
 interface ListItem {
-  id: string,
+  id: string;
 };
 
 interface Props<ItemType> {
-  items: ItemType[],
-  ListItem: React.FC<{ item: ItemType }>,
-  getPath: (item: ItemType) => string,
-  getIsActive: (item: ItemType) => boolean,
-  listKey?: string,
-  showCreate?: boolean,
-  CreatableForm?: JSX.Element,
+  items: ItemType[];
+  ListItem: React.FC<{ item: ItemType }>;
+  getPath: (item: ItemType) => string;
+  getIsActive: (item: ItemType) => boolean;
+  listKey?: string;
+  showCreate?: boolean;
+  CreatableForm?: JSX.Element;
 };
 
 // QUESITION: 

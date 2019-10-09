@@ -5,11 +5,11 @@ import Select, { LunchyardSelectProps } from './Select';
 import { Props as SelectProps } from 'react-select/src/Select';
 
 interface Props<OptionType, QueryType, QueryVariablesType> {
-  queryVariables: QueryVariablesType,
-  queryHook: (baseOptions?: ApolloReactHooks.QueryHookOptions<QueryType, QueryVariablesType>) => ApolloReactCommon.QueryResult<QueryType, QueryVariablesType>,
-  dataToOptions: (data?: QueryType) => OptionType[],
-  selectProps: LunchyardSelectProps & SelectProps<OptionType>,
-}
+  queryVariables: QueryVariablesType;
+  queryHook: (baseOptions?: ApolloReactHooks.QueryHookOptions<QueryType, QueryVariablesType>) => ApolloReactCommon.QueryResult<QueryType, QueryVariablesType>;
+  dataToOptions: (data?: QueryType) => OptionType[];
+  selectProps: LunchyardSelectProps & SelectProps<OptionType>;
+};
 
 function DataSelect<OptionType, QueryType, QueryVariablesType>({
   queryHook,

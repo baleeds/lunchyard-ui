@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, LinkGetProps } from '@reach/router';
 
 interface Props {
-  to: string,
-  children: string | JSX.Element,
+  to: string;
+  children: string | JSX.Element;
 };
 
 const getActive = (props: LinkGetProps) => {

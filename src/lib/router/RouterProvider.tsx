@@ -4,8 +4,8 @@ import { RouteContext } from '.';
 import { NEW_ROUTE } from './constants';
 
 interface Props {
-  router: RouterPayload,
-}
+  router: RouterPayload;
+};
 
 const RouterProvider: React.FC<Props> = ({ router: routerPayload, children }) => {
   const { router, routeState: initialRouteState } = routerPayload;

@@ -3,7 +3,7 @@ import { Vendor } from '../../../api/types';
 import ModuleToolbar from '../../common/ModuleToolbar';
 
 interface Props {
-  vendor: Vendor,
+  vendor: Vendor;
 };
 
 const Dishes: React.FC<Props> = ({ vendor }) => {  

@@ -2,9 +2,15 @@ import { Vendor, VendorOptionsQuery, VendorOptionFragment } from '../api/types';
 import { Option } from '../components/common/form/Select';
 
 interface GenericNode {
-  id: string,
-  name: string,
-}
+  id: string;
+  name: string;
+};
+
+interface GenericConnection {
+  edges?: {
+    node?: any;
+  };
+};
 
 export function nodeToOption<T extends GenericNode>(node: T | null | undefined): Option<T> | null {
   if (!node) return null;
@@ -14,6 +20,10 @@ export function nodeToOption<T extends GenericNode>(node: T | null | undefined):
     value: node,
   };
 };
+
+export function connectionToNodes(connection) {
+
+}
 
 export const vendorOptionsQueryToOptions = (data?: VendorOptionsQuery): Option<VendorOptionFragment>[] => {
   if (!data || !data.vendors || !data.vendors.edges) {

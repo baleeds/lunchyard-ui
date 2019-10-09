@@ -2,7 +2,7 @@ import React from 'react';
 import { Vendor } from '../../api/types';
 
 interface Props {
-  item: Vendor,
+  item: Vendor;
 };
 
 const VendorsListItem: React.FC<Props> = ({ item }) => {

@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import theme from '../../../constants/theme';
 
 interface Props {
-  label?: string,
-  htmlFor?: string,
+  label?: string;
+  htmlFor?: string;
 };
 
 const FormGroup: React.FC<Props> = ({

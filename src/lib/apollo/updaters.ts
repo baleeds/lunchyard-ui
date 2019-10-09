@@ -4,10 +4,10 @@ import { FetchResult } from "apollo-link";
 import CacheConnection from "./CacheQuery";
 
 interface Props<QueryVariables, Mutation> {
-  query: DocumentNode,
-  variables: QueryVariables,
-  connectionName: string,
-  dataToEdge: (data: Mutation) => { node: any } | null | undefined,
+  query: DocumentNode;
+  variables: QueryVariables;
+  connectionName: string;
+  dataToEdge: (data: Mutation) => { node: any } | null | undefined;
 };
 
 export function getUpdaterToAddEdge<Mutation, Query, QueryVariables>({

@@ -3,15 +3,15 @@ import styled from '@emotion/styled';
 import { ButtonGhost } from './html/Buttons';
 
 interface Action {
-  name: string,
-  Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>,
-  onClick: any,
+  name: string;
+  Icon?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  onClick: any;
 };
 
 interface Props {
-  style?: React.CSSProperties,
-  keyPrefix?: string,
-  actions: Action[],
+  style?: React.CSSProperties;
+  keyPrefix?: string;
+  actions: Action[];
 };
 
 const Actions: React.FC<Props> = ({

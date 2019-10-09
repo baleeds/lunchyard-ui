@@ -8,7 +8,7 @@ import { Option } from '../../common/form/Select';
 import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
 
 interface Props {
-  lunch: Lunch,
+  lunch: Lunch;
 };
 
 const queryVariables = { first: 100 };

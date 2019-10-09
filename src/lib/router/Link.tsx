@@ -3,9 +3,9 @@ import { useNavigate } from '.';
 
 // QUESTION: Is there a better way to model this?  Basically I need either route and or params OR path.
 interface Props extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  route?: RouteDefinition,
-  params?: object | undefined | null,
-  path?: string,
+  route?: RouteDefinition;
+  params?: object | undefined | null;
+  path?: string;
 };
 
 const derivePathFromProps = ({ route, params, path}: Props) => {

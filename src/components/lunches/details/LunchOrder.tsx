@@ -3,7 +3,7 @@ import ModuleToolbar from '../../common/ModuleToolbar';
 import { Lunch } from '../../../api/types';
 
 interface Props {
-  lunch: Lunch | null | undefined,
+  lunch: Lunch | null | undefined;
 };
 
 const LunchOrder: React.FC<Props> = ({ lunch }) => {    

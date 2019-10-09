@@ -3,22 +3,22 @@ import { Vendor, useUpdateVendorMutation } from '../../../api/types';
 import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
 
 interface Props {
-  vendor: Vendor,
+  vendor: Vendor;
 };
 
 // QUESTION: should I really index like this?  Seems not safe.
 interface State {
-  name: string,
-  description: string,
-  address: string,
-  [key: string]: string,
+  name: string;
+  description: string;
+  address: string;
+  [key: string]: string;
 };
 
 // QUESTION: how to tie the value of the action to its key in state?
 // maybe I can just make each key its own interface, then I could make it work?
 interface Action {
-  fieldName: keyof State,
-  value: string,
+  fieldName: keyof State;
+  value: string;
 };
 
 const reducer = (prevState: State, action: Action): State => {
