@@ -8,7 +8,7 @@ import { useRouter } from '../../lib/router';
 
 import { ReactComponent as LunchIcon } from '../common/icons/plate.svg';
 import { ReactComponent as StoreIcon } from '../common/icons/store.svg';
-import { ReactComponent as PeopleIcon } from '../common/icons/people.svg';
+// import { ReactComponent as PeopleIcon } from '../common/icons/people.svg';
 
 
 const Nav: React.FC = () => {
@@ -36,7 +36,7 @@ const Nav: React.FC = () => {
             restaurants
           </>
         </Link>
-        <Link
+        {/* <Link
           route={route.people}
           className={activeId === route.people.id ? 'active' : ''}
         >
@@ -44,7 +44,7 @@ const Nav: React.FC = () => {
             <PeopleIcon />
             people
           </>
-        </Link>
+        </Link> */}
       </NavLinksContainer>
     </NavContainer>
   );
