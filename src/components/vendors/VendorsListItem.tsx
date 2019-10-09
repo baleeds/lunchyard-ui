@@ -9,7 +9,7 @@ const VendorsListItem: React.FC<Props> = ({ item }) => {
   return (
     <>
       <h3>
-        {item.name}
+        <strong>{item.name}</strong>
       </h3>
     </>
   );
