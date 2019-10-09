@@ -32,7 +32,7 @@ const Lunches: React.FC = () => {
       </ListContainer>
       <DetailsContainer>
         {lunchId
-          ? <LunchDetails lunchId={lunchId} /> 
+          ? <LunchDetails key={`${lunchId}-lunchDetails`} lunchId={lunchId} /> 
           : <Placeholder Icon={TableIcon} message="select a lunch" />
         }
       </DetailsContainer>

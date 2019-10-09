@@ -1,36 +1,35 @@
 import React from 'react';
 import LunchDetailsHeader from './LunchDetailsHeader';
 import LunchOrder from './LunchOrder';
-import { useLunchQuery } from '../../../api/types';
+import { useLunchQuery, LunchQuery } from '../../../api/types';
+import SafetyWrapper from '../../common/SafetyWrapper';
 
 interface Props {
   lunchId: string,
 };
 
 const LunchDetails: React.FC<Props> = ({ lunchId }) => {
-  const { data } = useLunchQuery({
+  const apolloProps = useLunchQuery({
     variables: {
       id: lunchId,
     },
   });
 
-  const { lunch } = data || {};
-
-  if (!lunch) return null;
-
-  const { id } = lunch;
-
   return (
-    <div>
-      <LunchDetailsHeader
-        key={`${id}-LunchDetailsHeader`}
-        lunch={lunch}
-      />
-      <LunchOrder
-        key={`${id}-LunchOrder`}
-        lunch={lunch}
-      />
-    </div>
+    <SafetyWrapper<LunchQuery> {...apolloProps} ensure={['lunch']} >
+      {({ lunch }) => (
+        <div>
+          <LunchDetailsHeader
+            key={`${lunch.id}-LunchDetailsHeader`}
+            lunch={lunch}
+          />
+          <LunchOrder
+            key={`${lunch.id}-LunchOrder`}
+            lunch={lunch}
+          />
+        </div>
+      )}
+    </SafetyWrapper>
   );
 };
 
