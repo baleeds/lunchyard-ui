@@ -3,11 +3,11 @@ import ModuleToolbar from '../../common/ModuleToolbar';
 import { Lunch } from '../../../api/types';
 
 interface Props {
-  lunch: Lunch,
+  lunch: Lunch | null | undefined,
 };
 
 const LunchOrder: React.FC<Props> = ({ lunch }) => {    
-  if (!lunch.lunchDishes) return null;
+  if (!lunch || !lunch.lunchDishes) return null;
   
   return (
     <div>
