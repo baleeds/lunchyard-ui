@@ -20,7 +20,7 @@ const routePage = (routeState: RouteState) => {
   }
 }
 
-const Router: React.FC = () => {
+const Router: React.FC = React.memo(() => {
   const routeState = useRouter();
 
   return (
@@ -31,6 +31,6 @@ const Router: React.FC = () => {
       </Suspense>
     </ErrorBoundary>
   )
-};
+});
 
 export default Router;

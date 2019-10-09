@@ -18,12 +18,14 @@ const Dishes: React.FC<Props> = ({ vendor }) => {
       items={dishes}
       ModuleIcon={DishIcon}
       createRoute={routes.vendorDishCreate}
+      createRoutePathProps={{ vendorId: vendor.id }}
       listTitle='menu'
       listProps={{
         CreatableForm: <NewVendorForm />,
         ListItem: ({ item }: { item: DishOptionFragment }) => <h4 key={item.id}><strong>{item.name}</strong></h4>,
         getPath: (item: DishOptionFragment) => routes.vendorDishDetails.getPath({ vendorId: vendor.id, dishId: item.id }),
       }}
+      createButtonTitle="create menu item"
     />
   );
 };

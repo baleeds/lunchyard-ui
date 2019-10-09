@@ -12,6 +12,7 @@ interface Props<OptionFragment> {
   ModuleIcon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   getIdFromParams?: (params: any) => string;
   createRoute: RouteDefinition;
+  createRoutePathProps?: any; 
   listProps: {
     getPath: ListProps<OptionFragment>['getPath'];
     ListItem: ListProps<OptionFragment>['ListItem'];
@@ -36,6 +37,7 @@ function CreatableNavList<
   getIdFromParams,
   createButtonTitle,
   createRoute,
+  createRoutePathProps,
   listProps,
   limitWidth,
 }: Props<OptionFragment>) {
@@ -66,7 +68,7 @@ function CreatableNavList<
     if (!createButtonTitle) return undefined;
 
     return {
-      onClick: () => navigate(createRoute.getPath ? createRoute.getPath() : createRoute.path),
+      onClick: () => navigate(createRoute.getPath ? createRoute.getPath(createRoutePathProps) : createRoute.path),
       Icon: PlusIcon,
       title: createButtonTitle,
     }
