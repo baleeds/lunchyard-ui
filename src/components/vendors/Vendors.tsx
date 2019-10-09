@@ -1,34 +1,17 @@
-import React, { useMemo } from 'react';
-import ModuleToolbar from '../common/ModuleToolbar';
-import { ReactComponent as PlusIcon } from '../common/icons/add.svg';
+import React from 'react';
 import { ReactComponent as TableIcon } from '../common/icons/table.svg';
 import VendorsList from './VendorsList';
-import { useNavigate, useRouter } from '../../lib/router';
-import routes from '../../constants/routes';
+import { useRouter } from '../../lib/router';
 import Placeholder from '../common/Placeholder';
-import ListContainer from '../common/ListContainer';
-import DetailsContainer from '../common/DetailsContainer';
 import VendorDetails from './details/VendorDetails';
+import DetailsContainer from '../common/DetailsContainer';
 
 const Vendors: React.FC = () => {
-  const navigate = useNavigate();
   const { params: { vendorId } } = useRouter();
-
-  const moduleToolbarButton = useMemo(() => ({
-    title: 'create restaurant',
-    onClick: () => navigate(routes.vendorCreate.getPath()),
-    Icon: PlusIcon,
-  }), [navigate]);
 
   return (
     <>
-      <ListContainer>
-        <ModuleToolbar
-          title="Restaurants"
-          button={moduleToolbarButton}
-        />
-        <VendorsList />
-      </ListContainer>
+      <VendorsList />
       <DetailsContainer>
         {vendorId
           ? <VendorDetails vendorId={vendorId} /> 
