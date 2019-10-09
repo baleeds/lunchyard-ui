@@ -7,7 +7,7 @@ interface ListItem {
   id: string;
 };
 
-interface Props<ItemType> {
+export interface Props<ItemType> {
   items: ItemType[];
   ListItem: React.FC<{ item: ItemType }>;
   getPath: (item: ItemType) => string;
