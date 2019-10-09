@@ -1,8 +1,8 @@
 import React from 'react';
-import { Vendor } from '../../api/types';
+import { VendorOptionFragment } from '../../api/types';
 
 interface Props {
-  item: Vendor;
+  item: VendorOptionFragment;
 };
 
 const VendorsListItem: React.FC<Props> = ({ item }) => {

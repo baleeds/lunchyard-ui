@@ -8,7 +8,7 @@ const ListContainer = styled.div`
   min-height: 0;
   overflow: hidden;
   border-right: 1px solid ${theme.border};
-  max-width: 500px;
+  /* max-width: 500px; */
 `;
 
 export default ListContainer;

@@ -63,15 +63,15 @@ const ListUl = styled.ul`
       background-color: ${theme.hover};
     }
 
+    strong {
+      color: ${theme.primary};
+    }
+
     h3 {
       font-size: 20px;
       color: ${theme.text};
       font-weight: normal;
       line-height: 1.3em;
-
-      strong {
-        color: ${theme.primary};
-      }
     }
 
     h4 {

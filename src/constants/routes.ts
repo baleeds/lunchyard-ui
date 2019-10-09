@@ -38,6 +38,18 @@ export default Object.freeze({
     activeId: 'vendors',
     getPath: ({ vendorId }: { vendorId: string }) => `/restaurants/${vendorId}`,
   },
+  vendorDishCreate: {
+    id: 'vendorDishCreate',
+    path: '/restaurants/:vendorId/dishes/create',
+    activeId: 'vendors',
+    getPath: ({ vendorId }: { vendorId: string }) => `/restaurants/${vendorId}/dishes/create`,
+  },
+  vendorDishDetails: {
+    id: 'vendorDishDetails',
+    path: '/restaurants/:vendorId/dishes/:dishId',
+    activeId: 'vendors',
+    getPath: ({ vendorId, dishId }: { vendorId: string, dishId: string }) => `/restaurants/${vendorId}/dishes/${dishId}`,
+  },
   people: {
     id: 'people',
     path: '/people',

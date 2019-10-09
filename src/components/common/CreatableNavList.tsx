@@ -1,17 +1,16 @@
 import React, { useCallback, useMemo } from 'react';
-import List, { Props as ListProps } from '../common/List';
+import List, { Props as ListProps } from './List';
 import { useRouter, useNavigate } from '../../lib/router';
 import { ReactComponent as PlusIcon } from '../common/icons/add.svg';
-import Placeholder from '../common/Placeholder';
-import ListContainer from '../common/ListContainer';
-import ModuleToolbar from '../common/ModuleToolbar';
-import { QueryResult } from '@apollo/react-common';
-import { QueryHookOptions } from '@apollo/react-hooks';
+import Placeholder from './Placeholder';
+import ListContainer from './ListContainer';
+import ModuleToolbar from './ModuleToolbar';
 
-interface Props<OptionFragment, OptionsQuery, OptionsQueryVariables> {
+interface Props<OptionFragment> {
+  items: OptionFragment[] | null | undefined;
   listTitle: string;
   ModuleIcon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-  getIdFromParams: (params: any) => string;
+  getIdFromParams?: (params: any) => string;
   createRoute: RouteDefinition;
   listProps: {
     getPath: ListProps<OptionFragment>['getPath'];
@@ -19,58 +18,49 @@ interface Props<OptionFragment, OptionsQuery, OptionsQueryVariables> {
     CreatableForm: ListProps<OptionFragment>['CreatableForm'];
   };
   createButtonTitle?: string;
-  optionsQueryHook: (baseOptions?: QueryHookOptions<OptionsQuery, OptionsQueryVariables>) => QueryResult<OptionsQuery, OptionsQueryVariables>;
-  optionsQueryVariables: OptionsQueryVariables;
-  getConnectionFromData: (data: OptionsQuery | undefined) => any;
+  loading?: boolean;
+  limitWidth?: boolean;
 };
 
 interface ListableItem {
   id: string;
 };
 
-function ModuleList<
+function CreatableNavList<
   OptionFragment extends ListableItem,
-  OptionsQuery,
-  OptionsQueryVariables,
 >({
+  items,
+  loading,
   listTitle,
   ModuleIcon,
   getIdFromParams,
   createButtonTitle,
   createRoute,
   listProps,
-  optionsQueryHook,
-  optionsQueryVariables,
-  getConnectionFromData,
-}: Props<OptionFragment, OptionsQuery, OptionsQueryVariables>) {
+  limitWidth,
+}: Props<OptionFragment>) {
   const navigate = useNavigate();
   const { id: routeId, params } = useRouter();
-  const itemId = getIdFromParams(params);
+  const itemId = getIdFromParams ? getIdFromParams(params) : null;
 
   const getIsActive = useCallback((item: OptionFragment) => item.id === itemId, [itemId]);
 
   const showCreate = routeId === createRoute.id;
-  
-  const { data, loading } = optionsQueryHook({
-    variables: optionsQueryVariables,
-  });
-
-  const connection = getConnectionFromData(data);
 
   const renderList = useCallback(() => {
     if (loading) return null;
-    if (!connection) return <Placeholder Icon={ModuleIcon} message={`We're having trouble loading ${listTitle}`} />;
+    if (!items) return <Placeholder Icon={ModuleIcon} message={`We're having trouble loading ${listTitle}`} />;
     
     return (
       <List<OptionFragment>
-        items={connection.edges.map((edge: any) => edge.node)}
+        items={items}
         getIsActive={getIsActive}
         showCreate={showCreate}
         {...listProps}
       />
     );
     // QUESTION: is it worth using get callback if so much is a dependency?
-  }, [loading, getIsActive, showCreate, connection, ModuleIcon, listProps, listTitle]);
+  }, [loading, getIsActive, showCreate, items, ModuleIcon, listProps, listTitle]);
 
   const derivedCreateButton = useMemo(() => {
     if (!createButtonTitle) return undefined;
@@ -82,8 +72,10 @@ function ModuleList<
     }
   }, [createButtonTitle, navigate, createRoute]);
 
+  const listContainerStyle = useMemo(() => limitWidth ? { maxWidth: 500 } : undefined, [limitWidth]);
+
   return (
-    <ListContainer>
+    <ListContainer style={listContainerStyle}>
       <ModuleToolbar
         title={listTitle}
         // subTitle={lunches ? `${lunches.edges.length} upcoming` : undefined}
@@ -94,4 +86,4 @@ function ModuleList<
   );
 };
 
-export default ModuleList;
+export default CreatableNavList;
