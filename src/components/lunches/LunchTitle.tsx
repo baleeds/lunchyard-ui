@@ -1,8 +1,8 @@
 import React from 'react';
-import { Lunch } from '../../api/types';
+import { Lunch, LunchOptionFragment } from '../../api/types';
 
 interface Props {
-  lunch: Lunch;
+  lunch: Lunch | LunchOptionFragment;
 };
 
 const LunchTitle: React.FC<Props> = ({ lunch }) => {

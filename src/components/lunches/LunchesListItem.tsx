@@ -1,10 +1,10 @@
 import React from 'react';
 import { toSimpleDate } from '../../lib/date';
 import LunchTitle from './LunchTitle';
-import { Lunch } from '../../api/types';
+import { LunchOptionFragment } from '../../api/types';
 
 interface Props {
-  item: Lunch;
+  item: LunchOptionFragment;
 };
 
 const LunchesListItem: React.FC<Props> = ({ item }) => {

@@ -328,6 +328,33 @@ export type LunchDetailsFragment = (
   ) }
 );
 
+export type LunchOptionFragment = (
+  { __typename?: 'Lunch' }
+  & Pick<Lunch, 'id' | 'date' | 'occasion'>
+  & { vendor: (
+    { __typename?: 'Vendor' }
+    & Pick<Vendor, 'id' | 'name'>
+  ) }
+);
+
+export type LunchOptionsQueryVariables = {
+  first: Scalars['Int']
+};
+
+
+export type LunchOptionsQuery = (
+  { __typename?: 'Query' }
+  & { lunches: (
+    { __typename?: 'LunchConnection' }
+    & { edges: Array<(
+      { __typename?: 'LunchEdge' }
+      & { node: { __typename?: 'Lunch' }
+        & LunchOptionFragment
+       }
+    )> }
+  ) }
+);
+
 export type LunchesQueryVariables = {
   first: Scalars['Int']
 };
@@ -451,6 +478,17 @@ export const LunchDetailsFragmentDoc = gql`
   }
 }
     `;
+export const LunchOptionFragmentDoc = gql`
+    fragment LunchOption on Lunch {
+  id
+  date
+  occasion
+  vendor {
+    id
+    name
+  }
+}
+    `;
 export const VendorDetailsFragmentDoc = gql`
     fragment VendorDetails on Vendor {
   id
@@ -497,6 +535,27 @@ export const LunchDocument = gql`
       
 export type LunchQueryHookResult = ReturnType<typeof useLunchQuery>;
 export type LunchQueryResult = ApolloReactCommon.QueryResult<LunchQuery, LunchQueryVariables>;
+export const LunchOptionsDocument = gql`
+    query LunchOptions($first: Int!) {
+  lunches(first: $first) {
+    edges {
+      node {
+        ...LunchOption
+      }
+    }
+  }
+}
+    ${LunchOptionFragmentDoc}`;
+
+    export function useLunchOptionsQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<LunchOptionsQuery, LunchOptionsQueryVariables>) {
+      return ApolloReactHooks.useQuery<LunchOptionsQuery, LunchOptionsQueryVariables>(LunchOptionsDocument, baseOptions);
+    };
+      export function useLunchOptionsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<LunchOptionsQuery, LunchOptionsQueryVariables>) {
+        return ApolloReactHooks.useLazyQuery<LunchOptionsQuery, LunchOptionsQueryVariables>(LunchOptionsDocument, baseOptions);
+      };
+      
+export type LunchOptionsQueryHookResult = ReturnType<typeof useLunchOptionsQuery>;
+export type LunchOptionsQueryResult = ApolloReactCommon.QueryResult<LunchOptionsQuery, LunchOptionsQueryVariables>;
 export const LunchesDocument = gql`
     query Lunches($first: Int!) {
   lunches(first: $first) {
