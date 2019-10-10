@@ -12,10 +12,10 @@ function usePrunedConnection<ConnectionType extends GenericConnectionQuery, Node
     const connection = data[connectionName];
     if (!connection) return null;
 
-    return connection.edges.map(edge => edge.node);
+    return connection.edges.map<NodeType>(edge => edge.node);
   }, [data, connectionName]);
 
-  return nodes;
+  return nodes as NodeType[] | null;
 };
 
 export default usePrunedConnection;

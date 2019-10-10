@@ -72,7 +72,7 @@ function CreatableNavList<
       Icon: PlusIcon,
       title: createButtonTitle,
     }
-  }, [createButtonTitle, navigate, createRoute]);
+  }, [createButtonTitle, navigate, createRoute, createRoutePathProps]);
 
   const listContainerStyle = useMemo(() => limitWidth ? { maxWidth: 500 } : undefined, [limitWidth]);
 
