@@ -57,6 +57,7 @@ export type DishConnection = {
   nodes: Array<Dish>,
   /** Information to aid in pagination. */
   pageInfo: PageInfo,
+  /** Total objects number of items */
   totalCount: Scalars['Int'],
 };
 
@@ -97,6 +98,7 @@ export type LunchConnection = {
   nodes: Array<Lunch>,
   /** Information to aid in pagination. */
   pageInfo: PageInfo,
+  /** Total objects number of items */
   totalCount: Scalars['Int'],
 };
 
@@ -104,6 +106,7 @@ export type LunchDish = {
   __typename?: 'LunchDish',
   dish: Dish,
   dishId: Scalars['ID'],
+  id: Scalars['ID'],
   lunchId: Scalars['ID'],
   quantity?: Maybe<Scalars['Int']>,
 };
@@ -117,6 +120,7 @@ export type LunchDishConnection = {
   nodes: Array<LunchDish>,
   /** Information to aid in pagination. */
   pageInfo: PageInfo,
+  /** Total objects number of items */
   totalCount: Scalars['Int'],
 };
 
@@ -145,6 +149,7 @@ export type Mutation = {
   createVendor: Vendor,
   createVendorDish: Dish,
   deleteLunch: Lunch,
+  deleteVendor: Vendor,
   removeDishFromLunch: LunchDish,
   updateLunch: Lunch,
   updateVendor: Vendor,
@@ -172,6 +177,11 @@ export type MutationCreateVendorDishArgs = {
 
 
 export type MutationDeleteLunchArgs = {
+  id: Scalars['ID']
+};
+
+
+export type MutationDeleteVendorArgs = {
   id: Scalars['ID']
 };
 
@@ -324,6 +334,7 @@ export type VendorConnection = {
   nodes: Array<Vendor>,
   /** Information to aid in pagination. */
   pageInfo: PageInfo,
+  /** Total objects number of items */
   totalCount: Scalars['Int'],
 };
 
