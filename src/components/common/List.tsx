@@ -78,7 +78,10 @@ const ListUl = styled.ul`
       font-size: 16px;
       color: ${theme.textLight};
       font-weight: normal;
-      margin-bottom: 7px;
+    }
+
+    h4 + h3 {
+      margin-top: 7px;
     }
   }
 `;

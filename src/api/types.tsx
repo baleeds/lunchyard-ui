@@ -437,6 +437,18 @@ export type CreateVendorMutation = (
    }
 );
 
+export type CreateDishMutationVariables = {
+  input: CreateDishInput
+};
+
+
+export type CreateDishMutation = (
+  { __typename?: 'Mutation' }
+  & { createVendorDish: { __typename?: 'Dish' }
+    & DishOptionFragment
+   }
+);
+
 export type DishDetailsFragment = (
   { __typename?: 'Dish' }
   & Pick<Dish, 'id' | 'name'>
@@ -685,6 +697,21 @@ export type CreateVendorMutationFn = ApolloReactCommon.MutationFunction<CreateVe
 export type CreateVendorMutationHookResult = ReturnType<typeof useCreateVendorMutation>;
 export type CreateVendorMutationResult = ApolloReactCommon.MutationResult<CreateVendorMutation>;
 export type CreateVendorMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateVendorMutation, CreateVendorMutationVariables>;
+export const CreateDishDocument = gql`
+    mutation CreateDish($input: CreateDishInput!) {
+  createVendorDish(input: $input) {
+    ...DishOption
+  }
+}
+    ${DishOptionFragmentDoc}`;
+export type CreateDishMutationFn = ApolloReactCommon.MutationFunction<CreateDishMutation, CreateDishMutationVariables>;
+
+    export function useCreateDishMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateDishMutation, CreateDishMutationVariables>) {
+      return ApolloReactHooks.useMutation<CreateDishMutation, CreateDishMutationVariables>(CreateDishDocument, baseOptions);
+    };
+export type CreateDishMutationHookResult = ReturnType<typeof useCreateDishMutation>;
+export type CreateDishMutationResult = ApolloReactCommon.MutationResult<CreateDishMutation>;
+export type CreateDishMutationOptions = ApolloReactCommon.BaseMutationOptions<CreateDishMutation, CreateDishMutationVariables>;
 export const UpdateVendorDocument = gql`
     mutation UpdateVendor($input: UpdateVendorInput!) {
   updateVendor(input: $input) {

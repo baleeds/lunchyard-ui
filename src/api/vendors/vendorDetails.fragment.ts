@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import dishOption from "./dishOption.fragment";
+import dishOption from "./dishes/dishOption.fragment";
 
 export default gql`
   fragment VendorDetails on Vendor {
