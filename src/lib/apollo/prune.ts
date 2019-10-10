@@ -1,3 +1,5 @@
+// QUESTION: Can this kind of thing be typesafe?
+
 /**
  * Prune is used to remove connection info from apollo responses.  Note that prune works
  * recursively and will traverse the whole object to remove elements.

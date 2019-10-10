@@ -22,6 +22,7 @@ const NewLunchForm: React.FC = React.memo(() => {
       query: lunchOptionsQuery,
       variables: { first: 100 },
       connectionName: 'lunches',
+      // QUESTION: should I be building the edges
       dataToEdge: data => data && data.createLunch ? { node: data.createLunch, __typename: 'LunchEdge' } : null,
     }),
   });
