@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import routes from '../../constants/routes';
 import { useNavigate } from '../../lib/router';
 import { useCreateLunchMutation, LunchOptionsQuery, LunchOptionsQueryVariables, CreateLunchMutation } from '../../api/types';
-import { getUpdaterToAddEdge } from '../../lib/apollo/updaters';
+import getAddEdgeToQuery from '../../lib/apollo/updaters/getAddEdgeToQuery';
 import lunchOptionsQuery from '../../api/lunches/lunchOptions.query';
 import useInputState from '../../hooks/useInputState';
 import SimpleInputForm from '../common/form/SimpleInputForm';
@@ -18,7 +18,7 @@ const NewLunchForm: React.FC = React.memo(() => {
   
   const [handleCreateLunch, { loading }] = useCreateLunchMutation({
     onCompleted: goToLunch,
-    update: getUpdaterToAddEdge<CreateLunchMutation, LunchOptionsQuery, LunchOptionsQueryVariables>({
+    update: getAddEdgeToQuery<CreateLunchMutation, LunchOptionsQuery, LunchOptionsQueryVariables>({
       query: lunchOptionsQuery,
       variables: { first: 100 },
       connectionName: 'lunches',
