@@ -1,12 +1,7 @@
 import { useMemo } from "react";
+import { ConnectionQuery } from "../types/apollo";
 
-interface GenericConnectionQuery {
-  [key: string]: {
-    edges: Array<{ node: any }>;
-  };
-};
-
-function usePrunedConnection<ConnectionType extends GenericConnectionQuery, NodeType>(data: ConnectionType | null | undefined, connectionName: keyof ConnectionType) {
+function usePrunedConnection<Query extends ConnectionQuery, NodeType>(data: Query | null | undefined, connectionName: keyof Query) {
   const nodes = useMemo(() => {
     if (!data) return null;    
     const connection = data[connectionName];

@@ -21,11 +21,11 @@ const NewDishForm: React.FC = React.memo(() => {
   const [handleCreateDish, { loading }] = useCreateDishMutation({
     onCompleted: closeForm,
     update: getAddEdgeToItem<CreateDishMutation, VendorDetailsFragment, undefined>({
-      connectionName: 'dishes',
-      dataToEdge: data => data && data.createVendorDish ? { node: data.createVendorDish, __typename: 'DishEdge' } : null,
+      id: `Vendor:${vendorId}`,
       fragment: vendorDetailsFragment,
       fragmentName: 'VendorDetails',
-      id: `Vendor:${vendorId}`,
+      connectionName: 'dishes',
+      dataToEdge: data => data && data.createVendorDish ? { node: data.createVendorDish, __typename: 'DishEdge' } : null,
     }),
   });
 

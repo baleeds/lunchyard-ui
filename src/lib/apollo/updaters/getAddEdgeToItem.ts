@@ -1,7 +1,7 @@
 import { DataProxy } from "apollo-cache";
 import CacheFragment from "../CacheFragment";
-import { MutationFetchResult } from "@apollo/react-common";
 import { FetchResult } from "apollo-link";
+import { ConnectionQuery } from "../../../types/apollo";
 
 interface UpdaterProps<Fragment, Mutation> {
   connectionName: string;
@@ -13,7 +13,7 @@ type Props<Fragment, FragmentVariables, Mutation> =
 
 function getAddEdgeToItem<
   Mutation,
-  Fragment extends { [key: string]: { edges: any; } },
+  Fragment extends ConnectionQuery,
   FragmentVariables,
 >({
   id,

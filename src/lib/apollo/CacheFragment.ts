@@ -1,7 +1,8 @@
 import { DataProxy } from "apollo-cache";
 import produce from "immer";
+import { ConnectionQuery } from "../../types/apollo";
 
-class CacheFragment<Fragment extends { [key: string]: { edges: any } }, FragmentVariables> {
+class CacheFragment<Fragment extends ConnectionQuery, FragmentVariables> {
   cache: DataProxy
   fragmentOptions: DataProxy.Fragment<FragmentVariables>
   
