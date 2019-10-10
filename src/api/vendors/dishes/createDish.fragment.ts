@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
-import dishOption from "./dishOption.fragment";
+import { dishOptionFragment } from "./dishOption.fragment";
 
-export default gql`
+export const createDishFragment = gql`
   mutation CreateDish($input: CreateDishInput!) {
     createVendorDish(input: $input) {
       ...DishOption
     }
   }
-  ${dishOption}
+  ${dishOptionFragment}
 `;

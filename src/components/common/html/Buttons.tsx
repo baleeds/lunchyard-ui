@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import theme from "../../../constants/theme";
+import { theme } from "../../../constants/theme";
 
 export const Button = styled.button`
   outline: ${theme.primary};

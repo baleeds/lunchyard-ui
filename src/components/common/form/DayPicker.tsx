@@ -3,13 +3,9 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { DayPickerInputProps } from 'react-day-picker/types/props';
 import 'react-day-picker/lib/style.css';
 import styled from '@emotion/styled';
-import theme from '../../../constants/theme';
+import { theme } from '../../../constants/theme';
 
-interface Props {
-  
-};
-
-const DayPicker: React.FC<Props & DayPickerInputProps> = (props) => {
+export const DayPicker: React.FC<DayPickerInputProps> = (props) => {
   return (
     <DayPickerWrapper>
       <DayPickerInput
@@ -34,5 +30,3 @@ const DayPickerWrapper = styled.div`
     background-color: ${theme.secondary};
   }
 `;
-
-export default DayPicker;

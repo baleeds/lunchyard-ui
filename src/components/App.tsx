@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import Nav from './navigation/Nav';
-import Router from './Router';
+import { Nav } from './navigation/Nav';
+import { Router } from './Router';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <AppContainer>
       <Nav />
@@ -19,5 +19,3 @@ const AppContainer = styled.div`
   min-height: 100%;
   overflow: hidden
 `;
-
-export default App;

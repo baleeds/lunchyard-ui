@@ -10,7 +10,7 @@
  * @param {string} nodeName name of the aliased nodes. Can have unintended consequences
  * if nodeName matches uninented data.
  */
-const prune = (data: any, nodeName: string = 'node'): any => {
+export const prune = (data: any, nodeName: string = 'node'): any => {
   const dataType = typeof data;
   if (dataType === 'undefined' || data === null) return null;
   if (dataType === 'boolean') return data;
@@ -40,5 +40,3 @@ const prune = (data: any, nodeName: string = 'node'): any => {
   //   data[key] = prune(data[key], nodeName);
   // });
 };
-
-export default prune;

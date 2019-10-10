@@ -1,11 +1,11 @@
 import gql from 'graphql-tag';
-import lunchDetails from './lunchDetails.fragment';
+import { lunchDetailsFragment } from './lunchDetails.fragment';
 
-export default gql`
+export const lunchQuery = gql`
   query Lunch($id: ID!) {
     lunch(id: $id) {
       ...LunchDetails
     }
   }
-  ${lunchDetails}
+  ${lunchDetailsFragment}
 `;

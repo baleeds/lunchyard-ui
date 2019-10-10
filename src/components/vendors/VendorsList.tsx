@@ -1,16 +1,16 @@
 import React, { useMemo } from 'react';
-import routes from '../../constants/routes';
-import VendorsListItem from './VendorsListItem';
-import NewVendorForm from './NewVendorForm';
+import { routes } from '../../constants/routes';
+import { VendorsListItem } from './VendorsListItem';
+import { NewVendorForm } from './NewVendorForm';
 import { VendorOptionFragment, VendorOptionsQuery, useVendorOptionsQuery } from '../../api/types.generated';
-import CreatableNavList from '../common/CreatableNavList';
+import { CreatableNavList } from '../common/CreatableNavList';
 import { ReactComponent as RestaurantIcon } from '../common/icons/store.svg';
-import usePrunedConnection from '../../hooks/usePrunedConnection';
+import { usePrunedConnection } from '../../hooks/usePrunedConnection';
 
 const getPathFromVendorItem = (item: VendorOptionFragment) => routes.vendorDetails.getPath({ vendorId: item.id });
 const getIdFromParams = (params: any) => params.vendorId;
 
-const VendorsList: React.FC = React.memo(() => {
+export const VendorsList: React.FC = React.memo(() => {
   const { data, loading } = useVendorOptionsQuery({
     variables: { first: 100 },
   });
@@ -36,5 +36,3 @@ const VendorsList: React.FC = React.memo(() => {
     />
   );
 });
-
-export default VendorsList;

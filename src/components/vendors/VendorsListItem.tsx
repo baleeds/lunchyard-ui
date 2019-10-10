@@ -5,7 +5,7 @@ interface Props {
   item: VendorOptionFragment;
 };
 
-const VendorsListItem: React.FC<Props> = ({ item }) => {
+export const VendorsListItem: React.FC<Props> = ({ item }) => {
   return (
     <>
       <h3>
@@ -14,5 +14,3 @@ const VendorsListItem: React.FC<Props> = ({ item }) => {
     </>
   );
 };
-
-export default VendorsListItem;

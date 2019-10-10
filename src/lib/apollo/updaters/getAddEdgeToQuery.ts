@@ -1,6 +1,6 @@
 import { DocumentNode } from "graphql";
 import { DataProxy } from "apollo-cache";
-import CacheConnection from "../CacheQuery";
+import { CacheConnection } from "../CacheQuery";
 import { FetchResult } from "apollo-link";
 
 interface Props<QueryVariables, Mutation> {
@@ -10,7 +10,7 @@ interface Props<QueryVariables, Mutation> {
   dataToEdge: (data: Mutation) => { node: any } | null | undefined;
 };
 
-function getAddEdgeToQuery<Mutation, Query, QueryVariables>({
+export function getAddEdgeToQuery<Mutation, Query, QueryVariables>({
   query,
   variables,
   connectionName,
@@ -30,5 +30,3 @@ function getAddEdgeToQuery<Mutation, Query, QueryVariables>({
     cachedConnection.addEdge(connectionName, edge);
   };
 };
-
-export default getAddEdgeToQuery;

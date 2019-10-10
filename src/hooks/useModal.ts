@@ -1,7 +1,7 @@
 import { useContext, useCallback } from 'react';
 import { ModalContext } from '../components/common/ModalController';
 
-const useModal = (modalKey: string, Component: JSX.Element) => {
+export const useModal = (modalKey: string, Component: JSX.Element) => {
   const { addModalToStack } = useContext(ModalContext);
   
   const showModal = useCallback(() => {
@@ -10,5 +10,3 @@ const useModal = (modalKey: string, Component: JSX.Element) => {
 
   return { showModal };
 };
-
-export default useModal;

@@ -1,12 +1,12 @@
 import React from 'react';
-import ModuleToolbar from '../../common/ModuleToolbar';
+import { ModuleToolbar } from '../../common/ModuleToolbar';
 import { LunchDetailsFragment } from '../../../api/types.generated';
 
 interface Props {
   lunch: LunchDetailsFragment;
 };
 
-const LunchOrder: React.FC<Props> = ({ lunch }) => {    
+export const LunchOrder: React.FC<Props> = ({ lunch }) => {    
   if (!lunch) return null;
   
   return (
@@ -18,5 +18,3 @@ const LunchOrder: React.FC<Props> = ({ lunch }) => {
     </div>
   );
 };
-
-export default LunchOrder;

@@ -1,16 +1,16 @@
 import React from 'react';
 import { VendorDetailsFragment, DishOptionFragment } from '../../../api/types.generated';
-import CreatableNavList from '../../common/CreatableNavList';
-import usePrunedConnection from '../../../hooks/usePrunedConnection';
+import { CreatableNavList } from '../../common/CreatableNavList';
+import { usePrunedConnection } from '../../../hooks/usePrunedConnection';
 import { ReactComponent as DishIcon } from '../../common/icons/dish.svg';
-import routes from '../../../constants/routes';
-import NewDishForm from './NewDishForm';
+import { routes } from '../../../constants/routes';
+import { NewDishForm } from './NewDishForm';
 
 interface Props {
   vendor: VendorDetailsFragment;
 };
 
-const Dishes: React.FC<Props> = ({ vendor }) => {  
+export const Dishes: React.FC<Props> = ({ vendor }) => {  
   const dishes = usePrunedConnection<VendorDetailsFragment, DishOptionFragment>(vendor, 'dishes');
   
   return (
@@ -29,5 +29,3 @@ const Dishes: React.FC<Props> = ({ vendor }) => {
     />
   );
 };
-
-export default Dishes;

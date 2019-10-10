@@ -14,7 +14,7 @@ interface Props {
   actions: Action[];
 };
 
-const Actions: React.FC<Props> = ({
+export const Actions: React.FC<Props> = ({
   actions,
   style,
   keyPrefix = 'actions',
@@ -57,5 +57,3 @@ const Button = styled(ButtonGhost)`
     height: auto;
   }
 `;
-
-export default Actions;

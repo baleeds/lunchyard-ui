@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
-import routes from '../../constants/routes';
+import { routes } from '../../constants/routes';
 import { useNavigate } from '../../lib/router';
 import { useCreateVendorMutation, CreateVendorMutation, VendorOptionsQueryVariables, VendorOptionsQuery } from '../../api/types.generated';
-import getAddEdgeToQuery from '../../lib/apollo/updaters/getAddEdgeToQuery';
-import useInputState from '../../hooks/useInputState';
-import SimpleInputForm from '../common/form/SimpleInputForm';
-import vendorOptionsQuery from '../../api/vendors/vendorOptions.query';
+import { getAddEdgeToQuery } from '../../lib/apollo/updaters/getAddEdgeToQuery';
+import { useInputState } from '../../hooks/useInputState';
+import { SimpleInputForm } from '../common/form/SimpleInputForm';
+import { vendorOptionsQuery } from '../../api/vendors/vendorOptions.query';
 
-const NewVendorForm: React.FC = React.memo(() => {
+export const NewVendorForm: React.FC = React.memo(() => {
   const navigate = useNavigate();
   
   const [name, handleNameChange] = useInputState('');
@@ -51,5 +51,3 @@ const NewVendorForm: React.FC = React.memo(() => {
     />
   )
 });
-
-export default NewVendorForm;

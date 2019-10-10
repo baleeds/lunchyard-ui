@@ -1,17 +1,16 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import theme from '../../constants/theme';
-import NavLogo from './NavLogo';
-import route from '../../constants/routes';
-import Link from '../../lib/router/Link';
+import { theme } from '../../constants/theme';
+import { NavLogo } from './NavLogo';
+import { routes } from '../../constants/routes';
+import { Link } from '../../lib/router/Link';
 import { useRouter } from '../../lib/router';
 
 import { ReactComponent as LunchIcon } from '../common/icons/plate.svg';
 import { ReactComponent as StoreIcon } from '../common/icons/store.svg';
 // import { ReactComponent as PeopleIcon } from '../common/icons/people.svg';
 
-
-const Nav: React.FC = () => {
+export const Nav: React.FC = () => {
   const { activeId } = useRouter();
 
   return (
@@ -19,8 +18,8 @@ const Nav: React.FC = () => {
       <NavLogo />
       <NavLinksContainer>
         <Link
-          route={route.lunches}
-          className={activeId === route.lunches.id ? 'active' : ''}
+          route={routes.lunches}
+          className={activeId === routes.lunches.id ? 'active' : ''}
         >
           <>
             <LunchIcon />
@@ -28,8 +27,8 @@ const Nav: React.FC = () => {
           </>
         </Link>
         <Link
-          route={route.vendors}
-          className={activeId === route.vendors.id ? 'active' : ''}
+          route={routes.vendors}
+          className={activeId === routes.vendors.id ? 'active' : ''}
         >
           <>
             <StoreIcon />
@@ -78,5 +77,3 @@ const NavLinksContainer = styled.div`
     }
   }
 `;
-
-export default Nav;

@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
-import lunchOption from './lunchOption.fragment';
+import { lunchOptionFragment } from './lunchOption.fragment';
 
-export default gql`
+export const lunchOptionsQuery = gql`
   query LunchOptions($first: Int!) {
     lunches(first: $first) {
       edges {
@@ -11,5 +11,5 @@ export default gql`
       }
     }
   }
-  ${lunchOption}
+  ${lunchOptionFragment}
 `;

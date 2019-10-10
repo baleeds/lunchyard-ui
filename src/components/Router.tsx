@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
-import routes from '../constants/routes';
+import { routes } from '../constants/routes';
 import { useRouter } from '../lib/router';
-import ErrorBoundary from './common/ErrorBoundary';
+import { ErrorBoundary } from './common/ErrorBoundary';
 
 const Lunches = React.lazy(() => import('./lunches/Lunches'));
 const Vendors = React.lazy(() => import('./vendors/Vendors'));
@@ -20,7 +20,7 @@ const routePage = (routeState: RouteState) => {
   }
 }
 
-const Router: React.FC = React.memo(() => {
+export const Router: React.FC = React.memo(() => {
   const routeState = useRouter();
 
   return (
@@ -32,5 +32,3 @@ const Router: React.FC = React.memo(() => {
     </ErrorBoundary>
   )
 });
-
-export default Router;

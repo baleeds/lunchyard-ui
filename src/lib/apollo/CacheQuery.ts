@@ -5,7 +5,7 @@ import { DataProxy } from "apollo-cache";
  * CacheConnection helps facilitate modifying the cache, for instance when updating.
  * It is constructed with the query options from readQuery.
  */
-class CacheConnection<QueryData, QueryVariables>{
+export class CacheConnection<QueryData, QueryVariables>{
   cache: DataProxy
   queryOptions: DataProxy.Query<QueryVariables>
   
@@ -46,5 +46,3 @@ class CacheConnection<QueryData, QueryVariables>{
     this.write(newQueryData);
   }
 }
-
-export default CacheConnection;

@@ -1,11 +1,11 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import DayPicker from '../../common/form/DayPicker';
+import { DayPicker } from '../../common/form/DayPicker';
 import { toSimpleDate } from '../../../lib/date';
 import { useUpdateLunchMutation, useVendorOptionsQuery, VendorOptionsQuery, VendorOptionsQueryVariables, VendorOptionFragment, LunchDetailsFragment } from '../../../api/types.generated';
-import DataSelect from '../../common/form/DataSelect';
+import { DataSelect } from '../../common/form/DataSelect';
 import { nodeToOption, vendorOptionsQueryToOptions } from '../../../lib/mappers';
 import { Option } from '../../common/form/Select';
-import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
+import { DetailsHeaderContainer } from '../../common/DetailsHeaderContainer';
 
 interface Props {
   lunch: LunchDetailsFragment;
@@ -13,7 +13,7 @@ interface Props {
 
 const queryVariables = { first: 100 };
 
-const LunchDetailsHeader: React.FC<Props> = React.memo(({
+export const LunchDetailsHeader: React.FC<Props> = React.memo(({
   lunch,
 }) => {
   const { id } = lunch;
@@ -109,5 +109,3 @@ const LunchDetailsHeader: React.FC<Props> = React.memo(({
     </DetailsHeaderContainer>
   );
 });
-
-export default LunchDetailsHeader;

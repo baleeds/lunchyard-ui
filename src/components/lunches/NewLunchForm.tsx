@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
-import routes from '../../constants/routes';
+import { routes } from '../../constants/routes';
 import { useNavigate } from '../../lib/router';
 import { useCreateLunchMutation, LunchOptionsQuery, LunchOptionsQueryVariables, CreateLunchMutation } from '../../api/types.generated';
-import getAddEdgeToQuery from '../../lib/apollo/updaters/getAddEdgeToQuery';
-import lunchOptionsQuery from '../../api/lunches/lunchOptions.query';
-import useInputState from '../../hooks/useInputState';
-import SimpleInputForm from '../common/form/SimpleInputForm';
+import { getAddEdgeToQuery } from '../../lib/apollo/updaters/getAddEdgeToQuery';
+import { lunchOptionsQuery } from '../../api/lunches/lunchOptions.query';
+import { useInputState } from '../../hooks/useInputState';
+import { SimpleInputForm } from '../common/form/SimpleInputForm';
 
-const NewLunchForm: React.FC = React.memo(() => {
+export const NewLunchForm: React.FC = React.memo(() => {
   const navigate = useNavigate();
   
   const [name, handleNameChange] = useInputState('');
@@ -53,5 +53,3 @@ const NewLunchForm: React.FC = React.memo(() => {
     />
   )
 });
-
-export default NewLunchForm;

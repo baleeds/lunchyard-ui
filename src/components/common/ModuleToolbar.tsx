@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import theme from '../../constants/theme';
+import { theme } from '../../constants/theme';
 import { ButtonPrimary } from './html/Buttons';
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
   };
 };
 
-const ModuleToolbar: React.FC<Props> = ({
+export const ModuleToolbar: React.FC<Props> = ({
   title,
   subTitle,
   button: {
@@ -66,5 +66,3 @@ const TaskbarContainer = styled.div`
     }
   }
 `;
-
-export default ModuleToolbar;

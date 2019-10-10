@@ -2,7 +2,7 @@ import { DataProxy } from "apollo-cache";
 import produce from "immer";
 import { ConnectionQuery } from "../../types/apollo";
 
-class CacheFragment<Fragment extends ConnectionQuery, FragmentVariables> {
+export class CacheFragment<Fragment extends ConnectionQuery, FragmentVariables> {
   cache: DataProxy
   fragmentOptions: DataProxy.Fragment<FragmentVariables>
   
@@ -39,5 +39,3 @@ class CacheFragment<Fragment extends ConnectionQuery, FragmentVariables> {
     this.write(newFragmentData);
   }
 }
-
-export default CacheFragment;

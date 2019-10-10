@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
-import dishOption from "./dishes/dishOption.fragment";
+import { dishOptionFragment } from "./dishes/dishOption.fragment";
 
-export default gql`
+export const vendorDetailsFragment = gql`
   fragment VendorDetails on Vendor {
     id
     address
@@ -15,5 +15,5 @@ export default gql`
       }
     }
   }
-  ${dishOption}
+  ${dishOptionFragment}
 `;

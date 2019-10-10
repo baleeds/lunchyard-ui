@@ -1,4 +1,4 @@
-const theme = Object.freeze({
+export const theme = Object.freeze({
   primary: '#E78118',
   secondary: '#745BEC',
   blank: '#FFFFFF',
@@ -8,5 +8,3 @@ const theme = Object.freeze({
   text: '#686868',
   textLight: '#B4B4B4',
 });
-
-export default theme;

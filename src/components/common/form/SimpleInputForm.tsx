@@ -1,7 +1,7 @@
 import React from 'react';
-import ListItemForm from './ListItemForm';
-import FormGroup from './FormGroup';
-import ButtonRow from './ButtonRow';
+import { ListItemForm } from './ListItemForm';
+import { FormGroup } from './FormGroup';
+import { ButtonRow } from './ButtonRow';
 import { ButtonPrimary, ButtonGhost } from '../html/Buttons';
 import { ReactComponent as CheckIcon } from '../icons/check.svg';
 
@@ -16,7 +16,7 @@ interface Props {
   handleClose?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
-const SimpleInputForm: React.FC<Props> = ({
+export const SimpleInputForm: React.FC<Props> = ({
   name,
   value,
   handleChange,
@@ -58,5 +58,3 @@ const SimpleInputForm: React.FC<Props> = ({
     </ListItemForm>
   );
 };
-
-export default SimpleInputForm;

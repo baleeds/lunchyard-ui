@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
-import vendorOption from './vendorOption.fragment';
+import { vendorOptionFragment } from './vendorOption.fragment';
 
-export default gql`
+export const vendorOptionsQuery = gql`
   query VendorOptions($first: Int!) {
     vendors(first: $first) {
       edges {
@@ -11,5 +11,5 @@ export default gql`
       }
     }
   }
-  ${vendorOption}
+  ${vendorOptionFragment}
 `;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import theme from '../../constants/theme';
+import { theme } from '../../constants/theme';
 import { Link } from '@reach/router';
 
-const NavLogo: React.FC = () => {
+export const NavLogo: React.FC = () => {
   return (
     <NavLogoContainer to="/">
       <h1>
@@ -23,5 +23,3 @@ const NavLogoContainer = styled(Link)`
     font-size: 38px;
   }
 `;
-
-export default NavLogo;

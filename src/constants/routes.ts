@@ -1,4 +1,4 @@
-export default Object.freeze({
+export const routes = Object.freeze({
   root: {
     id: 'root',
     path: '',

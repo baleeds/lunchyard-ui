@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const ButtonRow = styled.div`
+export const ButtonRow = styled.div`
   display: flex;
    
   button {
@@ -11,5 +11,3 @@ const ButtonRow = styled.div`
     }
   }
 `;
-
-export default ButtonRow;

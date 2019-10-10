@@ -1,6 +1,6 @@
 import React, { useCallback, useReducer } from 'react';
 import { useUpdateVendorMutation, VendorDetailsFragment } from '../../../api/types.generated';
-import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
+import { DetailsHeaderContainer } from '../../common/DetailsHeaderContainer';
 
 interface Props {
   vendor: VendorDetailsFragment;
@@ -30,7 +30,7 @@ const reducer = (prevState: State, action: Action): State => {
   };
 };
 
-const VendorDetailsHeader: React.FC<Props> = React.memo(({
+export const VendorDetailsHeader: React.FC<Props> = React.memo(({
   vendor,
 }) => {
   const { id } = vendor;
@@ -92,5 +92,3 @@ const VendorDetailsHeader: React.FC<Props> = React.memo(({
     </DetailsHeaderContainer>
   );
 });
-
-export default VendorDetailsHeader;

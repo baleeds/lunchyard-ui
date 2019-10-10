@@ -1,5 +1,5 @@
 import { DataProxy } from "apollo-cache";
-import CacheFragment from "../CacheFragment";
+import { CacheFragment } from "../CacheFragment";
 import { FetchResult } from "apollo-link";
 import { ConnectionQuery } from "../../../types/apollo";
 
@@ -11,7 +11,7 @@ interface UpdaterProps<Fragment, Mutation> {
 type Props<Fragment, FragmentVariables, Mutation> =
   DataProxy.Fragment<FragmentVariables> & UpdaterProps<Fragment, Mutation>
 
-function getAddEdgeToItem<
+export function getAddEdgeToItem<
   Mutation,
   Fragment extends ConnectionQuery,
   FragmentVariables,
@@ -39,5 +39,3 @@ function getAddEdgeToItem<
     cachedConnection.addEdge(connectionName, edge);
   };
 };
-
-export default getAddEdgeToItem;

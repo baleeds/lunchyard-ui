@@ -1,7 +1,7 @@
 import React from 'react';
 import * as ApolloReactCommon from '@apollo/react-common';
 import * as ApolloReactHooks from '@apollo/react-hooks';
-import Select, { LunchyardSelectProps } from './Select';
+import { Select, LunchyardSelectProps } from './Select';
 import { Props as SelectProps } from 'react-select/src/Select';
 
 interface Props<OptionType, QueryType, QueryVariablesType> {
@@ -11,7 +11,7 @@ interface Props<OptionType, QueryType, QueryVariablesType> {
   selectProps: LunchyardSelectProps & SelectProps<OptionType>;
 };
 
-function DataSelect<OptionType, QueryType, QueryVariablesType>({
+export function DataSelect<OptionType, QueryType, QueryVariablesType>({
   queryHook,
   queryVariables,
   dataToOptions,
@@ -34,5 +34,3 @@ function DataSelect<OptionType, QueryType, QueryVariablesType>({
     />
   )
 } 
-
-export default DataSelect;

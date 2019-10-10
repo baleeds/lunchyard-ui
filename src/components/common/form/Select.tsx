@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactSelect from 'react-select';
 import { Props as SelectProps } from 'react-select/src/Select';
-import theme from '../../../constants/theme';
+import { theme } from '../../../constants/theme';
 
 export interface Option<V> {
   label: string;
@@ -69,7 +69,7 @@ const getStyles = (
   }),
 });
 
-function Select<OptionType>({ undercover, contrast, width, ...props }: LunchyardSelectProps & SelectProps<OptionType>) {
+export function Select<OptionType>({ undercover, contrast, width, ...props }: LunchyardSelectProps & SelectProps<OptionType>) {
   return (
     <ReactSelect
       classNamePrefix='reactSelect'
@@ -78,5 +78,3 @@ function Select<OptionType>({ undercover, contrast, width, ...props }: Lunchyard
     />
   );
 };
-
-export default Select;

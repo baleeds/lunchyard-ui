@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export default gql`
+export const dishOptionFragment = gql`
   fragment DishOption on Dish {
     id
     name

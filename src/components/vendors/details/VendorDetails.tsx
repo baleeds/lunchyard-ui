@@ -1,9 +1,9 @@
 import React from 'react';
-import VendorDetailsHeader from './VendorDetailsHeader';
+import { VendorDetailsHeader } from './VendorDetailsHeader';
 import { useVendorQuery } from '../../../api/types.generated';
-import Dishes from '../dishes/Dishes';
-import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
-import Placeholder from '../../common/Placeholder';
+import { Dishes } from '../dishes/Dishes';
+import { DetailsHeaderContainer } from '../../common/DetailsHeaderContainer';
+import { Placeholder } from '../../common/Placeholder';
 import { ReactComponent as RestaurantIcon } from '../../common/icons/store.svg';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 
 const placeholderStyle = { height: 198 };
 
-const VendorDetails: React.FC<Props> = ({ vendorId }) => {
+export const VendorDetails: React.FC<Props> = ({ vendorId }) => {
   const { data, loading } = useVendorQuery({
     variables: {
       id: vendorId,
@@ -37,6 +37,3 @@ const VendorDetails: React.FC<Props> = ({ vendorId }) => {
     </div>
   );
 };
-
-
-export default VendorDetails;

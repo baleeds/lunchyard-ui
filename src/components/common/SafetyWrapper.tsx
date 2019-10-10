@@ -1,5 +1,5 @@
 import React from 'react';
-import Placeholder from './Placeholder';
+import { Placeholder } from './Placeholder';
 import { ReactComponent as Store } from './icons/store.svg';
 import { ReactComponent as Plate } from './icons/plate.svg';
 import { QueryResult } from '@apollo/react-common';
@@ -16,7 +16,7 @@ function ensuredPropertiesExist<T>(data: T, ensure: Props<T>['ensure']) {
   return ensure.every(keyToEnsure => keys.includes(keyToEnsure));
 }
 
-function SafetyWrapper<T>({
+export function SafetyWrapper<T>({
   data,
   loading,
   error,
@@ -30,5 +30,3 @@ function SafetyWrapper<T>({
   if (children) return children(data);
   return null;
 };
-
-export default SafetyWrapper;

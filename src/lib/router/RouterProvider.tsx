@@ -7,7 +7,7 @@ interface Props {
   router: RouterPayload;
 };
 
-const RouterProvider: React.FC<Props> = ({ router: routerPayload, children }) => {
+export const RouterProvider: React.FC<Props> = ({ router: routerPayload, children }) => {
   const { router, routeState: initialRouteState } = routerPayload;
 
   const [routeState, setRouteState] = useState<RouteState>(initialRouteState);
@@ -27,5 +27,3 @@ const RouterProvider: React.FC<Props> = ({ router: routerPayload, children }) =>
     </RouteContext.Provider>
   )
 }
-
-export default RouterProvider;

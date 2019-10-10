@@ -19,7 +19,7 @@ const derivePathFromProps = ({ route, params, path}: Props) => {
   return getPath(params); 
 };
 
-const Link: React.FC<Props> = React.memo(({
+export const Link: React.FC<Props> = React.memo(({
   route,
   params,
   path,
@@ -47,5 +47,3 @@ const Link: React.FC<Props> = React.memo(({
     </a>
   );
 });
-
-export default Link;

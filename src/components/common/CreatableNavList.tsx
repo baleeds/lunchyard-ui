@@ -1,10 +1,10 @@
 import React, { useCallback, useMemo } from 'react';
-import List, { Props as ListProps } from './List';
+import { List, Props as ListProps } from './List';
 import { useRouter, useNavigate } from '../../lib/router';
 import { ReactComponent as PlusIcon } from '../common/icons/add.svg';
-import Placeholder from './Placeholder';
-import ListContainer from './ListContainer';
-import ModuleToolbar from './ModuleToolbar';
+import { Placeholder } from './Placeholder';
+import { ListContainer } from './ListContainer';
+import { ModuleToolbar } from './ModuleToolbar';
 
 interface Props<OptionFragment> {
   items: OptionFragment[] | null | undefined;
@@ -27,7 +27,7 @@ interface ListableItem {
   id: string;
 };
 
-function CreatableNavList<
+export function CreatableNavList<
   OptionFragment extends ListableItem,
 >({
   items,
@@ -87,5 +87,3 @@ function CreatableNavList<
     </ListContainer>
   );
 };
-
-export default CreatableNavList;

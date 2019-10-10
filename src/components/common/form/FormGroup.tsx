@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import theme from '../../../constants/theme';
+import { theme } from '../../../constants/theme';
 
 interface Props {
   label?: string;
   htmlFor?: string;
 };
 
-const FormGroup: React.FC<Props> = ({
+export const FormGroup: React.FC<Props> = ({
   label,
   htmlFor,
   children,
@@ -48,5 +48,3 @@ const FormGroupContainer = styled.div`
     }
   }
 `;
-
-export default FormGroup;

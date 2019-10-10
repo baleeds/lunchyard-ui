@@ -14,7 +14,7 @@ interface ModalContextType {
 // QUESTION: Sending a noop through?  How could I do that better?
 export const ModalContext = React.createContext<ModalContextType>({ modalStack: [], addModalToStack: () => {} });
 
-const ModalController: React.FC = ({ children }) => {
+export const ModalController: React.FC = ({ children }) => {
   const [modalStack, setModalStack] = useState<Modal[]>([]);
 
   const addModalToStack = useCallback((modal: Modal) => {
@@ -57,5 +57,3 @@ const ModalDrop = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-export default ModalController;

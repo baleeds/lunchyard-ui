@@ -1,11 +1,11 @@
 import gql from 'graphql-tag';
-import vendorDetails from './vendorDetails.fragment';
+import { vendorDetailsFragment } from './vendorDetails.fragment';
 
-export default gql`
+export const vendorQuery = gql`
   query Vendor($id: ID!) {
     vendor(id: $id) {
       ...VendorDetails
     }
   }
-  ${vendorDetails}
+  ${vendorDetailsFragment}
 `;

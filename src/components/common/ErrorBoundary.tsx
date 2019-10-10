@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import withRouter from '../../lib/router/withRouter';
+import { withRouter } from '../../lib/router/withRouter';
 
 interface ComponentProps {
   message?: string;
@@ -14,7 +14,7 @@ interface State {
   hasError: boolean;
 };
 
-class ErrorBoundary extends Component<Props & ComponentProps, State> {
+class ErrorBoundaryInternal extends Component<Props & ComponentProps, State> {
   constructor(props: Props) {
     super(props);
     this.state = { hasError: false };
@@ -44,4 +44,4 @@ class ErrorBoundary extends Component<Props & ComponentProps, State> {
   }
 }
 
-export default withRouter<ComponentProps>(ErrorBoundary);
+export const ErrorBoundary = withRouter<ComponentProps>(ErrorBoundaryInternal);

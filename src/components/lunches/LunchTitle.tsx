@@ -5,7 +5,7 @@ interface Props {
   lunch: Lunch | LunchOptionFragment;
 };
 
-const LunchTitle: React.FC<Props> = ({ lunch }) => {
+export const LunchTitle: React.FC<Props> = ({ lunch }) => {
   const { occasion, vendor } = lunch;
 
   if (!occasion) {
@@ -21,4 +21,3 @@ const LunchTitle: React.FC<Props> = ({ lunch }) => {
   );
 };
 
-export default LunchTitle;

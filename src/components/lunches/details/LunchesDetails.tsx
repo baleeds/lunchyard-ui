@@ -1,10 +1,10 @@
 import React from 'react';
-import LunchDetailsHeader from './LunchDetailsHeader';
-import LunchOrder from './LunchOrder';
+import { LunchDetailsHeader } from './LunchDetailsHeader';
+import { LunchOrder } from './LunchOrder';
 import { useLunchQuery } from '../../../api/types.generated';
 import { ReactComponent as Plate } from '../../common/icons/plate.svg';
-import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
-import Placeholder from '../../common/Placeholder';
+import { DetailsHeaderContainer } from '../../common/DetailsHeaderContainer';
+import { Placeholder } from '../../common/Placeholder';
 
 interface Props {
   lunchId: string;
@@ -12,7 +12,7 @@ interface Props {
 
 const placeholderStyle = { height: 198 };
 
-const LunchDetails: React.FC<Props> = ({ lunchId }) => {
+export const LunchDetails: React.FC<Props> = ({ lunchId }) => {
   const { data, loading } = useLunchQuery({
     variables: {
       id: lunchId,
@@ -37,6 +37,3 @@ const LunchDetails: React.FC<Props> = ({ lunchId }) => {
     </div>
   );
 };
-
-
-export default LunchDetails;

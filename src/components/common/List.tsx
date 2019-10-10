@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import Link from '../../lib/router/Link';
-import theme from '../../constants/theme';
+import { Link } from '../../lib/router/Link';
+import { theme } from '../../constants/theme';
 
 interface ListItem {
   id: string;
@@ -17,8 +17,8 @@ export interface Props<ItemType> {
   CreatableForm?: JSX.Element;
 };
 
-// QUESITION: 
-function List<ItemType extends ListItem>({
+// QUESTION: i don't remember...
+export function List<ItemType extends ListItem>({
   items,
   ListItem,
   getPath,
@@ -85,5 +85,3 @@ const ListUl = styled.ul`
     }
   }
 `;
-
-export default List;

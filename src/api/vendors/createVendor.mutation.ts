@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
-import vendorOption from "./vendorOption.fragment";
+import { vendorOptionFragment } from "./vendorOption.fragment";
 
-export default gql`
+export const createVendorMutation = gql`
   mutation CreateVendor($input: CreateVendorInput!) {
     createVendor(input: $input) {
       ...VendorOption
     }
   }
-  ${vendorOption}
+  ${vendorOptionFragment}
 `;

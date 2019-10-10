@@ -1,13 +1,13 @@
 import React from 'react';
 import { toSimpleDate } from '../../lib/date';
-import LunchTitle from './LunchTitle';
+import { LunchTitle } from './LunchTitle';
 import { LunchOptionFragment } from '../../api/types.generated';
 
 interface Props {
   item: LunchOptionFragment;
 };
 
-const LunchesListItem: React.FC<Props> = ({ item }) => {
+export const LunchesListItem: React.FC<Props> = ({ item }) => {
   const { date } = item;
   const dateDisplay = date ? toSimpleDate(date) : 'Not scheduled';
   
@@ -22,5 +22,3 @@ const LunchesListItem: React.FC<Props> = ({ item }) => {
     </>
   );
 };
-
-export default LunchesListItem;

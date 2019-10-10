@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import theme from "../../constants/theme";
+import { theme } from "../../constants/theme";
 
-const DetailsHeaderContainer = styled.div`
+export const DetailsHeaderContainer = styled.div`
   background-color: ${theme.primary};
   color: ${theme.blank};
   padding: 30px;
@@ -39,5 +39,3 @@ const DetailsHeaderContainer = styled.div`
     font-weight: bold;
   }
 `;
-
-export default DetailsHeaderContainer

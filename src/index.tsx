@@ -3,12 +3,12 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
 import './styles/reset.css';
-import App from './components/App';
+import { App } from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { startRouter } from './lib/router';
-import routes from './constants/routes';
-import client from './api/client';
-import ModalController from './components/common/ModalController';
+import { routes } from './constants/routes';
+import { client } from './api/client';
+import { ModalController } from './components/common/ModalController';
 import { RouterProvider } from './lib/router';
 
 // This router is homegrown as an expirement to solve three problems

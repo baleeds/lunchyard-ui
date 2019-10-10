@@ -1,16 +1,16 @@
 import React, { useMemo } from 'react';
-import routes from '../../constants/routes';
-import LunchesListItem from './LunchesListItem';
-import NewLunchForm from './NewLunchForm';
+import { routes } from '../../constants/routes';
+import { LunchesListItem } from './LunchesListItem';
+import { NewLunchForm } from './NewLunchForm';
 import { useLunchOptionsQuery, LunchOptionFragment, LunchOptionsQuery } from '../../api/types.generated';
 import { ReactComponent as Plate } from '../common/icons/plate.svg';
-import CreatableNavList from '../common/CreatableNavList';
-import usePrunedConnection from '../../hooks/usePrunedConnection';
+import { CreatableNavList } from '../common/CreatableNavList';
+import { usePrunedConnection } from '../../hooks/usePrunedConnection';
 
 const getPathFromLunchItem = (item: LunchOptionFragment) => routes.lunchDetails.getPath({ lunchId: item.id });
 const getIdFromParams = (params: any) => params.lunchId;
 
-const LunchesList: React.FC = React.memo(() => {  
+export const LunchesList: React.FC = React.memo(() => {  
   const { data, loading } = useLunchOptionsQuery({
     variables: { first: 100 },
   });
@@ -37,5 +37,3 @@ const LunchesList: React.FC = React.memo(() => {
     />
   );
 });
-
-export default LunchesList;

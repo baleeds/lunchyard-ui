@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import theme from '../../constants/theme';
+import { theme } from '../../constants/theme';
 
 interface Props {
   Icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   message?: string;
 };
 
-const Placeholder: React.FC<Props> = ({
+export const Placeholder: React.FC<Props> = ({
   Icon,
   message,
 }) => {
@@ -43,5 +43,3 @@ const InnerContainer = styled.div`
     fill: currentColor;
   }
 `;
-
-export default Placeholder;

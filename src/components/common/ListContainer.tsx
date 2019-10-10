@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import theme from "../../constants/theme";
+import { theme } from "../../constants/theme";
 
-const ListContainer = styled.div`
+export const ListContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -10,5 +10,3 @@ const ListContainer = styled.div`
   border-right: 1px solid ${theme.border};
   /* max-width: 500px; */
 `;
-
-export default ListContainer;

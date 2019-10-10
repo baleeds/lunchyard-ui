@@ -1,11 +1,11 @@
 import gql from "graphql-tag";
-import lunchDetails from "./lunchDetails.fragment";
+import { lunchDetailsFragment } from "./lunchDetails.fragment";
 
-export default gql`
+export const creatLunchMutation = gql`
   mutation CreateLunch($input: CreateLunchInput!) {
     createLunch(input: $input) {
       ...LunchDetails
     }
   }
-  ${lunchDetails}
+  ${lunchDetailsFragment}
 `;

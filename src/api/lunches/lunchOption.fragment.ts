@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export default gql`
+export const lunchOptionFragment = gql`
   fragment LunchOption on Lunch {
     id
     date
