@@ -1,7 +1,7 @@
 import React from 'react';
 import LunchDetailsHeader from './LunchDetailsHeader';
 import LunchOrder from './LunchOrder';
-import { useLunchQuery } from '../../../api/types';
+import { useLunchQuery } from '../../../api/types.generated';
 import { ReactComponent as Plate } from '../../common/icons/plate.svg';
 import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
 import Placeholder from '../../common/Placeholder';

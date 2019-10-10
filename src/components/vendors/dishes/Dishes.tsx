@@ -1,5 +1,5 @@
 import React from 'react';
-import { VendorDetailsFragment, DishOptionFragment } from '../../../api/types';
+import { VendorDetailsFragment, DishOptionFragment } from '../../../api/types.generated';
 import CreatableNavList from '../../common/CreatableNavList';
 import usePrunedConnection from '../../../hooks/usePrunedConnection';
 import { ReactComponent as DishIcon } from '../../common/icons/dish.svg';

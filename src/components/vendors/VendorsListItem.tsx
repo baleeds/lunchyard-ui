@@ -1,5 +1,5 @@
 import React from 'react';
-import { VendorOptionFragment } from '../../api/types';
+import { VendorOptionFragment } from '../../api/types.generated';
 
 interface Props {
   item: VendorOptionFragment;

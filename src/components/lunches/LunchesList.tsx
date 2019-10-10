@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import routes from '../../constants/routes';
 import LunchesListItem from './LunchesListItem';
 import NewLunchForm from './NewLunchForm';
-import { useLunchOptionsQuery, LunchOptionFragment, LunchOptionsQuery } from '../../api/types';
+import { useLunchOptionsQuery, LunchOptionFragment, LunchOptionsQuery } from '../../api/types.generated';
 import { ReactComponent as Plate } from '../common/icons/plate.svg';
 import CreatableNavList from '../common/CreatableNavList';
 import usePrunedConnection from '../../hooks/usePrunedConnection';

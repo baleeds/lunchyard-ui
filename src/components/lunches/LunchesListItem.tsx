@@ -1,7 +1,7 @@
 import React from 'react';
 import { toSimpleDate } from '../../lib/date';
 import LunchTitle from './LunchTitle';
-import { LunchOptionFragment } from '../../api/types';
+import { LunchOptionFragment } from '../../api/types.generated';
 
 interface Props {
   item: LunchOptionFragment;

@@ -1,4 +1,4 @@
-import { Vendor, VendorOptionsQuery, VendorOptionFragment } from '../api/types';
+import { Vendor, VendorOptionsQuery, VendorOptionFragment } from '../api/types.generated';
 import { Option } from '../components/common/form/Select';
 
 interface GenericNode {

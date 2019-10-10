@@ -1,5 +1,5 @@
 import React, { useCallback, useReducer } from 'react';
-import { useUpdateVendorMutation, VendorDetailsFragment } from '../../../api/types';
+import { useUpdateVendorMutation, VendorDetailsFragment } from '../../../api/types.generated';
 import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
 
 interface Props {

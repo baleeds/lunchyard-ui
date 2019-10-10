@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import routes from '../../constants/routes';
 import { useNavigate } from '../../lib/router';
-import { useCreateVendorMutation, CreateVendorMutation, VendorOptionsQueryVariables, VendorOptionsQuery } from '../../api/types';
+import { useCreateVendorMutation, CreateVendorMutation, VendorOptionsQueryVariables, VendorOptionsQuery } from '../../api/types.generated';
 import getAddEdgeToQuery from '../../lib/apollo/updaters/getAddEdgeToQuery';
 import useInputState from '../../hooks/useInputState';
 import SimpleInputForm from '../common/form/SimpleInputForm';

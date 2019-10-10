@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import routes from '../../constants/routes';
 import VendorsListItem from './VendorsListItem';
 import NewVendorForm from './NewVendorForm';
-import { VendorOptionFragment, VendorOptionsQuery, useVendorOptionsQuery } from '../../api/types';
+import { VendorOptionFragment, VendorOptionsQuery, useVendorOptionsQuery } from '../../api/types.generated';
 import CreatableNavList from '../common/CreatableNavList';
 import { ReactComponent as RestaurantIcon } from '../common/icons/store.svg';
 import usePrunedConnection from '../../hooks/usePrunedConnection';

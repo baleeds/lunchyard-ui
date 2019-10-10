@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import DayPicker from '../../common/form/DayPicker';
 import { toSimpleDate } from '../../../lib/date';
-import { useUpdateLunchMutation, useVendorOptionsQuery, VendorOptionsQuery, VendorOptionsQueryVariables, VendorOptionFragment, LunchDetailsFragment } from '../../../api/types';
+import { useUpdateLunchMutation, useVendorOptionsQuery, VendorOptionsQuery, VendorOptionsQueryVariables, VendorOptionFragment, LunchDetailsFragment } from '../../../api/types.generated';
 import DataSelect from '../../common/form/DataSelect';
 import { nodeToOption, vendorOptionsQueryToOptions } from '../../../lib/mappers';
 import { Option } from '../../common/form/Select';

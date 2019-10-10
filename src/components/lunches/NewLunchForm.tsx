@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import routes from '../../constants/routes';
 import { useNavigate } from '../../lib/router';
-import { useCreateLunchMutation, LunchOptionsQuery, LunchOptionsQueryVariables, CreateLunchMutation } from '../../api/types';
+import { useCreateLunchMutation, LunchOptionsQuery, LunchOptionsQueryVariables, CreateLunchMutation } from '../../api/types.generated';
 import getAddEdgeToQuery from '../../lib/apollo/updaters/getAddEdgeToQuery';
 import lunchOptionsQuery from '../../api/lunches/lunchOptions.query';
 import useInputState from '../../hooks/useInputState';

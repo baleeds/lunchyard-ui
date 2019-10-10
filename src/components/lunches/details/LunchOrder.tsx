@@ -1,6 +1,6 @@
 import React from 'react';
 import ModuleToolbar from '../../common/ModuleToolbar';
-import { LunchDetailsFragment } from '../../../api/types';
+import { LunchDetailsFragment } from '../../../api/types.generated';
 
 interface Props {
   lunch: LunchDetailsFragment;

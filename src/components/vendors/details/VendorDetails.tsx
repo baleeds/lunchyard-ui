@@ -1,6 +1,6 @@
 import React from 'react';
 import VendorDetailsHeader from './VendorDetailsHeader';
-import { useVendorQuery } from '../../../api/types';
+import { useVendorQuery } from '../../../api/types.generated';
 import Dishes from '../dishes/Dishes';
 import DetailsHeaderContainer from '../../common/DetailsHeaderContainer';
 import Placeholder from '../../common/Placeholder';

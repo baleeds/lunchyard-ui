@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lunch, LunchOptionFragment } from '../../api/types';
+import { Lunch, LunchOptionFragment } from '../../api/types.generated';
 
 interface Props {
   lunch: Lunch | LunchOptionFragment;

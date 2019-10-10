@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useNavigate, useRouter } from '../../../lib/router';
 import useInputState from '../../../hooks/useInputState';
 import routes from '../../../constants/routes';
-import { useCreateDishMutation, VendorDetailsFragment, CreateDishMutation } from '../../../api/types';
+import { useCreateDishMutation, VendorDetailsFragment, CreateDishMutation } from '../../../api/types.generated';
 import SimpleInputForm from '../../common/form/SimpleInputForm';
 import vendorDetailsFragment from '../../../api/vendors/vendorDetails.fragment';
 import getAddEdgeToItem from '../../../lib/apollo/updaters/getAddEdgeToItem';
