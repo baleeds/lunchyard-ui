@@ -1,19 +1,16 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import routes from '../../constants/routes';
 import { useNavigate } from '../../lib/router';
-import FormGroup from '../common/form/FormGroup';
-import { ButtonPrimary, ButtonGhost } from '../common/html/Buttons';
-import { ReactComponent as CheckIcon } from '../common/icons/check.svg';
-import { useCreateLunchMutation, LunchesQuery, LunchesQueryVariables, CreateLunchMutation } from '../../api/types';
-import lunchesQuery from '../../api/lunches/lunches.query';
+import { useCreateLunchMutation, LunchOptionsQuery, LunchOptionsQueryVariables, CreateLunchMutation } from '../../api/types';
 import { getUpdaterToAddEdge } from '../../lib/apollo/updaters';
-import ButtonRow from '../common/form/ButtonRow';
-import ListItemForm from '../common/form/ListItemForm';
+import lunchOptionsQuery from '../../api/lunches/lunchOptions.query';
+import useInputState from '../../hooks/useInputState';
+import SimpleInputForm from '../common/form/SimpleInputForm';
 
 const NewLunchForm: React.FC = React.memo(() => {
   const navigate = useNavigate();
   
-  const [name, setName] = useState('');
+  const [name, handleNameChange] = useInputState('');
 
   const closeForm = useCallback(() => navigate(routes.lunches.getPath()), [navigate]);
 
@@ -21,8 +18,8 @@ const NewLunchForm: React.FC = React.memo(() => {
   
   const [handleCreateLunch, { loading }] = useCreateLunchMutation({
     onCompleted: goToLunch,
-    update: getUpdaterToAddEdge<CreateLunchMutation, LunchesQuery, LunchesQueryVariables>({
-      query: lunchesQuery,
+    update: getUpdaterToAddEdge<CreateLunchMutation, LunchOptionsQuery, LunchOptionsQueryVariables>({
+      query: lunchOptionsQuery,
       variables: { first: 100 },
       connectionName: 'lunches',
       dataToEdge: data => data && data.createLunch ? { node: data.createLunch, __typename: 'LunchEdge' } : null,
@@ -43,41 +40,16 @@ const NewLunchForm: React.FC = React.memo(() => {
     });
   }, [name, handleCreateLunch]);
   
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const { target: { value } } = e;
-
-    setName(value);
-  }, [setName]);
-  
   return (
-    <ListItemForm onSubmit={handleSubmit}>
-      <FormGroup>
-        <input
-          type="text"
-          value={name}
-          onChange={handleChange}
-          placeholder="Occasion"
-          disabled={loading}
-          autoFocus
-        />
-      </FormGroup>
-      <ButtonRow>
-        <ButtonPrimary
-          type="submit"
-          disabled={loading}
-        >
-          <CheckIcon />
-          create
-        </ButtonPrimary>
-        <ButtonGhost
-          type="button"
-          onClick={closeForm}
-          disabled={loading}
-        >
-          cancel
-        </ButtonGhost>
-      </ButtonRow>
-    </ListItemForm>
+    <SimpleInputForm
+      name="Name"
+      handleChange={handleNameChange}
+      handleClose={closeForm}
+      disabled={loading}
+      handleSubmit={handleSubmit}
+      placeholder="lunch occasion"
+      value={name}
+    />
   )
 });
 

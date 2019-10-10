@@ -40,7 +40,7 @@ class CacheConnection<QueryData, QueryVariables>{
     const newQueryData = produce(oldQueryData, (draftQueryData: any) => {
       if (!draftQueryData || !draftQueryData[connectionName]) return oldQueryData;
 
-      draftQueryData[connectionName].edges.unshift(edge);
+      draftQueryData[connectionName].edges.push(edge);
     });
 
     this.write(newQueryData);

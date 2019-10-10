@@ -433,7 +433,7 @@ export type CreateVendorMutationVariables = {
 export type CreateVendorMutation = (
   { __typename?: 'Mutation' }
   & { createVendor: { __typename?: 'Vendor' }
-    & VendorDetailsFragment
+    & VendorOptionFragment
    }
 );
 
@@ -673,10 +673,10 @@ export type UpdateLunchMutationOptions = ApolloReactCommon.BaseMutationOptions<U
 export const CreateVendorDocument = gql`
     mutation CreateVendor($input: CreateVendorInput!) {
   createVendor(input: $input) {
-    ...VendorDetails
+    ...VendorOption
   }
 }
-    ${VendorDetailsFragmentDoc}`;
+    ${VendorOptionFragmentDoc}`;
 export type CreateVendorMutationFn = ApolloReactCommon.MutationFunction<CreateVendorMutation, CreateVendorMutationVariables>;
 
     export function useCreateVendorMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateVendorMutation, CreateVendorMutationVariables>) {
