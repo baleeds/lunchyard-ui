@@ -1,11 +1,9 @@
 import React, { useCallback } from 'react';
 import { routes } from '../../constants/routes';
 import { useNavigate } from '../../lib/router';
-import { useCreateVendorMutation, CreateVendorMutation, VendorOptionsQueryVariables, VendorOptionsQuery } from '../../api/types.generated';
-import { getAddEdgeToQuery } from '../../lib/apollo/updaters/getAddEdgeToQuery';
+import { useCreateVendorMutation } from '../../api/types.generated';
 import { useInputState } from '../../hooks/useInputState';
 import { SimpleInputForm } from '../common/form/SimpleInputForm';
-import { vendorOptionsQuery } from '../../api/vendors/vendorOptions.query';
 
 export const NewVendorForm: React.FC = React.memo(() => {
   const navigate = useNavigate();
@@ -18,12 +16,6 @@ export const NewVendorForm: React.FC = React.memo(() => {
   
   const [handleCreateVendor, { loading }] = useCreateVendorMutation({
     onCompleted: goToVendor,
-    update: getAddEdgeToQuery<CreateVendorMutation, VendorOptionsQuery, VendorOptionsQueryVariables>({
-      query: vendorOptionsQuery,
-      variables: { first: 100 },
-      connectionName: 'vendors',
-      dataToEdge: data => data && data.createVendor ? { node: data.createVendor, __typename: 'VendorEdge' } : null,
-    }),
   });
 
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {

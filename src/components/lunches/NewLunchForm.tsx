@@ -1,9 +1,7 @@
 import React, { useCallback } from 'react';
 import { routes } from '../../constants/routes';
 import { useNavigate } from '../../lib/router';
-import { useCreateLunchMutation, LunchOptionsQuery, LunchOptionsQueryVariables, CreateLunchMutation } from '../../api/types.generated';
-import { getAddEdgeToQuery } from '../../lib/apollo/updaters/getAddEdgeToQuery';
-import { lunchOptionsQuery } from '../../api/lunches/lunchOptions.query';
+import { useCreateLunchMutation } from '../../api/types.generated';
 import { useInputState } from '../../hooks/useInputState';
 import { SimpleInputForm } from '../common/form/SimpleInputForm';
 
@@ -18,13 +16,6 @@ export const NewLunchForm: React.FC = React.memo(() => {
   
   const [handleCreateLunch, { loading }] = useCreateLunchMutation({
     onCompleted: goToLunch,
-    update: getAddEdgeToQuery<CreateLunchMutation, LunchOptionsQuery, LunchOptionsQueryVariables>({
-      query: lunchOptionsQuery,
-      variables: { first: 100 },
-      connectionName: 'lunches',
-      // QUESTION: should I be building the edges?  Obvi I would do it in a function.
-      dataToEdge: data => data && data.createLunch ? { node: data.createLunch, __typename: 'LunchEdge' } : null,
-    }),
   });
 
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
