@@ -10,7 +10,7 @@ export const useRouter = () => {
 export const useNavigate = () => {
   const { router } = useContext(RouteContext);
 
-  if (!router) return () => {};
+  if (!router) return () => { };
 
   return router.navigate.bind(router);
 };

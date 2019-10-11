@@ -5,7 +5,7 @@ import { ConnectionQuery } from "../../types/apollo";
 export class CacheFragment<Fragment extends ConnectionQuery, FragmentVariables> {
   cache: DataProxy
   fragmentOptions: DataProxy.Fragment<FragmentVariables>
-  
+
   constructor(
     cache: DataProxy,
     fragmentOptions: DataProxy.Fragment<FragmentVariables>,

@@ -8,7 +8,7 @@ import { DataProxy } from "apollo-cache";
 export class CacheConnection<QueryData, QueryVariables>{
   cache: DataProxy
   queryOptions: DataProxy.Query<QueryVariables>
-  
+
   constructor(
     cache: DataProxy,
     queryOptions: DataProxy.Query<QueryVariables>

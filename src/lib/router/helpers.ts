@@ -42,7 +42,7 @@ export const getInitialRouteState = (
 
   return {
     id,
-    activeId, 
+    activeId,
     path,
     params: getParamsFromResolve(resolveOutput),
     query: '',
@@ -61,17 +61,17 @@ export const addRoutesToRouter = (
     .on(navigoRoutes)
     .resolve() as any as MaybeResolveOutput;
 
-  return resolved;    
+  return resolved;
 }
 
-const addRouteToNavigoRoutes = ( navigoRoutes: NavigoRoutes, [, routeDefinition]: [string, RouteDefinition]) => {
+const addRouteToNavigoRoutes = (navigoRoutes: NavigoRoutes, [, routeDefinition]: [string, RouteDefinition]) => {
   const {
     path,
     id,
     activeId = id,
   } = routeDefinition;
 
-  navigoRoutes[path] = function(params, query) {
+  navigoRoutes[path] = function (params, query) {
     PubSub.publish(NEW_ROUTE, {
       id,
       path,
