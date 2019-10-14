@@ -12,11 +12,11 @@ const routePage = (routeState: RouteState) => {
   switch (activeId) {
     case routes.root.id:
     case routes.lunches.id:
-        return <Lunches />
+      return <Lunches />
     case routes.vendors.id:
-        return <Vendors />;
+      return <Vendors />;
     default:
-        return <div>Not found</div>;
+      return <div>Not found</div>;
   }
 }
 

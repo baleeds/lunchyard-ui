@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 interface Modal {
@@ -17,13 +17,13 @@ export const ModalContext = React.createContext<ModalContextType>({ modalStack: 
 export const ModalController: React.FC = ({ children }) => {
   const [modalStack, setModalStack] = useState<Modal[]>([]);
 
-  const addModalToStack = useCallback((modal: Modal) => {
-    setModalStack([...modalStack, modal]);
-  }, [modalStack, setModalStack]);
+  const addModalToStack = (modal: Modal) => {
+    setModalStack(prevModalStack => [...prevModalStack, modal]);
+  };
 
-  const popModalStack = useCallback(() => {
-    setModalStack(modalStack.slice(0, modalStack.length - 2));
-  }, [modalStack, setModalStack]);
+  const popModalStack = () => {
+    setModalStack(prevModalStack => prevModalStack.slice(0, modalStack.length - 2));
+  };
   
   return (
     <>

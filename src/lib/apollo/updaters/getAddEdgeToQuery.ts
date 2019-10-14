@@ -3,23 +3,23 @@ import { DataProxy } from "apollo-cache";
 import { CacheConnection } from "../CacheQuery";
 import { FetchResult } from "apollo-link";
 
-interface Props<QueryVariables, Mutation> {
+interface Props<TQueryVariables, TMutation> {
   query: DocumentNode;
-  variables: QueryVariables;
+  variables: TQueryVariables;
   connectionName: string;
-  dataToEdge: (data: Mutation) => { node: any } | null | undefined;
+  dataToEdge: (data: TMutation) => { node: any } | null | undefined;
 };
 
-export function getAddEdgeToQuery<Mutation, Query, QueryVariables>({
+export function getAddEdgeToQuery<TMutation, TQuery, TQueryVariables>({
   query,
   variables,
   connectionName,
   dataToEdge,
-}: Props<QueryVariables, Mutation>){
-  return (cache: DataProxy, { data }: FetchResult<Mutation>) => {
+}: Props<TQueryVariables, TMutation>){
+  return (cache: DataProxy, { data }: FetchResult<TMutation>) => {
     if (!data) return;
     
-    const cachedConnection = new CacheConnection<Query, QueryVariables>(cache, {
+    const cachedConnection = new CacheConnection<TQuery, TQueryVariables>(cache, {
       query,
       variables,
     });
