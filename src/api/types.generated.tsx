@@ -285,9 +285,9 @@ export type UpdateLunchInput = {
 
 export type UpdateVendorInput = {
   id: Scalars['ID'],
-  name: Scalars['String'],
-  description: Scalars['String'],
-  address: Scalars['String'],
+  name?: Maybe<Scalars['String']>,
+  description?: Maybe<Scalars['String']>,
+  address?: Maybe<Scalars['String']>,
 };
 
 export type User = {
@@ -371,10 +371,10 @@ export type LunchQuery = (
 );
 
 export type LunchDetailsFragment = (
-  { __typename?: 'Lunch' }
+  { __typename: 'Lunch' }
   & Pick<Lunch, 'id' | 'date' | 'occasion' | 'description'>
   & { vendor: (
-    { __typename?: 'Vendor' }
+    { __typename: 'Vendor' }
     & Pick<Vendor, 'id' | 'name'>
   ) }
 );
@@ -554,9 +554,11 @@ export const LunchDetailsFragmentDoc = gql`
   date
   occasion
   description
+  __typename
   vendor {
     id
     name
+    __typename
   }
 }
     `;

@@ -6,9 +6,11 @@ export const lunchDetailsFragment = gql`
     date
     occasion
     description
+    __typename
     vendor {
       id
       name
+      __typename
     }
     # lunchDishes(first: 100) {
     #   edges {
