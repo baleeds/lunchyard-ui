@@ -50,7 +50,7 @@ export function CreatableNavList<
   const showCreate = routeId === createRoute.id;
 
   const renderList = useCallback(() => {
-    if (loading) return null;
+    if (loading) return 'loading';
     if (!items) return <Placeholder Icon={ModuleIcon} message={`We're having trouble loading ${listTitle}`} />;
     
     return (

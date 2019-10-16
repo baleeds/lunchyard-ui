@@ -68,12 +68,6 @@ button {
 	-webkit-appearance: none;
 }
 
-@media only screen and (max-width: 700px) {
-	.grow {
-			width: 100%;
-	}
-}
-
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 	color: #AFAFAF;
 	opacity: 1; /* Firefox */

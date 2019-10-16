@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 interface Modal {
   modalKey: string;
-  Component: JSX.Element;
+  Component: React.ReactNode;
 };
 
 interface ModalContextType {

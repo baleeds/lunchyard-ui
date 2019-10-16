@@ -14,7 +14,7 @@ export const Nav: React.FC = () => {
   const { activeId } = useRouter();
 
   return (
-    <NavContainer>
+    <NavContainer data-testid="nav">
       <NavLogo />
       <NavLinksContainer>
         <Link
@@ -49,7 +49,7 @@ export const Nav: React.FC = () => {
   );
 };
 
-const NavContainer = styled.div`
+const NavContainer = styled.nav`
   border-right: 1px solid ${theme.border};
   width: 260px;
   flex-shrink: 0;

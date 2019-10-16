@@ -6,7 +6,7 @@ import { QueryResult } from '@apollo/react-common';
 
 interface Props<T> {
   ensure?: string[];
-  children: (data: T) => JSX.Element;
+  children: (data: T) => React.ReactNode;
 }
 
 function ensuredPropertiesExist<T>(data: T, ensure: Props<T>['ensure']) {

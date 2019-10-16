@@ -14,7 +14,7 @@ export interface Props<ItemType> {
   getIsActive: (item: ItemType) => boolean;
   listKey?: string;
   showCreate?: boolean;
-  CreatableForm?: JSX.Element;
+  CreatableForm?: React.ReactNode;
 };
 
 // QUESTION: i don't remember...

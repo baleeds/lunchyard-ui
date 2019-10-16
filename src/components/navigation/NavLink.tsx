@@ -3,7 +3,7 @@ import { Link, LinkGetProps } from '@reach/router';
 
 interface Props {
   to: string;
-  children: string | JSX.Element;
+  children: string | React.ReactNode;
 };
 
 const getActive = (props: LinkGetProps) => {

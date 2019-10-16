@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { theme } from '../../constants/theme';
-import { Link } from '@reach/router';
+import { Link } from '../../lib/router';
+import { routes } from '../../constants/routes';
 
 export const NavLogo: React.FC = () => {
   return (
-    <NavLogoContainer to="/">
+    <NavLogoContainer route={routes.root}>
       <h1>
         <strong>Lunch</strong>Yard
       </h1>

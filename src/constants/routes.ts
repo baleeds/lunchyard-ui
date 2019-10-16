@@ -1,8 +1,9 @@
 export const routes = Object.freeze({
   root: {
     id: 'root',
-    path: '',
+    path: '/',
     activeId: 'lunches',
+    getPath: () => '/',
   },
   lunches: {
     id: 'lunches',
