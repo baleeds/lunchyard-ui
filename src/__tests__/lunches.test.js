@@ -1,10 +1,14 @@
 import React from 'react';
-import { render, wait, waitForElement } from '@testing-library/react';
+import { render, waitForElement, cleanup, wait } from '@testing-library/react';
 import Lunches from '../components/lunches/Lunches';
 import { useRouter as mockUseRouter } from '../lib/router';
-import { lunchesQuery } from '../api/lunches/lunches.query';
-import { MockedProvider } from '@apollo/react-testing';
-import { lunchOptionsQuery } from '../api/lunches/lunchOptions.query';
+import {
+  ApolloLoadingProvider,
+  ApolloErrorProvider,
+  ApolloMockedProvider,
+} from './utils/providers';
+
+afterEach(cleanup);
 
 jest.mock('../lib/router', function() {
   return {
@@ -13,40 +17,54 @@ jest.mock('../lib/router', function() {
   };
 });
 
-const mocks = [
-  {
-    request: {
-      query: lunchOptionsQuery,
-      variables: { first: 100 },
-    },
-    result: {
-      data: {
-        lunches: {
-          edges: [
-            {
-              node: {
-                id: '1',
-                date: new Date().toISOString(),
-                occasion: 'Birthday',
-                vendor: {
-                  id: '1',
-                  name: 'Food City',
-                }
-              }
+const resolvers = {
+  Query: () => ({
+    lunches: () => ({
+      edges: [
+        {
+          node: {
+            id: '1',
+            date: new Date().toISOString(),
+            occasion: 'Birthday',
+            vendor: {
+              id: '1',
+              name: 'Food City',
             }
-          ]
+          }
         }
-      }
-    }
-  }
-];
+      ]
+    }),
+  }),
+};
 
 describe('Lunches', () => {
+  it('has loading indicator', async () => {
+    const { getByText } = render(
+      <ApolloLoadingProvider>
+        <Lunches />
+      </ApolloLoadingProvider>
+    );
+
+    getByText(/loading/i);
+  });
+
+  it('has error state', async () => {
+    const { getByText } = render(
+      <ApolloErrorProvider>
+        <Lunches />
+      </ApolloErrorProvider>
+    );
+
+    await wait();
+
+    getByText(/having trouble/i);
+  })
+  
   it('can show details', async () => {
     const { queryByText } = render(
-      <MockedProvider mocks={mocks} addTypename={false}>
+      <ApolloMockedProvider customResolvers={resolvers}>
         <Lunches />
-      </MockedProvider>
+      </ApolloMockedProvider>
     );
 
     expect(mockUseRouter).toBeCalled();
