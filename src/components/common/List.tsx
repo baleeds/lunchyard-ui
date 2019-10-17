@@ -37,7 +37,7 @@ export function List<ItemType extends ListItem>({
 
         return (
           <li key={itemKey}>
-            <Link path={path} className={isActive ? 'active' : ''}>
+            <Link path={path} className={isActive ? 'active' : ''} data-testid={`item-${item.id}`}>
               <ListItem item={item} />
             </Link>
           </li>

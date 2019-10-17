@@ -1,5 +1,3 @@
-1312
-
 export const typeDefs = `
 input AddDishToLunchInput {
   lunchId: ID!
