@@ -1,22 +1,13 @@
 import React from 'react';
-import { render, waitForElement, cleanup, wait, fireEvent } from '@testing-library/react';
+import { render, waitForElement, wait, fireEvent } from '@testing-library/react';
 import Lunches from '../components/lunches/Lunches';
-import { useRouter as mockUseRouter, RouterProvider, startRouter } from '../lib/router';
+import { RouterProvider, startRouter } from '../lib/router';
 import {
   ApolloLoadingProvider,
   ApolloErrorProvider,
   ApolloMockedProvider,
 } from './utils/providers';
 import { routes } from '../constants/routes';
-
-afterEach(cleanup);
-
-// jest.mock('../lib/router', function() {
-//   return {
-//     useRouter: jest.fn(() => ({ params: {} })),
-//     useNavigate: () => ,
-//   };
-// });
 
 const resolvers = {
   Query: () => ({
@@ -35,7 +26,7 @@ const resolvers = {
         }
       ]
     }),
-    lunch: (...args) => console.log('GET LUNCH', args) || ({
+    lunch: () => ({
       id: '1',
       date: new Date().toISOString(),
       occasion: 'Birthday',
@@ -46,7 +37,7 @@ const resolvers = {
     }),
   }),
   Mutation: () => ({
-    createLunch: (...args) => console.log(args) || ({
+    createLunch: () => ({
       id: '1',
       date: new Date().toISOString(),
       occasion: 'Birthday',
@@ -59,50 +50,55 @@ const resolvers = {
 };
 
 describe('Lunches', () => {
-  // it('has loading indicator', async () => {
-  //   const { getByText } = render(
-  //     <ApolloLoadingProvider>
-  //       <Lunches />
-  //     </ApolloLoadingProvider>
-  //   );
+  it('has loading indicator', async () => {
+    const router = startRouter({ routes });
 
-  //   getByText(/loading/i);
-  // });
+    const { getByText } = render(
+      <RouterProvider router={router}>
+        <ApolloLoadingProvider>
+          <Lunches />
+        </ApolloLoadingProvider>
+      </RouterProvider>
+    );
 
-  // it('has error state', async () => {
-  //   const { getByText } = render(
-  //     <ApolloErrorProvider>
-  //       <Lunches />
-  //     </ApolloErrorProvider>
-  //   );
+    getByText(/loading/i);
+  });
 
-  //   await wait();
+  it('has error state', async () => {
+    const router = startRouter({ routes });
 
-  //   getByText(/having trouble/i);
-  // });
+    const { getByText } = render(
+      <RouterProvider router={router}>
+        <ApolloErrorProvider>
+          <Lunches />
+        </ApolloErrorProvider>
+      </RouterProvider>
+    );
+
+    await wait();
+
+    getByText(/having trouble/i);
+  });
   
   it('can show details', async () => {
-    const { getByText, queryByText, debug, rerender } = render(
-      <RouterProvider router={startRouter({ routes })}>
+    const router = startRouter({ routes });
+
+    const { queryByText, rerender } = render(
+      <RouterProvider router={router}>
         <ApolloMockedProvider customResolvers={resolvers}>
           <Lunches />
         </ApolloMockedProvider>
       </RouterProvider>
     );
 
-    debug();
-    // expect(mockUseRouter).toBeCalled();
-
-    await waitForElement(() => queryByText('Birthday'));
-
-    const birthdayLink = getByText('Birthday');
+    const birthdayLink = await waitForElement(() => queryByText('Birthday'));
 
     fireEvent.click(birthdayLink);
 
     await wait();
 
     rerender(
-      <RouterProvider router={startRouter({ routes })}>
+      <RouterProvider router={router}>
         <ApolloMockedProvider customResolvers={resolvers}>
           <Lunches />
         </ApolloMockedProvider>
@@ -110,16 +106,42 @@ describe('Lunches', () => {
     );
     
     await waitForElement(() => queryByText(/order/i));
-    debug();
   });
 
-  // it('can be created', async () => {
-  //   const { queryByText } = render(
-  //     <ApolloMockedProvider customResolvers={resolvers}>
-  //       <Lunches />
-  //     </ApolloMockedProvider>
-  //   );
+  it('can be created', async () => {
+    const router = startRouter({ routes });
 
+    const {
+      getByText,
+      getByPlaceholderText,
+      getByTestId,
+      rerender,
+      queryByText,
+    } = render(
+      <RouterProvider router={router}>
+        <ApolloMockedProvider customResolvers={resolvers}>
+          <Lunches />
+        </ApolloMockedProvider>
+      </RouterProvider>
+    );
 
-  // });
+    await wait();
+    const createButton = getByText(/create/i);
+    fireEvent.click(createButton);
+    await wait();
+    const input = getByPlaceholderText(/lunch/i);
+    input.value = 'new lunch';
+    const button = getByTestId('createButton');
+    fireEvent.click(button);
+    await wait();
+
+    rerender(
+      <RouterProvider router={router}>
+        <ApolloMockedProvider customResolvers={resolvers}>
+          <Lunches />
+        </ApolloMockedProvider>
+      </RouterProvider>
+    )
+    await waitForElement(() => queryByText(/order/i));
+  });
 });

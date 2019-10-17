@@ -20,7 +20,6 @@ export const LunchDetails: React.FC<Props> = ({ lunchId }) => {
   });
 
   const { lunch } = data || {};
-  console.log(lunch);
 
   if (loading) return <DetailsHeaderContainer style={placeholderStyle} />
   if (!lunch) return <Placeholder Icon={Plate} message="We're havin trouble loading this lunch" />;

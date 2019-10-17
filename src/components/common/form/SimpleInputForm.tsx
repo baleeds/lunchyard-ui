@@ -43,6 +43,7 @@ export const SimpleInputForm: React.FC<Props> = ({
         <ButtonPrimary
           type="submit"
           disabled={disabled}
+          data-testid="createButton"
         >
           <CheckIcon />
           create
