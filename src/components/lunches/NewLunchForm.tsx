@@ -21,6 +21,8 @@ export const NewLunchForm: React.FC = React.memo(() => {
   const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!name || name === '') return;
+
     handleCreateLunch({
       variables: {
         input: {

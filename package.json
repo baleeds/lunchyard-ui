@@ -24,7 +24,6 @@
     "apollo-boost": "^0.4.4",
     "apollo-link-watched-mutation": "^0.2.4",
     "apollo-mocked-provider": "^3.0.1",
-    "baleeds/apollo-mocked-provider": "^3.0.1",
     "dayjs": "^1.8.16",
     "graphql": "^14.5.8",
     "immer": "^4.0.0",

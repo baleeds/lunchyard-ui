@@ -5,6 +5,8 @@ import { HttpLink } from 'apollo-link-http';
 import { getWatchedMutationLink } from './watchedMutationLink';
 import lunchyardFragmentTypes from '../lunchyard-fragment-types.json';
 
+export const it = "hello";
+
 const httpLink = new HttpLink({
   uri: 'http://localhost:4000/graphql',
 });
