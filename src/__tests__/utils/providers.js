@@ -9,3 +9,4 @@ import { ApolloProvider } from '@apollo/react-hooks';
 export const ApolloMockedProvider = createApolloMockedProvider(typeDefs, { provider: ApolloProvider });
 export const ApolloErrorProvider = createApolloErrorProvider({ provider: ApolloProvider });
 export const ApolloLoadingProvider = createApolloLoadingProvider({ provider: ApolloProvider });
+ 
